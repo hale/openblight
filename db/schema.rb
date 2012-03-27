@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327194451) do
+ActiveRecord::Schema.define(:version => 20120327212139) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -33,6 +33,12 @@ ActiveRecord::Schema.define(:version => 20120327194451) do
   create_table "cases", :force => true do |t|
     t.string   "case_number"
     t.integer  "geopin"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "demolitions", :force => true do |t|
+    t.string   "case_number"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -71,6 +77,25 @@ ActiveRecord::Schema.define(:version => 20120327194451) do
     t.integer  "inspector_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "inspectors", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "maintenances", :force => true do |t|
+    t.string   "house_num"
+    t.string   "street_name"
+    t.string   "street_type"
+    t.string   "address_long"
+    t.string   "program_name"
+    t.datetime "date_recorded"
+    t.datetime "date_completed"
+    t.datetime "status"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "properties", :force => true do |t|
