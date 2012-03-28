@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327212139) do
+ActiveRecord::Schema.define(:version => 20120328004730) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(:version => 20120327212139) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "case_managers", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "cases", :force => true do |t|
     t.string   "case_number"
     t.integer  "geopin"
@@ -38,6 +43,12 @@ ActiveRecord::Schema.define(:version => 20120327212139) do
   end
 
   create_table "demolitions", :force => true do |t|
+    t.string   "case_number"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "foreclosures", :force => true do |t|
     t.string   "case_number"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -85,6 +96,12 @@ ActiveRecord::Schema.define(:version => 20120327212139) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "judgements", :force => true do |t|
+    t.string   "case_number"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "maintenances", :force => true do |t|
     t.string   "house_num"
     t.string   "street_name"
@@ -98,12 +115,23 @@ ActiveRecord::Schema.define(:version => 20120327212139) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "notifications", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "properties", :force => true do |t|
     t.string   "street"
     t.integer  "number"
     t.integer  "zip_code"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "resets", :force => true do |t|
+    t.string   "case_number"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end
