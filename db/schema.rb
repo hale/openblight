@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120328004730) do
   end
 
   create_table "case_managers", :force => true do |t|
+    t.string   "case"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

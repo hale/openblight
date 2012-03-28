@@ -1,5 +1,6 @@
 require 'spec_helper'
 
 describe Inspection do
-  pending "add some examples to (or delete) #{__FILE__}"
+	it { should belong_to(:inspector) }
+	it { should belong_to(:case) }
 end

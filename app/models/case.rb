@@ -9,5 +9,4 @@ class Case < ActiveRecord::Base
     has_one  :case_manager
     has_one  :foreclosure
     has_many :resets
-
 end

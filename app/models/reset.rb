@@ -1,5 +1,4 @@
 class Reset < ActiveRecord::Base
-	t.string :case_number
-	t.datetime :date
-	t.string :reason
+	belongs_to :case, :foreign_key => :case_number
+
 end
