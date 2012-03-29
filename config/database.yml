@@ -3,12 +3,13 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-development:
+development: &DEVELOPMENT
   adapter: postgis
+  encoding: unicode
   database: openblight_dev
-  host: localhost
   username: postgres
   template: template_postgis
+  pool: 5
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -18,7 +19,4 @@ test:
   database: openblight_test
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  <<: *DEVELOPMENT
