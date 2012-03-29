@@ -1,5 +1,11 @@
 require 'rgeo/shapefile'
 
+# TODO: In order to be re-deployable, assets should not be hard coded. Maybe we 
+# can pull from a URL
+# endpoint = 'https://data.nola.gov/download/div8-5v7i/application/zip'
+# puts "Connecting to #{endpoint}\n";
+# request = Typhoeus::Request.new(endpoint)
+    
 namespace :addresses do
   desc "Load data.nola.gov addresses into database"
   task :load => :environment do
