@@ -11,13 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329013037) do
+ActiveRecord::Schema.define(:version => 20120329214236) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
     t.integer  "address_id"
     t.integer  "street_id"
-    t.integer  "parcel_id"
     t.string   "house_num"
     t.string   "street_name"
     t.string   "street_type"
@@ -29,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20120329013037) do
     t.datetime "created_at",                                              :null => false
     t.datetime "updated_at",                                              :null => false
     t.spatial  "point",         :limit => {:srid=>-1, :type=>"geometry"}
+    t.string   "parcel_id"
+    t.boolean  "official"
   end
 
   create_table "case_managers", :force => true do |t|
