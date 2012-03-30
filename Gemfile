@@ -7,7 +7,9 @@ gem 'rails', '3.2.2'
 
 gem 'sqlite3'
 gem 'foreigner'
-gem 'typhoeus'
+gem 'aws-s3'
+gem 'roo' #excel parser
+gem 'rubyXL'#excel parser
 
 # GIS 
 gem 'rgeo'
