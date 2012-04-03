@@ -5,7 +5,7 @@ gem 'rails', '3.2.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'foreigner'
 gem 'aws-s3'
 gem 'roo' #excel parser
@@ -15,6 +15,8 @@ gem 'rubyXL'#excel parser
 gem 'rgeo'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-shapefile'
+
+gem 'haml'
 
 # Gems used only for assets and not required
 # in production environments by default.
