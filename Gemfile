@@ -5,14 +5,18 @@ gem 'rails', '3.2.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+
 gem 'sqlite3'
 gem 'foreigner'
 gem 'aws-s3'
 gem 'roo' #excel parser
-gem 'rubyXL'#excel parser
+#gem 'rubyXL'#excel parser
+gem 'yamler'
+
 
 # GIS 
 gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-shapefile'
 

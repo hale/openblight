@@ -1,0 +1,29 @@
+AMAZON_ACCESS_KEY_ID: AKIAIPBLWRYJ64UBBC6A
+AMAZON_SECRET_ACCESS_KEY: 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
+Models:
+ - name: Maintenance 
+   bucketname: neworleansdata
+   filename: INAP Validated Address Data entry sheet 2012.xlsx
+   column_map: # db column => excel 
+      house_num: house_num
+      street_name: street_name
+      street_type: street_type
+      program_name: program_name
+
+ - name: Demolition
+   bucketname: neworleansdata
+   filename: NORA Validated_Demo_DataEntry_2012.xlsx
+   column_map: 
+      house_num: house_num
+      street_name: street_name
+      street_type: street_type
+      program_name: program_name
+
+ - name: Demolition
+   bucketname: neworleansdata
+   filename: FEMA Validated_Demo_DataEntry_2012_January.xlsx
+   column_map: 
+      house_num: house_num
+      street_name: street_name
+      street_type: street_type
+      program_name: program_name
