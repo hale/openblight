@@ -22,15 +22,16 @@ namespace :maintenance do
 
     #connect to amazon
     AWS::S3::Base.establish_connection!(
-      :access_key_id     => settings['AMAZON_ACCESS_KEY_ID'],
-      :secret_access_key => settings['AMAZON_SECRET_ACCESS_KEY']
+      :access_key_id     => ENV['AMAZON_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
     )
       
-    settings['Models'].each_with_index() do | importer, index|  
-      #Maintenance.destroy_all
+    settings['Models'].each_with_index() do | current, index|  
+      
+      Object::const_get(current['name']).destroy_all
       
     
-      s3obj = AWS::S3::S3Object.find importer['filename'], importer['bucketname']
+      s3obj = AWS::S3::S3Object.find current['filename'], current['bucketname']
       downloaded_file_path = "#{Rails.root}" + '/tmp/cache/' + File.basename(s3obj.path)
       downloaded_file = File.new(downloaded_file_path, "wb")
       downloaded_file.write(s3obj.value)
@@ -38,14 +39,14 @@ namespace :maintenance do
     
       workbook = Excelx.new(downloaded_file_path)
       puts workbook.to_yaml
+
       #these column names should be should not statically matched
       #workbook = RubyXL::Parser.parse(downloaded_file_path)
       #workbook.worksheets[0].extract_data.each_with_index do |row, index|
         #if index == 1 then
         #   next
         #end
-        #eval("Master::Person").new("John")
-        #Maintenance.create(:house_num => row[1], :street_name => row[2], :street_type => row[3], :address_long => row[4], :program_name => row[5] )
+        #Object::const_get(current['name']).create(:house_num => row[1], :street_name => row[2], :street_type => row[3], :address_long => row[4], :program_name => row[5] )
       #end
     end  
   end
