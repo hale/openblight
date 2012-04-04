@@ -33,6 +33,7 @@ end
 gem 'jquery-rails'
 
 group :test, :development do
+  gem "test-unit"
 	gem "rspec-rails"
 	gem "shoulda"
 
