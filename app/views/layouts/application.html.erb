@@ -15,7 +15,7 @@
 </head>
 <body class="container" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
   <header class="page-header">
-    <h1>OpenBlight Dashboard</h1>
+  <h1><%= link_to("OpenBlight Dashboard", root_path) -%></h1>
   </header>
 
 <%= yield %>
