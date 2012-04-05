@@ -10,8 +10,8 @@ namespace :addresses do
   desc "Load data.nola.gov addresses into database"
   task :load => :environment do
     Address.where(:official => true).destroy_all
-    shpfile = "#{Rails.root}/lib/assets/NOLA_Addresses_20120309/NOLA_Addresses_20120309.shp"
-    dist_shpfile = "#{Rails.root}/lib/assets/NOLA_Council_Districts_20110817/NOLA_Council_Districts.shp"
+    shpfile = "#{Rails.root}/lib/assets/NOLA_Addresses_20120309_wgs84/NOLA_Addresses_20120309_wgs84.shp"
+    dist_shpfile = "#{Rails.root}/lib/assets/NOLA_Council_Districts_wgs84/NOLA_Council_Districts_wgs84.shp"
     districts = {}
     RGeo::Shapefile::Reader.open(dist_shpfile) do |file|
       file.each do |record|
