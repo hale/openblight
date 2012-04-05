@@ -16,6 +16,10 @@ OpenBlight = {
           zoom: 12
       });
       map.addLayer(layer);
+      var x = $("#address").attr("data-x");
+      var y = $("#address").attr("data-y");
+      var addr = new L.LatLng(y, x);
+      map.addLayer(new L.Marker(addr));
     }
   }
 };

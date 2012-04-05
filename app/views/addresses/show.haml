@@ -1,4 +1,5 @@
-%h2= @address.address_long
-%p= @address.x
-%p= @address.y
-#map{:style => "height: 1000px;"}
+#address{"data-x" => @address.point.x, "data-y" => @address.point.y }
+  %h2= @address.address_long
+  %p= @address.point.x
+  %p= @address.point.y
+  #map{:style => "height: 500px;"}
