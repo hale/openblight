@@ -10,7 +10,12 @@ OpenBlight = {
       console.log("using addresses");
     },
     show: function(){
-
+      var layer = new L.StamenTileLayer("watercolor");
+      var map = new L.Map("map", {
+          center: new L.LatLng(29.95464, -90.07507),
+          zoom: 12
+      });
+      map.addLayer(layer);
     }
   }
 };
