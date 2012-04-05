@@ -3,7 +3,7 @@ require 'roo'
 
 
 module ImportHelpers
-
+  
   # We are using S3 be sure to set Amazon authentication enviroment variables
   # > export AMAZON_ACCESS_KEY_ID='abcdefghijklmnop'
   # > export AMAZON_SECRET_ACCESS_KEY='1234567891012345'

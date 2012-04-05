@@ -1,10 +1,10 @@
 require "#{Rails.root}/lib/import_helpers.rb"
 include ImportHelpers
 
-namespace :maintenance do
+namespace :data_import do
   desc "Downloading files from s3.amazon.com"
   task :load => :environment  do |t, args|
-    settings = YAML.load_file("#{Rails.root}/config/bulkimport.yml")
+    settings = YAML.load_file("#{Rails.root}/config/data_import.yml")
     
     #connect to amazon
     ImportHelpers.connect_to_aws
