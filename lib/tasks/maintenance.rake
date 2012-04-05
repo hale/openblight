@@ -25,7 +25,7 @@ namespace :maintenance do
             row_data[db_column_name] = spreadsheet_row[spreadsheet_column_name] rescue nil
         end
         puts "#{row_data}"
-        #Object::const_get(current['name']).create(row_data)
+        Object::const_get(current['name']).create(row_data)
       end
     end  
   end

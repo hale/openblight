@@ -12,6 +12,7 @@ gem 'roo' #excel parser
 
 # GIS 
 gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-shapefile'
 
