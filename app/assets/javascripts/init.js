@@ -11,13 +11,13 @@ OpenBlight = {
     },
     show: function(){
       var layer = new L.StamenTileLayer("watercolor");
+      var x = $("#address").attr("data-x");
+      var y = $("#address").attr("data-y");
       var map = new L.Map("map", {
-          center: new L.LatLng(29.95464, -90.07507),
+          center: new L.LatLng(y, x),
           zoom: 12
       });
       map.addLayer(layer);
-      var x = $("#address").attr("data-x");
-      var y = $("#address").attr("data-y");
       var addr = new L.LatLng(y, x);
       map.addLayer(new L.Marker(addr));
     }
