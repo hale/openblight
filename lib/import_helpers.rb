@@ -31,6 +31,7 @@ module ImportHelpers
     table_data = []
     column_names = workbook.row(1)
     
+    puts "#{column_names}"
     # we start in the second row to trim headers
     2.upto(workbook.last_row) do |row_num|        
       row_data = {}
@@ -51,7 +52,7 @@ module ImportHelpers
   # loops through each row and if all the cells are empty
   def row_is_empty?(row)
     row.each_with_index do |(label,data),index|
-      unless data.nil?
+      unless data.nil? || data == ""
         return false
       end
     end
