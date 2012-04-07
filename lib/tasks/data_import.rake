@@ -19,15 +19,16 @@ namespace :data_import do
       
       file_path = ImportHelpers.download_from_aws(s3obj)
   
+      # we get convert the roo object into an addressable hash then...
       table_data = workbook_to_hash(file_path)
       
+      # we then loop through each row ...
       table_data.each_with_index do |spreadsheet_row, index|        
         row_data = {}
         
+        # matching spreadsheet column names with database column names 
         current['column_map'].each_with_index do |(db_column_name, spreadsheet_column_name),index|
-          
-            # we check the YAML file to see if any of these column/values combinations 
-            # are going to be skipped
+            # we check the YAML config file to see if any of these column/value combinations are going to be skipped
             unless current['filter'].nil?
               current['filter'].each_with_index do |(filter_column_name, filter_value),index|
                 if db_column_name == filter_column_name && spreadsheet_row[spreadsheet_column_name] == filter_value
@@ -37,16 +38,18 @@ namespace :data_import do
               end
             end
           
+            # if all is well, we populate row_data with the column/value that match our YAML config file 
             row_data[db_column_name] = spreadsheet_row[spreadsheet_column_name] rescue nil
         end
 
-
+        # sometimes spreadsheets don't have a column/value pair that we want. we can pre-redefine column/values
         unless current['pre_populate'].nil?
           current['pre_populate'].each_with_index do |(db_column_name, preset_value),index|
               row_data[db_column_name] = preset_value
           end
         end
-                
+
+        # then insert into database!
         puts "#{row_data}"
         Object::const_get(current['name']).create(row_data)
       end
