@@ -11,6 +11,8 @@ gem 'aws-s3'
 gem 'roo' #excel parser
 gem 'rubyXL'#excel parser
 
+gem 'will_paginate', '~> 3.0'
+
 # GIS 
 gem 'rgeo'
 gem 'activerecord-postgis-adapter'

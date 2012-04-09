@@ -1,3 +1,5 @@
--@address.first(10).each do |a|
+-@addresses.each do |a|
   .address
     =link_to a.address_long, address_path(a.id)
+
+=will_paginate @addresses
