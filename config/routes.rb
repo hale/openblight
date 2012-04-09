@@ -12,6 +12,7 @@ Openblight::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+  match "addresses/search" => "addresses#search"
   resources :addresses, :except => [:destroy, :create, :edit]
 
   # Sample resource route with options:
