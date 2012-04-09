@@ -2,7 +2,7 @@ class AddressesController < ApplicationController
   respond_to :html, :xml, :json
 
   def index
-    @address = Address.all.order(:address_long)
+    @address = Address.order(:address_long)
 
     respond_with(@address)
   end
