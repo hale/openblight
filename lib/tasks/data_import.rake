@@ -28,23 +28,37 @@ namespace :data_import do
         
         # matching spreadsheet column names with database column names 
         current['column_map'].each_with_index do |(db_column_name, spreadsheet_column_name),index|
-            # we check the YAML config file to see if any of these column/value combinations are going to be skipped
-            unless current['filter'].nil?
-              current['filter'].each_with_index do |(filter_column_name, filter_value),index|
+            
+            # check config file to see if any of these column/value combinations are going to be skipped
+            unless current['filter_exclude'].nil?
+              current['filter_exclude'].each_with_index do |(filter_column_name, filter_value),index|
                 if db_column_name == filter_column_name && spreadsheet_row[spreadsheet_column_name] == filter_value
-                  puts "we are skipping #{db_column_name} / #{filter_value}"
+                  puts "We are skipping #{db_column_name} / #{filter_value}" rescue nil
                   next                  
                 end
               end
             end
+            
+
+            # check config file to see if we are going to want to use only this column/value combinations
+            unless current['filter_exclusive'].nil?
+              current['filter_exclusive'].each_with_index do |(filter_column_name, filter_value),index|
+                if db_column_name == filter_column_name && spreadsheet_row[spreadsheet_column_name] == filter_value
+                  puts "We are exclusively adding #{db_column_name} / #{filter_value}"
+                  row_data[db_column_name] = spreadsheet_row[spreadsheet_column_name] rescue nil                  
+                  next                  
+                end
+              end
+            end
+            
           
-            # if all is well, we populate row_data with the column/value that match our YAML config file 
+            # if there are not filteres, we populate row_data with the column/value
             row_data[db_column_name] = spreadsheet_row[spreadsheet_column_name] rescue nil
         end
 
         # sometimes spreadsheets don't have a column/value pair that we want. we can pre-redefine column/values
-        unless current['pre_populate'].nil?
-          current['pre_populate'].each_with_index do |(db_column_name, preset_value),index|
+        unless current['prepopulate'].nil?
+          current['prepopulate'].each_with_index do |(db_column_name, preset_value),index|
               row_data[db_column_name] = preset_value
           end
         end

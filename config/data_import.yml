@@ -1,6 +1,4 @@
 Models:
-
- #done
  - name: Maintenance 
    bucketname: neworleansdata
    filename: INAP Validated Address Data entry sheet 2012.xlsx
@@ -9,7 +7,12 @@ Models:
       street_name: Street
       street_type: Accessory
       program_name: Program
-
+ - name: Case 
+   bucketname: neworleansdata
+   filename: Current Status of All Cases Duplicates by address5.xlsx
+   column_map:
+      case_number: Case Number
+      geopin: Geopin
  - name: Demolition
    bucketname: neworleansdata
    filename: NORA Validated_Demo_DataEntry_2012.xlsx
@@ -22,11 +25,10 @@ Models:
       date_started: Demo Start
       date_completed: Demo Complete
       zip_code: Zip
-
  - name: Demolition
    bucketname: neworleansdata
    filename: FEMA Validated_Demo_DataEntry_2012_January.xlsx
-   filter:
+   filter_exclusive:
       WorkflowTask: 12.Demolished
    pre_populate:
       program_name: FEMA
@@ -35,14 +37,3 @@ Models:
       house_num: Number
       street_name: Street
       zip_code: Zip
-
-#  - name: Notification
-#    bucketname: neworleansdata
-#    filename: FEMA Validated_Demo_DataEntry_2012_January.xlsx
-#    filter: 
-#       WorkflowTask: 12.Demolished
-#    column_map: 
-#       house_num: house_num
-#       street_name: street_name
-#       street_type: street_type
-#       program_name: program_name
