@@ -3,6 +3,6 @@
   %p= @address.point.x
   %p= @address.point.y
   .row
-    #map.span6{:style => "height: 500px;"}
+    #map.span6{:style => "height: 400px;"}
     #streetview.span_6
       %img{ :src => "http://maps.googleapis.com/maps/api/streetview?size=460x400&location=#{@address.point.y},%20#{@address.point.x}&fov=90&heading=235&pitch=10&sensor=false" }

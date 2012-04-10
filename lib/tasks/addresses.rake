@@ -20,10 +20,9 @@ namespace :addresses do
     end
     RGeo::Shapefile::Reader.open(shpfile, {:srid => -1}) do |file|
       puts "File contains #{file.num_records} records"
-      nums = 1..3000
-      nums.each do |n|
-         record = file.get(n).attributes
-         a = Address.create(:point => file.get(n).geometry, :official => true, :address_id => record["ADDRESS_ID"], :address_long => record["ADDRESS_LA"], :geopin => record["GEOPIN"], :house_num => record["HOUSE_NUMB"], :parcel_id => record["PARCEL_ID"], :status => record["STATUS"], :street_id => record["STREET_ID"], :street_name => record["STREET"], :street_type => record["TYPE"], :x => record["X"], :y => record["Y"] )
+      file.each do |n|
+         record = n.attributes
+         a = Address.create(:point => n.geometry, :official => true, :address_id => record["ADDRESS_ID"], :address_long => record["ADDRESS_LA"], :geopin => record["GEOPIN"], :house_num => record["HOUSE_NUMB"], :parcel_id => record["PARCEL_ID"], :status => record["STATUS"], :street_id => record["STREET_ID"], :street_name => record["STREET"], :street_type => record["TYPE"], :x => record["X"], :y => record["Y"] )
          districts.each do |d|
            if d[1][:geom].contains?(a.point)
              a.case_district = d[1][:council_district]
