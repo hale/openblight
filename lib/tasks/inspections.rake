@@ -33,7 +33,8 @@ namespace :inspections do
         #puts oo.row(row)
       
         if (oo.row(row)[0].start_with?("HCEB") || oo.row(row)[0].start_with?("CEHB"))
-          Inspection.create(:case_number => oo.row(row)[0], :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
+          c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[0], :geopin => oo.row(row)[23])
+          Inspection.create(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
         end
       end
     end

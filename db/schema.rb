@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405193050) do
+ActiveRecord::Schema.define(:version => 20120410232248) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -86,8 +86,6 @@ ActiveRecord::Schema.define(:version => 20120405193050) do
     t.string   "case_manager"
     t.integer  "tax_id"
     t.string   "case_number"
-    t.integer  "notice_id"
-    t.integer  "inspection_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
