@@ -9,15 +9,18 @@ require 'rgeo/shapefile'
 namespace :addresses do
   desc "Load data.nola.gov addresses into database"
   task :load => :environment do
+
     Address.where(:official => true).destroy_all
     shpfile = "#{Rails.root}/lib/assets/NOLA_Addresses_20120309_wgs84/NOLA_Addresses_20120309_wgs84.shp"
     dist_shpfile = "#{Rails.root}/lib/assets/NOLA_Council_Districts_wgs84/NOLA_Council_Districts_wgs84.shp"
     districts = {}
+
     RGeo::Shapefile::Reader.open(dist_shpfile) do |file|
       file.each do |record|
         districts[record.attributes["OBJECTID"]] = {:council_district => record.attributes["COUNCILDIS"], :geom => record.geometry}
       end
     end
+
     RGeo::Shapefile::Reader.open(shpfile, {:srid => -1}) do |file|
       puts "File contains #{file.num_records} records"
       file.each do |n|
