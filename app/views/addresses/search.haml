@@ -6,3 +6,6 @@
       =link_to a.address_long, address_path(a.id)
 -else
   %h4 No matches found
+
+.row
+  =will_paginate @addresses

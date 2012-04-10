@@ -24,8 +24,9 @@ class AddressesController < ApplicationController
       no_num_regex = /([a-zA-Z]+)\s+(st|ave|dr|ct|rd|ln|pl|park|blvd|aly)/i
       match = no_num_regex.match(search)
       if match
-        search = match[1].strip.upcase
+        search = match[1].strip
       end
+      search.upcase!
       @addresses = Address.where("street_name = ?", search).page(params[:page]).order(:house_num)
       if @addresses.empty?
         @addresses = Address.where("address_long LIKE ?", "%#{search}%").page(params[:page]).order(:house_num)
