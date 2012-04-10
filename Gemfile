@@ -9,12 +9,12 @@ gem 'pg'
 gem 'foreigner'
 gem 'aws-s3'
 gem 'roo' #excel parser
-gem 'rubyXL'#excel parser
 
 gem 'will_paginate', '~> 3.0'
 
 # GIS 
 gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-shapefile'
 

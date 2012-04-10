@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src='wax/ext/modestmaps.min.js' type='text/javascript'></script>
+    <script src='wax/dist/wax.mm.js' type='text/javascript'></script>
+    <link href='wax/theme/controls.css' rel='stylesheet' type='text/css' />
+  </head>
+
+  <body>
+	<script>
+	var url = 'http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp';
+	wax.tilejson(url, function(tilejson) {
+	    // Set up a map in a div with the id 'modestmaps-setup'
+	    var m = new MM.Map('modestmaps-setup',
+	      // Use Wax's connector to add a new custom layer
+	      new wax.mm.connector(tilejson),
+	      // And it'll be 240px by 120px
+	      new MM.Point(800,600));
+
+	    // Center it on the United States, at zoom level 2.
+	    m.setCenterZoom({ lat: 29.951, lon: -90.081 }, 14);
+	});
+	</script>
+	<div id="modestmaps-setup"></div>
+  </body>
+</html>
+
+
