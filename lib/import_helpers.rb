@@ -26,14 +26,18 @@ module ImportHelpers
   # the roo gem returns some pretty ugly data structures. this function loops through
   # returns a hash of the excel file
   # this hash will allow you access a variable 
-  def workbook_to_hash(path_to_file)
-    workbook = Excelx.new(path_to_file)
+  def workbook_to_hash(path_to_file, header_line = 1, start_line = 2)
+    if /.xlsx/ =~ path_to_file
+      workbook = Excelx.new(path_to_file)
+    else
+      workbook = Excel.new(path_to_file)
+    end
     table_data = []
-    column_names = workbook.row(1)
+    column_names = workbook.row(header_line)
     
-    puts "#{column_names}"
+    puts "Column names: #{column_names}"
     # we start in the second row to trim headers
-    2.upto(workbook.last_row) do |row_num|        
+    start_line.upto(workbook.last_row) do |row_num|        
       row_data = {}
       
       workbook.row(row_num).each_with_index do |cell_data, column_num|        
