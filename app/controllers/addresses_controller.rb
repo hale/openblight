@@ -15,10 +15,10 @@ class AddressesController < ApplicationController
   
   def search
     search = params[:address]
-    p search
-    long_addr_regex = /[1-9]+\s?([a-zA-Z ]+)(st|ave|dr|ct|rd|ln|pl|park|blvd|aly)/i
-    if long_addr_regex =~ search
-      search = search.upcase
+    long_addr_regex = /([0-9]+\s?([a-zA-Z ]+)(st|ave|dr|ct|rd|ln|pl|park|blvd|aly))/i
+    long_match = long_addr_regex.match(search)
+    if long_match
+      search = long_match[1].upcase
       @addresses = Address.where("address_long = ?", search).page(params[:page]).order(:house_num)
     else
       no_num_regex = /([a-zA-Z]+)\s+(st|ave|dr|ct|rd|ln|pl|park|blvd|aly)/i
@@ -33,7 +33,6 @@ class AddressesController < ApplicationController
       end
     end
 
-    p search
     respond_with(@addresses)
   end
 end
