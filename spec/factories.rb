@@ -8,6 +8,6 @@ FactoryGirl.define do
   end
 
   factory :case do
-  	case_number			{rand(1000).to_s()}
+    case_number       { "CEHB " + rand(1000).to_s()}
   end
 end

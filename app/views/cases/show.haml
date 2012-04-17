@@ -1,0 +1,18 @@
+%h2=@case.case_number
+=@case.inspect
+.case_hearings
+  -unless @case.inspections.empty?
+    %h3 Inspections
+    -@case.inspections.each do |i|
+      .inspection
+        =i.inspection_date
+  -unless @case.hearings.empty?
+    %h3 Hearings
+    -@case.hearings.each do |h|
+      .hearing
+        =h.hearing_date
+  -unless @case.resets.empty?
+    %h3 Resets
+    -@case.resets.each do |r|
+      .reset
+        =r.reset_date
