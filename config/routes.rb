@@ -14,6 +14,7 @@ Openblight::Application.routes.draw do
   #   resources :products
   match "addresses/search" => "addresses#search"
   resources :addresses, :except => [:destroy, :create, :edit]
+  resources :cases, :except => [:destroy, :create, :edit]
 
   # Sample resource route with options:
   #   resources :products do
