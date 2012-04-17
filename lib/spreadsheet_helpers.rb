@@ -35,8 +35,8 @@ module SpreadsheetHelpers
   
   # loops through each row and if all the cells are empty
   def row_is_empty?(row)
-    row.each_with_index do |(label,data),index|
-      unless data.nil? || data == ""
+    row.each_with_index do |(data),index|
+      unless data.nil? || data === ""
         return false
       end
     end
