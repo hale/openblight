@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120417011559) do
 
   create_table "cases", :force => true do |t|
     t.string   "case_number"
+    t.integer  "geopin"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "address_id"
