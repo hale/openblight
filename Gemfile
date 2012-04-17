@@ -10,6 +10,8 @@ gem 'foreigner'
 gem 'aws-s3'
 gem 'roo' #excel parser
 
+gem 'will_paginate', '~> 3.0'
+
 # GIS 
 gem 'rgeo'
 gem 'rgeo-geojson'
@@ -35,6 +37,7 @@ end
 gem 'jquery-rails'
 
 group :test, :development do
+  gem "test-unit"
 	gem "rspec-rails"
 	gem "shoulda"
 

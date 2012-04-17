@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
 */
+
+.row .pagination a {
+  float: none;
+}
