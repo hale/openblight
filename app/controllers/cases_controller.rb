@@ -2,7 +2,7 @@ class CasesController < ApplicationController
   respond_to :html, :json, :xml
 
   def index
-    @cases = Case.all
+    @cases = Case.page(params[:page])
     respond_with(@cases)
   end
 

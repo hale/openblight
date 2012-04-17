@@ -11,6 +11,8 @@ class Case < ActiveRecord::Base
 
   validates_uniqueness_of :case_number
 
+  self.per_page = 50
+
   def assign_address(options = {})
     if options[:address_long]
       a = Address.where("address_long = ?", options[:address_long])
