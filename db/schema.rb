@@ -152,4 +152,17 @@ ActiveRecord::Schema.define(:version => 20120417011559) do
     t.datetime "reset_date"
   end
 
+  create_table "streets", :force => true do |t|
+    t.integer  "prefix"
+    t.integer  "type"
+    t.string   "name"
+    t.string   "suffix"
+    t.string   "length"
+    t.string   "class"
+    t.string   "segment"
+    t.string   "shape_len"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
 end
