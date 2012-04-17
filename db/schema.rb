@@ -111,6 +111,8 @@ ActiveRecord::Schema.define(:version => 20120417011559) do
     t.string   "case_number"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "status"
+    t.string   "notes"
   end
 
   create_table "maintenances", :force => true do |t|
@@ -128,8 +130,10 @@ ActiveRecord::Schema.define(:version => 20120417011559) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "case_number"
+    t.datetime "notified"
   end
 
   create_table "parcels", :force => true do |t|

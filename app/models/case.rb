@@ -8,6 +8,7 @@ class Case < ActiveRecord::Base
   has_one  :case_manager, :foreign_key => :case_number, :primary_key => :case_number
   has_one  :foreclosure, :foreign_key => :case_number, :primary_key => :case_number
   has_many :resets, :foreign_key => :case_number, :primary_key => :case_number
+  has_many :notfications, :foreign_key => :case_number, :primary_key => :case_number
 
   validates_presence_of :case_number
   validates_uniqueness_of :case_number
