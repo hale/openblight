@@ -9,6 +9,7 @@ class Case < ActiveRecord::Base
   has_one  :foreclosure, :foreign_key => :case_number, :primary_key => :case_number
   has_many :resets, :foreign_key => :case_number, :primary_key => :case_number
 
+  validates_presence_of :case_number
   validates_uniqueness_of :case_number
 
   self.per_page = 50
@@ -33,4 +34,5 @@ class Case < ActiveRecord::Base
     end
     self.save!
   end
+
 end

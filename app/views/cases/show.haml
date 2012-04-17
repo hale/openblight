@@ -11,3 +11,8 @@
     -@case.hearings.each do |h|
       .hearing
         =h.hearing_date
+  -unless @case.resets.empty?
+    %h3 Resets
+    -@case.resets.each do |r|
+      .reset
+        =r.reset_date
