@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417011559) do
+ActiveRecord::Schema.define(:version => 20120417211838) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -64,8 +64,15 @@ ActiveRecord::Schema.define(:version => 20120417011559) do
 
   create_table "foreclosures", :force => true do |t|
     t.string   "case_number"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "house_num"
+    t.string   "street_name"
+    t.string   "street_type"
+    t.string   "address_long"
+    t.string   "sale_date"
+    t.string   "status"
+    t.string   "notes"
   end
 
   create_table "hearings", :force => true do |t|
@@ -157,16 +164,17 @@ ActiveRecord::Schema.define(:version => 20120417011559) do
   end
 
   create_table "streets", :force => true do |t|
-    t.integer  "prefix"
-    t.integer  "type"
+    t.string   "prefix"
+    t.string   "prefix_type"
     t.string   "name"
     t.string   "suffix"
-    t.string   "length"
-    t.string   "class"
-    t.string   "segment"
-    t.string   "shape_len"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "suffix_type"
+    t.string   "full_name"
+    t.integer  "length_numberic"
+    t.integer  "shape_len"
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+    t.spatial  "the_geom",        :limit => {:srid=>-1, :type=>"geometry"}
   end
 
 end
