@@ -4,7 +4,7 @@ include SpreadsheetHelpers
 include ImportHelpers
 
 namespace :generic_importer do
-  desc "Download Excel file from s3.amazon.com and import in to database"
+  desc "This is an experimental importer for a list of spreedsheets"
   task :load => :environment  do |t, args|
     settings = YAML.load_file("#{Rails.root}/config/generic_importer.yml")
     

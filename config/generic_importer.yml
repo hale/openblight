@@ -32,9 +32,3 @@ Models:
       house_num: Number
       street_name: Street
       zip_code: Zip
-  # - name: Case 
-  #   bucketname: neworleansdata
-  #   filename: Current Status of All Cases Duplicates by address5.xlsx
-  #   column_map:
-  #      case_number: Case Number
-  #      geopin: Geopin
