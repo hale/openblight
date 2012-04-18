@@ -1,8 +1,21 @@
 #address{"data-x" => @address.point.x, "data-y" => @address.point.y }
   %h2= @address.address_long
-  %p= @address.point.x
-  %p= @address.point.y
   .row
     #map.span6{:style => "height: 400px;"}
     #streetview.span_6
       %img{ :src => "http://maps.googleapis.com/maps/api/streetview?size=460x400&location=#{@address.point.y},%20#{@address.point.x}&fov=90&heading=235&pitch=10&sensor=false" }
+
+
+  #h1 Address:
+  %p="X: #{@address.point.x}"
+  %p="Y: #{@address.point.y}"
+  %p="Geopin: #{@address.geopin}"
+
+
+  #h1 Case:
+  %p="Case Number: #{@case.case_number}"
+
+  #h1 Maintenance:
+-#  %p=debug(@maintenance)
+-#  %p="Date Recorded: #{@maintenance.date_recorded}"
+-#  %p="Date Completed: #{@maintenance.date_completed}"

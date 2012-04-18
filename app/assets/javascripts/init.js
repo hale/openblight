@@ -4,7 +4,8 @@ OpenBlight = {
       // application-wide code
     }
   },
-
+  
+  
   addresses: {
     init: function(){
       console.log("using addresses");

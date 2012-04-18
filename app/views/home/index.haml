@@ -1,6 +1,9 @@
 %h2 This is the home page
+%p= -90.07
+%p= 29.95
 
 =form_tag("/addresses/search", :method => "get") do
   =label_tag(:address, "Search for an address:")
-  =text_field_tag(:address)
+-#  =text_field_tag(:address, '', :autocomplete => addresses_autocomplete_address_long_path)
   =submit_tag("Search")
+  

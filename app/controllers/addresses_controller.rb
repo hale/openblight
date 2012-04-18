@@ -4,13 +4,15 @@ class AddressesController < ApplicationController
   def index
     @addresses = Address.page(params[:page]).order(:address_long)
 
-    respond_with(@addresses)
+    respond_with @addresses
   end
 
   def show
     @address = Address.find(params[:id])
+    @case = Case.find(params[:id])
+    @maintenance = Maintenance.where("address_long LIKE ?", "%#{@address.address_long}%")
 
-    respond_with(@address)
+    respond_with @address, @case, @maintenance
   end
   
   def search
@@ -36,3 +38,12 @@ class AddressesController < ApplicationController
     respond_with(@addresses)
   end
 end
+
+
+# http://fuzzytolerance.info/finding-street-intersections-in-postgis/
+# SELECT DISTINCT(AsText(intersection(b.point, a.point))) as the_intersection
+# FROM
+# (SELECT point FROM addresses WHERE street_name = 'POYDRAS' LIMIT 1) a,
+# (SELECT point FROM addresses WHERE street_name = 'MAGAZINE') b
+# WHERE a.point && b.point and intersects (b.point, a.point)
+#   
