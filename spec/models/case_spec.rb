@@ -15,6 +15,22 @@ describe Case do
 
   it { should validate_uniqueness_of(:case_number) }
 
+  describe "#accela_steps" do
+    it "returns all workflow steps associated with a case" do
+      @inspection = FactoryGirl.create(:inspection, :case => @case, :inspection_date => Time.now - 1.week)
+      @hearing = FactoryGirl.create(:hearing, :case => @case, :hearing_date => Time.now - 1.day)
+
+      steps = @case.accela_steps
+      steps.first.should eq(@inspection)
+      steps.last.should eq(@hearing)
+      steps.length.should eq(2)
+    end
+
+    it "returns an empty array if a case has no workflow steps" do
+      @case.accela_steps.should eq([])
+    end
+  end
+
   describe "#assign_address" do
     it "looks up address by street and house number if they're passed and sets association" do
       @address = FactoryGirl.create(:address)
@@ -38,6 +54,15 @@ describe Case do
 
       @case.assign_address
       @case.address.should eq(nil)
+    end
+  end
+
+  describe "#most_recent_status" do
+    it "returns the most recent workflow step for a case" do
+      @inspection = FactoryGirl.create(:inspection, :case => @case, :inspection_date => Time.now - 1.week)
+      @hearing = FactoryGirl.create(:hearing, :case => @case, :hearing_date => Time.now - 1.day)
+      
+      @case.most_recent_status.should eq(@hearing)
     end
   end
 end
