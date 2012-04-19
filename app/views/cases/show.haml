@@ -1,18 +1,20 @@
 %h2=@case.case_number
-=@case.inspect
+%h3 The most recent step was a #{@case.most_recent_status.class}, on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
 .case_hearings
   -unless @case.inspections.empty?
-    %h3 Inspections
+    %h4 Inspections
     -@case.inspections.each do |i|
       .inspection
         =i.inspection_date
   -unless @case.hearings.empty?
-    %h3 Hearings
+    %h4 Hearings
     -@case.hearings.each do |h|
       .hearing
         =h.hearing_date
   -unless @case.resets.empty?
-    %h3 Resets
+    %h4 Resets
     -@case.resets.each do |r|
       .reset
         =r.reset_date
+%br
+  =@case.inspect
