@@ -9,7 +9,6 @@ namespace :maintenance do
   desc "Downloading files from s3.amazon.com"  
   task :load => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "INAP Validated Address Data entry sheet 2012.xlsx")  
-    Maintenance.destroy_all
     #connect to amazon
     ImportHelpers.connect_to_aws
     s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
