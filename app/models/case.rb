@@ -8,12 +8,18 @@ class Case < ActiveRecord::Base
   has_one  :case_manager, :foreign_key => :case_number, :primary_key => :case_number
   has_one  :foreclosure, :foreign_key => :case_number, :primary_key => :case_number
   has_many :resets, :foreign_key => :case_number, :primary_key => :case_number
-  has_many :notfications, :foreign_key => :case_number, :primary_key => :case_number
+  has_many :notifications, :foreign_key => :case_number, :primary_key => :case_number
 
   validates_presence_of :case_number
   validates_uniqueness_of :case_number
 
   self.per_page = 50
+
+  def accela_steps
+    steps_ary = []
+    steps_ary << self.hearings << self.inspections << self.demolitions << self.resets << self.foreclosure << self.notifications
+    steps_ary.flatten.compact.sort{ |a, b| a.date <=> b.date }
+  end
 
   def assign_address(options = {})
     if options[:address_long]
@@ -36,4 +42,7 @@ class Case < ActiveRecord::Base
     self.save!
   end
 
+  def most_recent_status
+    self.accela_steps.last
+  end
 end

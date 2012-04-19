@@ -10,4 +10,12 @@ FactoryGirl.define do
   factory :case do
     case_number       { "CEHB " + rand(1000).to_s()}
   end
+
+  factory :hearing do
+    hearing_date      { Time.now }
+  end
+
+  factory :inspection do
+    inspection_type   { "Violation Posted No WIP" }
+  end
 end
