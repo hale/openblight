@@ -1,9 +1,17 @@
-%h2 This is the home page
-%p= -90.07
-%p= 29.95
+%h1 
 
 =form_tag("/addresses/search", :method => "get") do
   =label_tag(:address, "Search for an address:")
--#  =text_field_tag(:address, '', :autocomplete => addresses_autocomplete_address_long_path)
-  =submit_tag("Search")
+  =text_field_tag(:address, '', :autocomplete => autocomplete_street_name_addresses_path)
+  =submit_tag("Search Address")
+
+=form_tag("/addresses/search", :method => "get") do
+  =label_tag(:street, "Search by case number:")
+  =text_field_tag(:street, '', :autocomplete => autocomplete_street_name_addresses_path)
+  =submit_tag("Search Intersection")
+  
+=form_tag("/cases/search", :method => "get") do
+  =label_tag(:case, "Search by case number:")
+  =text_field_tag(:case, '', :autocomplete => autocomplete_street_name_addresses_path)
+  =submit_tag("Search Cases")
   

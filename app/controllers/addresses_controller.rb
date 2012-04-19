@@ -1,6 +1,7 @@
 class AddressesController < ApplicationController
   respond_to :html, :xml, :json
-
+  autocomplete :address, :street_name, :full => true
+  
   def index
     @addresses = Address.page(params[:page]).order(:address_long)
 
@@ -37,13 +38,15 @@ class AddressesController < ApplicationController
 
     respond_with(@addresses)
   end
+  
+  
+  def search_by_intersection
+    # http://fuzzytolerance.info/finding-street-intersections-in-postgis/
+    # SELECT DISTINCT(AsText(intersection(b.point, a.point))) as the_intersection
+    # FROM
+    # (SELECT point FROM addresses WHERE street_name = 'POYDRAS' LIMIT 1) a,
+    # (SELECT point FROM addresses WHERE street_name = 'MAGAZINE') b
+    # WHERE a.point && b.point and intersects (b.point, a.point)
+    #       
+  end
 end
-
-
-# http://fuzzytolerance.info/finding-street-intersections-in-postgis/
-# SELECT DISTINCT(AsText(intersection(b.point, a.point))) as the_intersection
-# FROM
-# (SELECT point FROM addresses WHERE street_name = 'POYDRAS' LIMIT 1) a,
-# (SELECT point FROM addresses WHERE street_name = 'MAGAZINE') b
-# WHERE a.point && b.point and intersects (b.point, a.point)
-#   

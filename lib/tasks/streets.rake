@@ -5,7 +5,6 @@ require 'rgeo/shapefile'
 namespace :streets do
   desc "Load streets from data.nola.gov addresses into database"
   task :load => :environment do
-    Street.destroy_all
     shpfile = "#{Rails.root}/lib/assets/NOLA_Streets_20120405/NOLA_Streets_20120405_wgs84.shp"
 
 
@@ -23,3 +22,14 @@ namespace :streets do
     
   end
 end
+
+
+
+namespace :streets do
+  desc "Deleting rows from Street label"  
+  task :drop => :environment  do |t, args|
+    Street.destroy_all
+  end
+end
+
+
