@@ -22,3 +22,13 @@ namespace :maintenance do
     end
   end
 end
+
+
+namespace :maintenance do
+  desc "Downloading files from s3.amazon.com"  
+  task :drop => :environment  do |t, args|
+    Maintenance.destroy_all
+  end
+end
+
+
