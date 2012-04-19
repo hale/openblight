@@ -25,32 +25,17 @@ namespace :inspectors do
       :secret_access_key => ENV['AMAZON_SECRET_ACCESS_KEY']
     )
 
-    puts "Please specify a bucket name:"
-    AWS::S3::Service.buckets.each() do |bucket|
-      puts "1) #{bucket.name}"
-      
-      puts "Please specify a file name:"
-      bucket.objects(bucket.name).each_with_index do |item, index| 
-        puts "#{index}) #{item.key}"
-      end        
-    end
-
-    puts "opening file: " + args.file_name
     s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
-    puts "downloding file" + args.file_name
     downloaded_file_path = "#{Rails.root}" + '/tmp/cache/' + File.basename(s3obj.path)
     downloaded_file = File.new(downloaded_file_path, "wb")
     downloaded_file.write(s3obj.value)
     downloaded_file.close  
-    puts "file copied to: " + downloaded_file_path
     label = "Inspector:"  
     #these column names should be should not statically matched
     oo = Excel.new(downloaded_file_path)
-    puts "" + downloaded_file_path + " opened"
     oo.default_sheet = oo.sheets.first
     1.upto(oo.last_row) do |row|
       if oo.row(row)[0] == label then
-        puts "Insert => " + oo.row(row)[3]
         Inspector.create(:name => oo.row(row)[3])
       end
     end
