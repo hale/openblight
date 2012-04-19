@@ -26,6 +26,14 @@ module ImportHelpers
   end
 
   # download file and save the contents to local filesystem
+  def download_json_convert_to_hash(url)
+    open(url) do |json_string|      
+      return ActiveSupport::JSON.decode(json_string).symbolize_keys
+    end
+  end
+
+
+  # download file and save the contents to local filesystem
   def download_from_http(url)
     #return downloaded_file_path
   end
