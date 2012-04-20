@@ -3,12 +3,6 @@ require 'iconv'
 
 include ImportHelpers
 
-# this class should be generalized
-# take in arguments from command line for: Bucket Name, File Name
-# maybe also take in a hash of what excel columns should be paired up with in model
-# the script should also detect different file formats and use the proper parser
-
-# this script works locally, needs testing in different systems
 namespace :inspections do
   desc "Downloading files from s3.amazon.com"  
   task :load => :environment  do |t, args|
