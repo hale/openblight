@@ -89,9 +89,18 @@ end
 
 
 namespace :demolitions do
-  desc "Downloading files from s3.amazon.com"  
+  desc "Correlate demolition data with addresses"  
   task :correlate => :environment  do |t, args|
-
+    Demolition.find(:all).each do |row|
+            
+      address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
+      
+      unless(address.empty?)
+        Demolition.find(row.id).update_attributes(:address_id => address.first.id)      
+      else
+        puts "#{row.address_long} address not found"
+      end
+    end
   end
 end
 
@@ -102,5 +111,3 @@ namespace :demolitions do
     Demolition.destroy_all
   end
 end
-
-

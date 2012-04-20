@@ -1,11 +1,5 @@
 require 'rgeo/shapefile'
 
-# TODO: In order to be re-deployable, assets should not be hard coded. Maybe we 
-# can pull from a URL
-# endpoint = 'https://data.nola.gov/download/div8-5v7i/application/zip'
-# puts "Connecting to #{endpoint}\n";
-# request = Typhoeus::Request.new(endpoint)
-
 namespace :addresses do
   desc "Load data.nola.gov addresses into database"
   task :load => :environment do
@@ -25,7 +19,7 @@ namespace :addresses do
       puts "File contains #{file.num_records} records"
       file.each do |n|
          record = n.attributes
-         a = Address.create(:point => n.geometry, :official => true, :address_id => record["ADDRESS_ID"], :address_long => record["ADDRESS_LA"], :geopin => record["GEOPIN"], :house_num => record["HOUSE_NUMB"], :parcel_id => record["PARCEL_ID"], :status => record["STATUS"], :street_id => record["STREET_ID"], :street_name => record["STREET"], :street_type => record["TYPE"], :x => record["X"], :y => record["Y"] )
+         a = Address.create(:point => n.geometry, :official => true, :address_id => record["ADDRESS_ID"], :street_full_name => record["ADDRESS_LA"].sub(/^\d+\s/, ''), :address_long => record["ADDRESS_LA"], :geopin => record["GEOPIN"], :house_num => record["HOUSE_NUMB"], :parcel_id => record["PARCEL_ID"], :status => record["STATUS"], :street_id => record["STREET_ID"], :street_name => record["STREET"], :street_type => record["TYPE"], :x => record["X"], :y => record["Y"] )
          districts.each do |d|
            if d[1][:geom].contains?(a.point)
              a.case_district = d[1][:council_district]
@@ -36,3 +30,14 @@ namespace :addresses do
     end
   end
 end
+
+
+
+namespace :addresses do
+  desc "Empty address table"  
+  task :drop => :environment  do |t, args|
+    Address.destroy_all
+  end
+end
+
+

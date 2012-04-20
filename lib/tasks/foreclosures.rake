@@ -17,15 +17,12 @@ namespace :foreclosures do
     oo = Excelx.new(downloaded_file_path)
     oo.default_sheet = oo.sheets[7]
     38.upto(oo.last_row) do |row|
-
       unless SpreadsheetHelpers.row_is_empty? oo.row(row) 
-        Foreclosure.create(:house_num => oo.row(row)[8], :street_name => oo.row(row)[9], :address_long => "#{oo.row(row)[8]} #{oo.row(row)[9]}", :notes => oo.row(row)[13], :sale_date => oo.row(row)[14])
+        Foreclosure.create(:house_num => oo.row(row)[8], :street_name => oo.row(row)[9], :address_long => "#{oo.row(row)[8]} #{oo.row(row)[9]}".upcase, :notes => oo.row(row)[13], :sale_date => oo.row(row)[14])
       end        
     end 
   end
 end
-
-
 
 namespace :foreclosures do
   desc "Downloading files from s3.amazon.com"  
@@ -33,5 +30,3 @@ namespace :foreclosures do
     Foreclosure.destroy_all
   end
 end
-
-

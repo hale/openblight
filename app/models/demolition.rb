@@ -1,8 +1,8 @@
 class Demolition < ActiveRecord::Base
-	belongs_to :case, :foreign_key => :case_number, :primary_key => :case_number
+  belongs_to :address
 
   def date
-    self.date_started
+    self.date_completed
   end
 
 end
