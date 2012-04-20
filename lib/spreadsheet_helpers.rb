@@ -41,19 +41,12 @@ module SpreadsheetHelpers
       return true
     end
       
-    row.each_with_index do |(label, data),index|
-      begin
-        unless data.nil? || data.empty?
-          return false
-        end
-      rescue Exception=>e
-        unless data.nil?
-          return false
-        end        
+    row.each do |(label, data)|
+      unless (data.to_s.strip.length > 0)
+        return false
       end
-
-        
     end
+    
     return true
   end
   

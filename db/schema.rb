@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420001907) do
+ActiveRecord::Schema.define(:version => 20120420175948) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(:version => 20120420001907) do
 
   create_table "demolitions", :force => true do |t|
     t.string   "case_number"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.integer  "address_id"
     t.string   "house_num"
     t.string   "street_name"
@@ -61,12 +61,13 @@ ActiveRecord::Schema.define(:version => 20120420001907) do
     t.string   "program_name"
     t.datetime "date_started"
     t.datetime "date_completed"
+    t.integer  "address_match_confidence"
   end
 
   create_table "foreclosures", :force => true do |t|
     t.string   "case_number"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "house_num"
     t.string   "street_name"
     t.string   "street_type"
@@ -74,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20120420001907) do
     t.string   "sale_date"
     t.string   "status"
     t.string   "notes"
+    t.integer  "address_match_confidence"
   end
 
   create_table "hearings", :force => true do |t|
@@ -132,9 +134,10 @@ ActiveRecord::Schema.define(:version => 20120420001907) do
     t.datetime "date_recorded"
     t.datetime "date_completed"
     t.datetime "status"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.integer  "address_id"
+    t.integer  "address_match_confidence"
   end
 
   create_table "notifications", :force => true do |t|
