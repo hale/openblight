@@ -1,8 +1,11 @@
 require "#{Rails.root}/lib/import_helpers.rb"
 require "#{Rails.root}/lib/spreadsheet_helpers.rb"
+require "#{Rails.root}/lib/address_helpers.rb"
 
 include ImportHelpers
 include SpreadsheetHelpers
+include AddressHelpers
+
 
 
 namespace :demolitions do
@@ -90,17 +93,25 @@ end
 
 namespace :demolitions do
   desc "Correlate demolition data with addresses"  
-  task :correlate => :environment  do |t, args|
+  task :match => :environment  do |t, args|
+    # go through each demolition
+    success = 0
+    failure = 0
+
     Demolition.find(:all).each do |row|
-            
+      # compare each address in demo list to our address table
       address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
       
-      unless(address.empty?)
+      
+      unless (address.empty?)
         Demolition.find(row.id).update_attributes(:address_id => address.first.id)      
+        success += 1
       else
-        puts "#{row.address_long} address not found"
+        puts "#{row.address_long} address not found in address table"
+        failure += 1
       end
     end
+    puts "There were #{success} successful matches and #{failure} failed matches"      
   end
 end
 
