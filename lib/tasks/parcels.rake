@@ -1,8 +1,6 @@
 require 'rgeo/shapefile'
 
-# TODO NEEDS TESTING
-
-namespace :streets do
+namespace :parcels do
   desc "Load parcel from data.nola.gov addresses into database"
   task :load => :environment do
 #    Parcel.destroy_all

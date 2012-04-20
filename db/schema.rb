@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417211838) do
+ActiveRecord::Schema.define(:version => 20120420001907) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(:version => 20120417211838) do
     t.float    "x"
     t.float    "y"
     t.string   "status"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
-    t.spatial  "point",         :limit => {:srid=>-1, :type=>"geometry"}
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+    t.spatial  "point",            :limit => {:srid=>-1, :type=>"geometry"}
     t.string   "parcel_id"
     t.boolean  "official"
+    t.string   "street_full_name"
   end
 
   create_table "case_managers", :force => true do |t|
@@ -172,9 +173,11 @@ ActiveRecord::Schema.define(:version => 20120417211838) do
     t.string   "full_name"
     t.integer  "length_numberic"
     t.integer  "shape_len"
-    t.datetime "created_at",                                                :null => false
-    t.datetime "updated_at",                                                :null => false
-    t.spatial  "the_geom",        :limit => {:srid=>-1, :type=>"geometry"}
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+    t.spatial  "the_geom",         :limit => {:srid=>-1, :type=>"geometry"}
+    t.string   "prefix_direction"
+    t.string   "suffix_direction"
   end
 
 end
