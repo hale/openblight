@@ -1,17 +1,44 @@
-#address{"data-x" => @address.point.x, "data-y" => @address.point.y }
-  %h2= @address.address_long
-  .row
-    #map.span6{:style => "height: 400px;"}
-    #streetview.span_6
-      %img{ :src => "http://maps.googleapis.com/maps/api/streetview?size=460x400&location=#{@address.point.y},%20#{@address.point.x}&fov=90&heading=235&pitch=10&sensor=false" }
+.inner
+  .row-fluid{"class" => "show-grid"}        
+    %p= @address.point.x
+    %p= @address.point.y
+
+    .span5
+      #address{"data-x" => @address.point.x, "data-y" => @address.point.y }
+        %span{:class=>'badge badge-success'} 
+          2
+        
+        #map{:style => "height: 400px;"}
+    .span5
+      .h1 Address:
+      %h2=@address.address_long
+
+      .h2 Location
+      
+
+    .span10
+      %h1 Case CEHB-11-4898:
+
+      %h2 1) Inspection:
+      %span{:class=>'badge badge-success'}
+        Success
+          
+          
+      %h2 2) Notice:
+      %span{:class =>'badge badge-inverse'}
+        Warning
+          
+      %h2 3) Hearing:          
+      %span{:class =>'badge badge-warning'}
+        Important
+          
+
+      %h2 4) Judgement:          
+      %span{:class =>'badge badge-info'}
+        Information
 
 
-  #h1 Address:
-  %p="X: #{@address.point.x}"
-  %p="Y: #{@address.point.y}"
-  %p="Geopin: #{@address.geopin}"
+      %h2 5) Resolution:           
+      %span{:class =>'badge badge-error'}
+        Information
 
-
-  #h1 Case:
-
-  #h1 Maintenance:

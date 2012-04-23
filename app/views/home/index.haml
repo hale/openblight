@@ -1,17 +1,11 @@
-%h1 
+.inner
+  .row-fluid{"class" => "show-grid"}
+    =form_tag("/addresses/search", :method => "get") do
+      .hero-unit
+        .span4
+          =label_tag(:address, "Search for an address:")
+        .span4
+          =text_field_tag(:address, '', :autocomplete => autocomplete_street_name_addresses_path)
+        .span4
+          =submit_tag("Search Address", :class => 'btn btn-primary btn-large')
 
-=form_tag("/addresses/search", :method => "get") do
-  =label_tag(:address, "Search for an address:")
-  =text_field_tag(:address, '', :autocomplete => autocomplete_street_name_addresses_path)
-  =submit_tag("Search Address")
-
-=form_tag("/addresses/search", :method => "get") do
-  =label_tag(:street, "Search by case number:")
-  =text_field_tag(:street, '', :autocomplete => autocomplete_street_name_addresses_path)
-  =submit_tag("Search Intersection")
-  
-=form_tag("/cases/search", :method => "get") do
-  =label_tag(:case, "Search by case number:")
-  =text_field_tag(:case, '', :autocomplete => autocomplete_street_name_addresses_path)
-  =submit_tag("Search Cases")
-  

@@ -5,16 +5,21 @@ class AddressesController < ApplicationController
   def index
     @addresses = Address.page(params[:page]).order(:address_long)
 
-    respond_with @addresses
+    respond_with(@addresses)
   end
 
   def show
     @address = Address.find(params[:id])
-    @case = Case.find(params[:id])
-    @maintenance = Maintenance.where("address_long LIKE ?", "%#{@address.address_long}%")
-
-    respond_with @address, @case, @maintenance
+    
+    puts "geopin #{@address.geopin}"
+    @case = Case.where("geopin = ?", @address.geopin)
+    
+    
+    puts "Inspect #{@case.inspect}"
+    
+    respond_with(@address, @case)
   end
+  
   
   def search
     search = params[:address]

@@ -15,4 +15,4 @@
 //= require jquery-ui
 //= require autocomplete-rails
 //= require_directory ./controllers
-
+//= require init

@@ -59,7 +59,17 @@ module AddressHelpers
 
 
   def find_address(name)
-    return Address.where("address_long LIKE ?", "%#{name}%")
+    if Address.where("address_long LIKE ?", "%#{name}%")
+      return #exact match
+    elsif Address.where("address_long LIKE ?", "%#{name}%")
+      return #close match
+    elsif Address.where("address_long LIKE ?", "%#{name}%")
+      return #minor differneces
+    elsif Address.where("address_long LIKE ?", "%#{name}%")
+      return #multiple option      
+    end
+    
+    return nil
   end
 
   

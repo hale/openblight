@@ -11,16 +11,17 @@ OpenBlight = {
       console.log("using addresses");
     },
     show: function(){
-      var layer = new L.StamenTileLayer("watercolor");
-      var x = $("#address").attr("data-x");
-      var y = $("#address").attr("data-y");
-      var map = new L.Map("map", {
-          center: new L.LatLng(y, x),
-          zoom: 12
+      wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
+        function(tilejson) {
+
+        var x = $("#address").attr("data-x");
+        var y = $("#address").attr("data-y");
+          
+        var map = new L.Map('map')
+          .addLayer(new wax.leaf.connector(tilejson))
+          .addLayer(new L.Marker(new L.LatLng(y , x)) )
+          .setView(new L.LatLng(y , x), 18);
       });
-      map.addLayer(layer);
-      var addr = new L.LatLng(y, x);
-      map.addLayer(new L.Marker(addr));
     }
   }
 };
