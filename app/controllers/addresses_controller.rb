@@ -1,3 +1,7 @@
+require "#{Rails.root}/lib/address_helpers.rb"
+include AddressHelpers
+
+
 class AddressesController < ApplicationController
   respond_to :html, :xml, :json
   autocomplete :address, :street_name, :full => true
@@ -8,23 +12,37 @@ class AddressesController < ApplicationController
     respond_with(@addresses)
   end
 
+
+
   def show
     @address = Address.find(params[:id])
+    puts @address.id
     
-    puts "geopin #{@address.geopin}"
-    @case = Case.where("geopin = ?", @address.geopin)
-    
-    
-    puts "Inspect #{@case.inspect}"
-    
+    @c = Case.where("address_id = ?", @address.id)    
+    @case = Case.find(@c.first.id)
+
     respond_with(@address, @case)
   end
   
   
   def search
+    
+    
+    # TODO: remove all this regex
+    # All this should use the address helper functions to do matching
+    
     search = params[:address]
     long_addr_regex = /([0-9]+\s?([a-zA-Z ]+)(st|ave|dr|ct|rd|ln|pl|park|blvd|aly))/i
     long_match = long_addr_regex.match(search)
+    
+    address_result = AddressHelpers.find_address(params[:address])
+    
+    puts address_result.inspect
+    
+    unless address_result.nil?
+      # direct hit
+      redirect_to :action => "show", :id => address_result.first.id
+    end
     if long_match
       search = long_match[1].upcase
       @addresses = Address.where("address_long = ?", search).page(params[:page]).order(:house_num)
