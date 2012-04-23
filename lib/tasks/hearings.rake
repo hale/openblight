@@ -1,14 +1,11 @@
 require "#{Rails.root}/lib/import_helpers.rb"
+require "#{Rails.root}/lib/address_helpers.rb"
 require 'iconv'
 
 include ImportHelpers
+include AddressHelpers
 
-# this class should be generalized
-# take in arguments from command line for: Bucket Name, File Name
-# maybe also take in a hash of what excel columns should be paired up with in model
-# the script should also detect different file formats and use the proper parser
 
-# this script works locally, needs testing in different systems
 namespace :hearings do
   desc "Downloading files from s3.amazon.com"  
   task :load => :environment  do |t, args|
@@ -26,9 +23,16 @@ namespace :hearings do
                 
         if oo.row(row)[0].nil?
             next
-        end        
+        end
         
-        c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35])
+        address = AddressHelpers.find_address(oo.row(row)[0])
+        unless address.empty?
+          add_id = address.first.id
+          c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35], :address_id => add_id)
+        else
+          c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35])
+        end
+#        c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35])
                 
         m = CaseManager.find_or_create_by_name(:name => oo.row(row)[11],:case_number => oo.row(row)[10])
                 
@@ -68,4 +72,16 @@ namespace :hearings do
     
   end
 end
-  
+
+
+
+namespace :hearings do
+  desc "Downloading files from s3.amazon.com"  
+  task :drop => :environment  do |t, args|
+    Case.destroy_all
+    CaseManager.destroy_all
+    Judgement.destroy_all
+    Notification.destroy_all
+    Reset.destroy_all
+  end
+end
