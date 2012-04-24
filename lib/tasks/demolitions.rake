@@ -100,9 +100,9 @@ namespace :demolitions do
 
     Demolition.find(:all).each do |row|
       # compare each address in demo list to our address table
-      address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
-      
-      
+      #address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
+      address = AddressHelpers.find_address(row.address_long)
+        
       unless (address.empty?)
         Demolition.find(row.id).update_attributes(:address_id => address.first.id)      
         success += 1
