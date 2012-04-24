@@ -29,14 +29,12 @@ class AddressesController < ApplicationController
     long_match = long_addr_regex.match(search)
 
     address_result = AddressHelpers.find_address(params[:address])        
-    puts "direct hit"
-    puts "#{address_result.inspect}"
     unless address_result.nil?
       # direct hit.
-      # TODO: i think this breaks the JSON response. research.
-      puts "direct hit"
+      # TODO: if json, then we should not redirect.
       redirect_to :action => "show", :id => address_result.first.id  and return 
     end
+    
     if long_match
       search = long_match[1].upcase
       @addresses = Address.where("address_long = ?", search).page(params[:page]).order(:house_num)
