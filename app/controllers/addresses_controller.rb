@@ -13,8 +13,11 @@ class AddressesController < ApplicationController
 
   def show
     @address = Address.find(params[:id])
-    @c = Case.where("address_id = ?", @address.id)    
-    @case = Case.find(@c.first.id)
+    @c = Case.where("address_id = ?", @address.id)
+    @case = nil
+    unless @c.first.nil?
+      @case = Case.find(@c.first.id)
+    end
     respond_with(@address, @case)
   end
   

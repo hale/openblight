@@ -1,8 +1,5 @@
 .inner
   .row-fluid{"class" => "show-grid"}        
-    %p= @address.point.x
-    %p= @address.point.y
-
     .span5
       #address{"data-x" => @address.point.x, "data-y" => @address.point.y }
         %span{:class=>'badge badge-success'} 
@@ -13,41 +10,41 @@
       .h1 Address:
       %h2=@address.address_long
       .h1 Status:
-      %h3 The most recent step was a #{@case.most_recent_status.class}, on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
+
+      -unless @case.nil?
+        %h3 The most recent step was a #{@case.most_recent_status.class}, on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
 
 
     .span10
-      %h1=@case.case_number
+      -unless @case.nil?
+        -unless @case.case_number.nil?
+          %h1=@case.case_number
 
-      %h2 1) Inspection:
-      %span{:class=>'badge badge-success'}
-      -unless @case.inspections.empty?
-        %h4 Inspections
-        -@case.inspections.each do |i|
-          .inspection
-            =i.inspection_date
+        %h2 1) Inspection:
+        %span{:class=>'badge badge-success'}
+        -unless @case.inspections.nil?
+          -@case.inspections.each do |i|
+            .inspection
+              =i.inspection_date
                     
-      %h2 2) Notice:
-            
-      -unless @case.resets.empty?
-        %h4 Resets
-        -@case.resets.each do |r|
-          .reset
-            =r.reset_date
+        %h2 2) Notice:
+        -unless @case.resets.nil?
+          -@case.resets.each do |r|
+            .reset
+              =r.reset_date
           
-      %h2 3) Hearing:          
-      %span{:class =>'badge badge-inverse'}
-      -unless @case.hearings.empty?
-        -@case.hearings.each do |h|
-          .hearing
-            =h.hearing_date
-            =h.hearing_status
+        %h2 3) Hearing:          
+        %span{:class =>'badge badge-inverse'}
+        -unless @case.hearings.nil?
+          -@case.hearings.each do |h|
+            .hearing
+              =h.hearing_date
+              =h.hearing_status
 
+        %h2 4) Judgement:          
+        %span{:class =>'badge badge-info'}
+          Information
 
-      %h2 4) Judgement:          
-      %span{:class =>'badge badge-info'}
-        Information
+        %h2 5) Resolution:           
+        %span{:class =>'badge badge-error'}
 
-
-      %h2 5) Resolution:           
-      %span{:class =>'badge badge-error'}

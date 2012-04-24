@@ -15,7 +15,7 @@ OpenBlight = {
       wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
         function(tilejson) {
           
-          // is there a better way to do this?
+          // this shoud be moved into a function
           json_path = window.location.toString().replace(/search\?/i, 'search.json\?');
           
           jQuery.getJSON( json_path, function(data) {
