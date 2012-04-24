@@ -8,12 +8,27 @@ OpenBlight = {
   
   addresses: {
     init: function(){
-      console.log("using addresses");
+      console.log("using addresses:init");
+    },
+   	search: function(){
+      console.log("using addresses:search");
+      wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
+        function(tilejson) {
+          
+          
+
+          
+        var map = new L.Map('map')
+          .addLayer(new wax.leaf.connector(tilejson))
+          .setView(new L.LatLng(29.9 , -90.0), 13);
+      });
     },
     show: function(){
+      console.log("using addresses:show");
       wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
         function(tilejson) {
 
+          // this should not be hard coded. do json request?
         var x = $("#address").attr("data-x");
         var y = $("#address").attr("data-y");
           
