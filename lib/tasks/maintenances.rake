@@ -7,7 +7,7 @@ include SpreadsheetHelpers
 include AddressHelpers
 
 
-namespace :maintenance do
+namespace :maintenances do
   desc "Downloading files from s3.amazon.com"  
   task :load => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "INAP Validated Address Data entry sheet 2012.xlsx")  

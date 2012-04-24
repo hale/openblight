@@ -29,9 +29,9 @@ namespace :foreclosures do
     end 
   end
 
-  desc "Correlate demolition data with addresses"  
+  desc "Correlate foreclosure data with addresses"  
   task :match => :environment  do |t, args|
-    # go through each demolition
+    # go through each foreclosure
     success = 0
     failure = 0
 
