@@ -10,4 +10,21 @@ class Address < ActiveRecord::Base
   #validates_uniqueness_of :geopin
 
   self.per_page = 50
+
+  def workflow_steps
+    steps_ary = []
+    self.cases.each do |c|
+      steps_ary.concat(c.accela_steps)
+    end
+    steps_ary << self.demolitions << self.foreclosures << self.maintenances
+    steps_ary.flatten.compact.sort{ |a, b| a.date <=> b.date }
+  end
+
+  def most_recent_status
+    if !self.workflow_steps.empty?
+      self.workflow_steps.last
+    else
+      nil
+    end
+  end
 end
