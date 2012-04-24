@@ -1,3 +1,5 @@
+<<<<<<< Local Changes
+<<<<<<< Local Changes
 .inner
   .row-fluid{"class" => "show-grid"}        
     %p= @address.point.x
@@ -28,14 +30,6 @@
             =i.inspection_date
                     
       %h2 2) Notice:
-      %span{:class =>'badge badge-inverse'}
-      -unless @case.hearings.empty?
-        %h4 Hearings
-        -@case.hearings.each do |h|
-          .hearing
-            =h.hearing_date
-            =h.hearing_status
-            =hello world
             
       -unless @case.resets.empty?
         %h4 Resets
@@ -44,7 +38,12 @@
             =r.reset_date
           
       %h2 3) Hearing:          
-      %span{:class =>'badge badge-warning'}
+      %span{:class =>'badge badge-inverse'}
+      -unless @case.hearings.empty?
+        -@case.hearings.each do |h|
+          .hearing
+            =h.hearing_date
+            =h.hearing_status
 
 
       %h2 4) Judgement:          
@@ -54,4 +53,23 @@
 
       %h2 5) Resolution:           
       %span{:class =>'badge badge-error'}
-        Information
+        Information=======
+#address{"data-x" => @address.point.x, "data-y" => @address.point.y }
+  %h2= @address.address_long
+  %p= @address.point.x
+  %p= @address.point.y
+  .row
+    #map.span6{:style => "height: 400px;"}
+    #streetview.span_6
+      %img{ :src => "http://maps.googleapis.com/maps/api/streetview?size=460x400&location=#{@address.point.y},%20#{@address.point.x}&fov=90&heading=235&pitch=10&sensor=false" }
+>>>>>>> External Changes
+=======
+#address{"data-x" => @address.point.x, "data-y" => @address.point.y }
+  %h2= @address.address_long
+  %p= @address.point.x
+  %p= @address.point.y
+  .row
+    #map.span6{:style => "height: 400px;"}
+    #streetview.span_6
+      %img{ :src => "http://maps.googleapis.com/maps/api/streetview?size=460x400&location=#{@address.point.y},%20#{@address.point.x}&fov=90&heading=235&pitch=10&sensor=false" }
+>>>>>>> External Changes
