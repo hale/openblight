@@ -20,22 +20,19 @@ namespace :hearings do
         oo = Excel.new(downloaded_file_path)
         oo.default_sheet = oo.sheets.first
         21.upto(oo.last_row) do |row|
-                    
+
             if oo.row(row)[0].nil?
                 next
             end
-            
+
             address = AddressHelpers.find_address(oo.row(row)[0])
-            unless address.nil?
+            unless address.empty?
               add_id = address.first.id
               c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35], :address_id => add_id)
             else
               c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35])
             end
-    #        c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35])
-                    
             m = CaseManager.find_or_create_by_name(:name => oo.row(row)[11],:case_number => oo.row(row)[10])
-                    
             status = oo.row(row)[21]
             unless status.nil?
                 status = status.split(" ")[0].delete(":").downcase
@@ -46,16 +43,13 @@ namespace :hearings do
             end
 
             unless oo.row(row)[22].nil?
-
                 date = oo.row(row)[22].to_s.split("/")
-                
                 time = 0
                 unless oo.row(row)[23].nil? 
                     time = oo.row(row)[23]
                 end
                 time = Time.at(time).gmtime.strftime('%R:%S')
                 time = time.split(":")
-                
 
                 reset_date = DateTime.new(date[2].to_i,date[0].to_i,date[1].to_i,time[0].to_i,time[1].to_i,time[2].to_i)
                 r = Reset.find_or_create_by_case_number_and_reset_date(:case_number => oo.row(row)[10], :reset_date => reset_date)#oo.row(row)[22].to_s + " " + oo.row(row)[23])
