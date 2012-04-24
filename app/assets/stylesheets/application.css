@@ -16,3 +16,29 @@
 .row .pagination a {
   float: none;
 }
+
+header {
+	text-align: center;
+
+}
+header h1 a{
+    color: #333333;
+    font-family: 'Trebuchet MS';
+    font-size: 300%;
+    text-align: center;
+}
+
+header h1 a:hover{
+	text-decoration: none;
+	color: black;
+}
+
+
+footer{
+	text-align: center;
+}
+
+
+.form-search label{
+	width: auto;
+}

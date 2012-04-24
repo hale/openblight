@@ -15,12 +15,25 @@ OpenBlight = {
       wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
         function(tilejson) {
           
+          // is there a better way to do this?
+          json_path = window.location.toString().replace(/search\?/i, 'search.json\?');
           
+          jQuery.getJSON( json_path, function(data) {
+              var map = new L.Map('map').addLayer(new wax.leaf.connector(tilejson));
+              for ( i = 0; i < data.length; i++ ){
+                var point = data[i].point.substring(7, data[i].point.length -1).split(' ');
+                map.addLayer(new L.Marker(new L.LatLng(point[1] , point[0])) );
+                var y = point[1];
+                var x= point[0];                
+              }
+              // we center the map on the last position
+              map.setView(new L.LatLng(y, x), 14);
+              
 
-          
-        var map = new L.Map('map')
-          .addLayer(new wax.leaf.connector(tilejson))
-          .setView(new L.LatLng(29.9 , -90.0), 13);
+          });
+            
+
+            
       });
     },
     show: function(){
@@ -31,7 +44,7 @@ OpenBlight = {
           // this should not be hard coded. do json request?
         var x = $("#address").attr("data-x");
         var y = $("#address").attr("data-y");
-          
+        
         var map = new L.Map('map')
           .addLayer(new wax.leaf.connector(tilejson))
           .addLayer(new L.Marker(new L.LatLng(y , x)) )
