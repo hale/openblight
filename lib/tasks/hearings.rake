@@ -69,11 +69,8 @@ namespace :hearings do
             status = nil
         end
     end
-end
 
-
-
-namespace :hearings do
+  desc "Delete all cases, case managers, judgements, notifications, and resets from database"
   task :drop => :environment  do |t, args|
         Case.destroy_all
         CaseManager.destroy_all

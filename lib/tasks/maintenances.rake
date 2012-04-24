@@ -22,11 +22,7 @@ namespace :maintenance do
       end
     end
   end
-end
 
-
-
-namespace :maintenance do
   desc "Correlate demolition data with addresses"  
   task :match => :environment  do |t, args|
     # go through each demolition
@@ -35,10 +31,9 @@ namespace :maintenance do
 
     Maintenance.find(:all).each do |row|
       # compare each address in demo list to our address table
-#      address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
-      
+      #address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
+
       address = AddressHelpers.find_address(row.address_long)
-        
       unless (address.empty?)
         Maintenance.find(row.id).update_attributes(:address_id => address.first.id)      
         success += 1
@@ -49,16 +44,9 @@ namespace :maintenance do
     end
     puts "There were #{success} successful matches and #{failure} failed matches"      
   end
-end
-    
 
-
-
-namespace :maintenance do
-  desc "Downloading files from s3.amazon.com"  
+  desc "Delete all maintenances from database"
   task :drop => :environment  do |t, args|
     Maintenance.destroy_all
   end
 end
-
-

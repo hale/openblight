@@ -9,7 +9,7 @@ include AddressHelpers
 
 
 namespace :demolitions do
-  desc "Downloading files from s3.amazon.com"  
+  desc "Downloading FEMA files from s3.amazon.com"  
   task :fema => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "FEMA Validated_Demo_DataEntry_2012_January.xlsx")  
     ImportHelpers.connect_to_aws
@@ -24,11 +24,8 @@ namespace :demolitions do
       end
     end
   end
-end
 
-
-namespace :demolitions do
-  desc "Downloading files from s3.amazon.com"  
+  desc "Downloading NORA files from s3.amazon.com"  
   task :nora => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "NORA Validated_Demo_DataEntry_2012.xlsx")  
     ImportHelpers.connect_to_aws
@@ -43,10 +40,8 @@ namespace :demolitions do
       end
     end
   end
-end
 
-namespace :demolitions do
-  desc "Downloading files from s3.amazon.com"  
+  desc "Downloading NOSD files from s3.amazon.com"  
   task :nosd => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "NOSD  BlightStat Report  January 2012.xlsx")  
     ImportHelpers.connect_to_aws
@@ -60,13 +55,8 @@ namespace :demolitions do
       end
     end
   end
-end
 
-
-
-
-namespace :demolitions do
-  desc "Downloading files from s3.amazon.com"  
+  desc "Downloading Socrata files from s3.amazon.com"  
   task :socrata => :environment  do |t, args|
 
     properties = ImportHelpers.download_json_convert_to_hash('https://data.nola.gov/api/views/abvi-rghr/rows.json?accessType=DOWNLOAD')
@@ -85,13 +75,8 @@ namespace :demolitions do
         puts " OBJECT ID: #{row[2]}"
       end
     end
-    
   end
-end
 
-
-
-namespace :demolitions do
   desc "Correlate demolition data with addresses"  
   task :match => :environment  do |t, args|
     # go through each demolition
@@ -113,11 +98,8 @@ namespace :demolitions do
     end
     puts "There were #{success} successful matches and #{failure} failed matches"      
   end
-end
 
-
-namespace :demolitions do
-  desc "Downloading files from s3.amazon.com"  
+  desc "Delete all demolitions from database"
   task :drop => :environment  do |t, args|
     Demolition.destroy_all
   end
