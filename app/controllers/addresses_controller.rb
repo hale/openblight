@@ -37,7 +37,7 @@ class AddressesController < ApplicationController
     
     address_result = AddressHelpers.find_address(params[:address])
     
-    puts address_result.inspect
+    puts "HELLO WORLD: #{address_result.inspect}"
     
     unless address_result.nil?
       # direct hit
