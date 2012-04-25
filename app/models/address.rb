@@ -14,9 +14,9 @@ class Address < ActiveRecord::Base
   def workflow_steps
     steps_ary = []
     self.cases.each do |c|
-      steps_ary.concat(c.accela_steps)
+      steps_ary << c.accela_steps
     end
-    steps_ary << self.demolitions << self.foreclosures << self.maintenances
+    steps_ary << self.demolitions 
     steps_ary.flatten.compact.sort{ |a, b| a.date <=> b.date }
   end
 
