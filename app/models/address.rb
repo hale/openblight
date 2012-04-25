@@ -10,4 +10,14 @@ class Address < ActiveRecord::Base
   #validates_uniqueness_of :geopin
 
   self.per_page = 50
+
+  def find_addresses_with_cases_by_street(street_string)
+      addresses = Address.joins(:cases).where(:addresses => {:street_name => street_string})
+      return addresses
+  end
+  def find_addresses_by_geopin(geopin)
+  	  address = Address.where("geopin = ?", geopin)
+      return address
+  end
+
 end
