@@ -20,12 +20,16 @@ OpenBlight = {
           
           jQuery.getJSON( json_path, function(data) {
               var map = new L.Map('map').addLayer(new wax.leaf.connector(tilejson));
+              popup = new L.Popup();
+
               for ( i = 0; i < data.length; i++ ){
                 var point = data[i].point.substring(7, data[i].point.length -1).split(' ');
-                map.addLayer(new L.Marker(new L.LatLng(point[1] , point[0])) );
                 var y = point[1];
-                var x= point[0];                
+                var x= point[0];                				
+                var popupContent = '<h3><a href="/addresses/'+ data[i].id +'">'+ data[i].address_long + '</a></h3>' 
+                map.addLayer(new L.Marker(new L.LatLng(point[1] , point[0])).bindPopup(popupContent) );					
               }
+              
               // we center the map on the last position
               map.setView(new L.LatLng(y, x), 14);
               

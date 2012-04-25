@@ -29,7 +29,7 @@ class AddressesController < ApplicationController
     long_match = long_addr_regex.match(search)
 
     address_result = AddressHelpers.find_address(params[:address])        
-    unless address_result.nil?
+    unless address_result.empty?
       # direct hit.
       # TODO: if json, then we should not redirect.
       redirect_to :action => "show", :id => address_result.first.id  and return 
