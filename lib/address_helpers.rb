@@ -69,23 +69,37 @@ module AddressHelpers
 
 
   def get_street_name(streetname)
-    streetname = streetname.to_s.upcase
-    @street_types.each do |(label, value)|
-      unless streetname.match(/#{label}$/).nil?
-        return streetname.sub(/#{label}$/, '').single_space
-      end
+    streetname = streetname.to_s.single_space.upcase
+    streetname = strip_address_number(streetname)
+    streetname = strip_address_unit(streetname)
+    
+    unless streetname.nil?
+      @street_types.each do |(label, value)|
+        unless streetname.match(/#{label}$/).nil?
+          return streetname.sub(/#{label}$/, '').single_space
+        end
       
-      unless streetname.match(/#{value}$/).nil?
-        return streetname.sub(/#{value}$/, '').single_space
+        unless streetname.match(/#{value}$/).nil?
+          return streetname.sub(/#{value}$/, '').single_space
+        end
       end
     end
-    return streetname.single_space;
+    return streetname;
   end
   
+  
+  # even needed? should just be model call
   def find_street(name)
     return Street.where("name LIKE ?", "%#{name}%")
   end
 
+  def strip_address_number(streetname)
+    streetname = streetname.upcase
+    unless streetname.match(/^\d+\s/).nil?
+      return streetname.sub(/^\d+\s/, '')      
+    end    
+    return streetname.single_space
+  end
 
   def strip_address_unit(streetname)
     streetname = streetname.upcase.sub(/\,.+/, '')
