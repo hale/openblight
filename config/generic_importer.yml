@@ -1,0 +1,34 @@
+Models:
+ - name: Maintenance 
+   bucketname: neworleansdata
+   filename: INAP Validated Address Data entry sheet 2012.xlsx
+   column_map: # db column => excel 
+      house_num: Number
+      street_name: Street
+      street_type: Accessory
+      program_name: Program
+ - name: Demolition
+   bucketname: neworleansdata
+   filename: NORA Validated_Demo_DataEntry_2012.xlsx
+   pre_populate: 
+      program_name: NORA
+   column_map: 
+      case_number: CEHB ID
+      house_num: Number
+      address_long: Address
+      date_started: Demo Start
+      date_completed: Demo Complete
+      zip_code: Zip
+ - name: Demolition
+   bucketname: neworleansdata
+   filename: FEMA Validated_Demo_DataEntry_2012_January.xlsx
+   first_row: 0 #optional
+   filter_exclusive:
+      WorkflowTask: 12.Demolished
+   pre_populate:
+      program_name: FEMA
+   column_map:
+      case_number: CEHB ID
+      house_num: Number
+      street_name: Street
+      zip_code: Zip

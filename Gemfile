@@ -9,14 +9,18 @@ gem 'pg'
 gem 'foreigner'
 gem 'aws-s3'
 gem 'roo' #excel parser
-gem 'rubyXL'#excel parser
+
+gem 'will_paginate', '~> 3.0'
 
 # GIS 
 gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-shapefile'
 
 gem 'haml'
+
+gem 'docsplit'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,6 +37,7 @@ end
 gem 'jquery-rails'
 
 group :test, :development do
+  gem "test-unit"
 	gem "rspec-rails"
 	gem "shoulda"
 

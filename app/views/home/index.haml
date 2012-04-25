@@ -1,2 +1,6 @@
 %h2 This is the home page
-%h3 There is no other content
+
+=form_tag("/addresses/search", :method => "get") do
+  =label_tag(:address, "Search for an address:")
+  =text_field_tag(:address)
+  =submit_tag("Search")

@@ -1,0 +1,11 @@
+%h2 Search Results:
+
+-if @addresses.empty? == false
+  -@addresses.each do |a|
+    .address.result
+      =link_to a.address_long, address_path(a.id)
+-else
+  %h4 No matches found
+
+.row
+  =will_paginate @addresses
