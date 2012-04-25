@@ -17,7 +17,7 @@
 
 #topbar { 
 	text-align: center; 
-	top: 0px, 
+	top: 0px; 
 	left: 0px; 
 	height: 30px; 
 	width: 100%; 
@@ -87,3 +87,18 @@ footer{
 	width: auto;
 }
 
+.ui-autocomplete {
+  width: 300px;
+  padding: 5px 10px 10px;
+  background: #0069D6;
+  color: #fff;
+  li {
+    list-style-type: none;
+  }
+  a {
+    color: #fff;
+    &:hover {
+      color: whiteSmoke;
+    }
+  }
+}
