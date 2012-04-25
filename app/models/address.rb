@@ -15,4 +15,9 @@ class Address < ActiveRecord::Base
       addresses = Address.joins(:cases).where(:addresses => {:street_name => street_string})
       return addresses
   end
+  def find_addresses_by_geopin(geopin)
+  	  address = Address.where("geopin = ?", geopin)
+      return address
+  end
+
 end
