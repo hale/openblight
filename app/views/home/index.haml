@@ -6,7 +6,7 @@
     .span3
       =label_tag(:address, "Search for an address:")
     .span4
-      =text_field_tag(:address, '', :autocomplete => autocomplete_street_name_addresses_path)
+      =autocomplete_field_tag 'address', '', autocomplete_address_address_long_addresses_path
     .span4
       =submit_tag("Search Address", :class => 'btn btn-primary')
 								

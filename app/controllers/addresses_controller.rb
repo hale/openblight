@@ -5,6 +5,8 @@ include AddressHelpers
 class AddressesController < ApplicationController
   respond_to :html, :xml, :json
 
+  autocomplete :address, :address_long
+
   def index
     @addresses = Address.page(params[:page]).order(:address_long)
 
