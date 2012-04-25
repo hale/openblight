@@ -19,7 +19,7 @@ namespace :foreclosures do
 
     oo = Excelx.new(downloaded_file_path)
     oo.default_sheet = oo.sheets[7]
-    
+
     38.upto(oo.last_row) do |row|      
       unless SpreadsheetHelpers.row_is_empty?(oo.row(row))
         unless oo.row(row)[8].to_s.empty?
@@ -28,12 +28,10 @@ namespace :foreclosures do
       end        
     end 
   end
-end
 
-namespace :foreclosures do
-  desc "Correlate demolition data with addresses"  
+  desc "Correlate foreclosure data with addresses"  
   task :match => :environment  do |t, args|
-    # go through each demolition
+    # go through each foreclosure
     success = 0
     failure = 0
 
@@ -41,7 +39,7 @@ namespace :foreclosures do
       # compare each address in demo list to our address table
       #address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
       address = AddressHelpers.find_address(row.address_long)
-      
+
       unless (address.empty?)
         Foreclosure.find(row.id).update_attributes(:address_id => address.first.id)      
         success += 1
@@ -52,11 +50,8 @@ namespace :foreclosures do
     end
     puts "There were #{success} successful matches and #{failure} failed matches"      
   end
-end
 
-
-namespace :foreclosures do
-  desc "Downloading files from s3.amazon.com"  
+  desc "Delete all foreclosures from database"
   task :drop => :environment  do |t, args|
     Foreclosure.destroy_all
   end

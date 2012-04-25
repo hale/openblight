@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420175948) do
+ActiveRecord::Schema.define(:version => 20120424183850) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20120420175948) do
     t.string   "status"
     t.string   "notes"
     t.integer  "address_match_confidence"
+    t.integer  "address_id"
   end
 
   create_table "hearings", :force => true do |t|

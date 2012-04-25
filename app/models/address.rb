@@ -1,6 +1,9 @@
 class Address < ActiveRecord::Base
-  has_many :cases
   belongs_to :street
+  has_many :cases
+  has_many :demolitions
+  has_many :foreclosures
+  has_many :maintenances
 
   validates_uniqueness_of :address_id
 	#validates_uniqueness_of :parcel_id

@@ -7,7 +7,6 @@ namespace :streets do
   task :load => :environment do
     shpfile = "#{Rails.root}/lib/assets/NOLA_Streets_20120405/NOLA_Streets_20120405_wgs84.shp"
 
-
     RGeo::Shapefile::Reader.open(shpfile, {:srid => -1}) do |file|
       puts "File contains #{file.num_records} records"
       nums = 1..5
@@ -19,14 +18,10 @@ namespace :streets do
          #st.save
       end
     end
-    
   end
-end
 
 
-
-namespace :streets do
-  desc "Deleting rows from Street label"  
+  desc "Empty streets table"  
   task :drop => :environment  do |t, args|
     Street.destroy_all
   end

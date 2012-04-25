@@ -29,15 +29,9 @@ namespace :addresses do
       end
     end
   end
-end
 
-
-
-namespace :addresses do
   desc "Empty address table"  
   task :drop => :environment  do |t, args|
     Address.destroy_all
   end
 end
-
-

@@ -14,7 +14,6 @@ module AddressHelpers
   # WE SHOULD COMPRESS THESE FUNCTIONS
 
   def abbreviate_street_types(streetname)
-    
     streetname = streetname.upcase
     @street_types.each do |(value, label)|
       unless streetname.match(/#{label}$/).nil?
@@ -101,20 +100,17 @@ module AddressHelpers
 
   def find_address(address_string)
     #address_string = address_string.sub(/\,.+/, '')
-    address_string = address_string.upcase
-    address_string = address_string.single_space
+    address_string = address_string.upcase.single_space
 
-    puts "0: init find_address"
-    
     if(address_string.start_with?("4072"))
       puts "1: #{address_string}"
     end
 
     address = Address.where("address_long = ?", "#{address_string}")
     unless address.empty?
-      return address   
+      return address
     end
-    
+
     # if there is no direct hit, then we look for units in the address
     # and strip the unit number
     address_string = strip_address_unit(address_string)
@@ -139,8 +135,8 @@ module AddressHelpers
     unless address.empty?
       return address   
     end
-    
-    
+
+
     address_string = abbreviate_street_direction(address_string)
     if(address_string.start_with?("4072"))
       puts "4: #{address_string}"
@@ -149,14 +145,7 @@ module AddressHelpers
     unless address.empty?
       return address   
     end
-       
-    puts "return nill"
-       
-    return nil
+
+    return []
   end
-
-  
-
-  
-
 end
