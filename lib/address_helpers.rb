@@ -97,7 +97,8 @@ module AddressHelpers
 
 
   def find_address(address_string)
-    #address_string = address_string.sub(/\,.+/, '')
+
+    
     address_string = address_string.upcase.single_space
 
     if(address_string.start_with?("4072"))
@@ -144,6 +145,9 @@ module AddressHelpers
       return address   
     end
 
+
     return []
   end
+
+  
 end
