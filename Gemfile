@@ -5,12 +5,12 @@ gem 'rails', '3.2.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# Storage
 gem 'pg'
 gem 'foreigner'
 gem 'aws-s3'
 gem 'roo' #excel parser
 
-gem 'will_paginate', '~> 3.0'
 
 # GIS 
 gem 'rgeo'
@@ -18,14 +18,20 @@ gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter'
 gem 'rgeo-shapefile'
 
+# Templates
 gem 'haml'
-
+gem 'jquery-rails'
+gem 'rails3-jquery-autocomplete'
+gem 'nifty-generators'
+gem 'will_paginate', '~> 3.0'
 gem 'docsplit'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
+  gem "bootstrap-sass"
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -34,8 +40,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
 
+# Testing
 group :test, :development do
   gem "test-unit"
 	gem "rspec-rails"

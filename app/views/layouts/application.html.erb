@@ -4,37 +4,58 @@
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <head>
-  <title>Openblight</title>
+  <title>BlightStat.us</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+  <link href='/wax/theme/controls.css' rel='stylesheet' type='text/css' />
+  <link href='https://raw.github.com/mapbox/wax/master/ext/leaflet.css' rel='stylesheet' type='text/css' />
+
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
   <meta name="description" content="">
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
   <meta name="viewport" content="width=device-width">
 </head>
-<body class="container" data-controller="<%= controller_name %>" data-action="<%= action_name %>">
-  <header class="page-header">
-  <h1><%= link_to("OpenBlight Dashboard", root_path) -%></h1>
-  </header>
+<body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
 
-<%= yield %>
-  <footer>
-  </footer>
-  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-       mathiasbynens.be/notes/async-analytics-snippet -->
-  <script src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
-  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js"></script>
-  <!--[if lte IE 8]>
-      <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
-  <![endif]-->
-  <%= javascript_include_tag "application" %>
-  <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
+	<div id="tag"><a href="www.codeforamerica.org"><img width="100px" border="0" src="http://jlord.us/tag_cfa.png"></a></div>
+	<div id="topbar"><p><img src="http://jlord.us/code_flag.png" height="20px"/>Created for residents by Code for America in their partnership with the City of New Orleans.  	<a href="http://www.codeforamerica.org" target="_blank">Learn more</a>.</p></div>
+
+
+  <div class="container" >
+
+    <div class="navbar navbar-fixed-top">
+    </div>
+    <header class="page-header">
+    <h1><%= link_to("BlightStatus", root_path) -%></h1>
+    </header>
+  	<%= yield %>
+    <footer>
+      <a href="">About </a> - 
+      <a href="">Terms of Service </a> -
+      <a href="">Send feedback </a>
+	  
+	  <p>Sample Address: <b>1019 CHARBONNET</b></p>
+
+    </footer>
+    <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+         mathiasbynens.be/notes/async-analytics-snippet -->
   
+    <script type='text/javascript' src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+    <script type='text/javascript' src='https://raw.github.com/mapbox/wax/master/dist/wax.leaf.min.js'></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
+    <![endif]-->
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "autocomplete-rails.js" %>  
+    <script>
+      var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+  </div>
 </body>
 </html>

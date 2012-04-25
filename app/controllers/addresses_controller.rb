@@ -1,3 +1,7 @@
+require "#{Rails.root}/lib/address_helpers.rb"
+include AddressHelpers
+
+
 class AddressesController < ApplicationController
   respond_to :html, :xml, :json
 
@@ -9,30 +13,33 @@ class AddressesController < ApplicationController
 
   def show
     @address = Address.find(params[:id])
-
-    respond_with(@address)
+    @c = Case.where("address_id = ?", @address.id)
+    @case = nil
+    unless @c.first.nil?
+      @case = Case.find(@c.first.id)
+    end
+    respond_with(@address, @case)
   end
   
   def search
-    search = params[:address]
-    long_addr_regex = /([0-9]+\s?([a-zA-Z ]+)(st|ave|dr|ct|rd|ln|pl|park|blvd|aly))/i
-    long_match = long_addr_regex.match(search)
-    if long_match
-      search = long_match[1].upcase
-      @addresses = Address.where("address_long = ?", search).page(params[:page]).order(:house_num)
-    else
-      no_num_regex = /([a-zA-Z]+)\s+(st|ave|dr|ct|rd|ln|pl|park|blvd|aly)/i
-      match = no_num_regex.match(search)
-      if match
-        search = match[1].strip
-      end
-      search.upcase!
-      @addresses = Address.where("street_name = ?", search).page(params[:page]).order(:house_num)
-      if @addresses.empty?
-        @addresses = Address.where("address_long LIKE ?", "%#{search}%").page(params[:page]).order(:house_num)
-      end
-    end
+    search_term = params[:address]
+    address_result = AddressHelpers.find_address(params[:address])        
 
-    respond_with(@addresses)
+    # When user searches they get a direct hit!
+    unless address_result.empty?
+      # TODO: if json, then we should not redirect.
+      redirect_to :action => "show", :id => address_result.first.id  and return 
+    end
+    
+    # if it's not a direct hit, then we look at the street name and just present a list of properties
+    # with that street name that have a case. No point in printing out a bunch of houses without cases
+    street_name = AddressHelpers.get_street_name(search_term)    
+    @addresses = Address.find_addresses_with_cases_by_street(street_name).page(params[:page]).order(:house_num)
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @addresses }
+      format.json { render :json => @addresses }
+    end
   end
 end

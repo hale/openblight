@@ -37,6 +37,8 @@ GEM
       builder
       mime-types
       xml-simple
+    bootstrap-sass (1.4.4)
+      sass-rails (~> 3.1)
     builder (3.0.0)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -95,6 +97,7 @@ GEM
     mime-types (1.18)
     multi_json (1.1.0)
     multipart-post (1.1.5)
+    nifty-generators (0.4.6)
     nokogiri (1.5.2)
     oauth (0.4.5)
     oauth2 (0.5.2)
@@ -117,6 +120,8 @@ GEM
       activesupport (= 3.2.2)
       bundler (~> 1.0)
       railties (= 3.2.2)
+    rails3-jquery-autocomplete (1.0.6)
+      rails (~> 3.0)
     railties (3.2.2)
       actionpack (= 3.2.2)
       activesupport (= 3.2.2)
@@ -203,6 +208,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgis-adapter
   aws-s3
+  bootstrap-sass
   capybara
   coffee-rails (~> 3.2.1)
   docsplit
@@ -211,8 +217,10 @@ DEPENDENCIES
   foreigner
   haml
   jquery-rails
+  nifty-generators
   pg
   rails (= 3.2.2)
+  rails3-jquery-autocomplete
   rgeo
   rgeo-geojson
   rgeo-shapefile

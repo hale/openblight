@@ -28,13 +28,11 @@ class Address < ActiveRecord::Base
     end
   end
 
-  def find_addresses_with_cases_by_street(street_string)
-      addresses = Address.joins(:cases).where(:addresses => {:street_name => street_string})
-      return addresses
+  def self.find_addresses_with_cases_by_street(street_string)
+    Address.joins(:cases).where(:addresses => {:street_name => street_string})
   end
 
-  def find_addresses_by_geopin(geopin)
-  	  address = Address.where("geopin = ?", geopin)
-      return address
+  def self.find_addresses_by_geopin(geopin)
+ 	 Address.where("geopin = ?", geopin)
   end
 end

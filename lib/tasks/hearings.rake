@@ -1,11 +1,14 @@
 require "#{Rails.root}/lib/import_helpers.rb"
-require "#{Rails.root}/lib/address_helpers.rb"
 require 'iconv'
 
 include ImportHelpers
-include AddressHelpers
 
+# this class should be generalized
+# take in arguments from command line for: Bucket Name, File Name
+# maybe also take in a hash of what excel columns should be paired up with in model
+# the script should also detect different file formats and use the proper parser
 
+# this script works locally, needs testing in different systems
 namespace :hearings do
   desc "Downloading files from s3.amazon.com"  
   task :load => :environment  do |t, args|
@@ -16,6 +19,7 @@ namespace :hearings do
         ImportHelpers.connect_to_aws
         s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
         downloaded_file_path = ImportHelpers.download_from_aws(s3obj)
+
 
         oo = Excel.new(downloaded_file_path)
         oo.default_sheet = oo.sheets.first
