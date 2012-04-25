@@ -1,12 +1,14 @@
 language: ruby
+bundler_args: --without development
+
 rvm:
   - 1.9.2
   - 1.9.3
 
-env:
-  - DB=postgres BUILD_TYPE=other
-
 before_script: "./script/ci/before.sh"
 
-script: "bundle exec rake travis"
+script: "bundle exec rake spec"
+
+notifications:
+  email: false
 
