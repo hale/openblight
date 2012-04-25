@@ -11,11 +11,21 @@ FactoryGirl.define do
     case_number       { "CEHB " + rand(1000).to_s()}
   end
 
+  factory :demolition do
+  end
+
+  factory :foreclosure do
+  end
+
   factory :hearing do
     hearing_date      { Time.now }
   end
 
   factory :inspection do
     inspection_type   { "Violation Posted No WIP" }
+  end
+
+  factory :notification do
+    #are there any fields to require?
   end
 end
