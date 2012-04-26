@@ -41,7 +41,7 @@ class AddressesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @addresses }
-      format.json { render :json => @addresses }
+      format.json { render :json => @addresses.to_json(:methods => [:most_recent_status_preview]) }
     end
   end
 end
