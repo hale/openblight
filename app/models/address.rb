@@ -30,7 +30,7 @@ class Address < ActiveRecord::Base
 
   def most_recent_status_preview
     s = self.most_recent_status
-    {:type => s.class.to_s, :date => s.date}
+    {:type => s.class.to_s, :date => s.date.strftime('%e %B, %Y')}
   end
 
   def self.find_addresses_with_cases_by_street(street_string)

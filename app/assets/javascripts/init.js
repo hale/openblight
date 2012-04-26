@@ -28,7 +28,7 @@ OpenBlight = {
               var point = data[i].point.substring(7, data[i].point.length -1).split(' ');
               var y = point[1];
               var x= point[0];                				
-              var popupContent = '<h3><a href="/addresses/'+ data[i].id +'">'+ data[i].address_long + '</a></h3><h4>'+ data[i].most_recent_status_preview.type +'</h4>' 
+              var popupContent = '<h3><a href="/addresses/'+ data[i].id +'">'+ data[i].address_long + '</a></h3><h4>'+ data[i].most_recent_status_preview.type + ' on ' + data[i].most_recent_status_preview.date + '</h4>' 
               map.addLayer(new L.Marker(new L.LatLng(point[1] , point[0])).bindPopup(popupContent));
       zoom = 14
             }
