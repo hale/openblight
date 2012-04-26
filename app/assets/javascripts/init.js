@@ -13,16 +13,16 @@ OpenBlight = {
       wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
         function(tilejson) {
           // this shoud be moved into a function
-          json_path = window.location.toString().replace(/search\?/i, 'search.json\?');
+          var json_path = window.location.toString().replace(/search\?/i, 'search.json\?');
 
           jQuery.getJSON( json_path, function(data) {
             var map = new L.Map('map').addLayer(new wax.leaf.connector(tilejson));
-            popup = new L.Popup();
+            var popup = new L.Popup();
             console.log(data);
 
-            y = 29.95;
-            x = -90.05;
-            zoom = 12
+            var y = 29.95;
+            var x = -90.05;
+            var zoom = 12
 
             for ( i = 0; i < data.length; i++ ){
               var point = data[i].point.substring(7, data[i].point.length -1).split(' ');
