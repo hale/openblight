@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :address do
-    address_id        { 1 + rand(10000) }
-    parcel_id         { 1 + rand(20000) }
-    geopin            { 1 + rand(30000) }
-    address_long      { "123 PERDIDO ST" }
+    # address_id        { 424704 }
+    # parcel_id         { 1 + rand(20000) }
+    # geopin            { 1 + rand(30000) }
+    address_long      { "1019 CHARBONNET ST" }
     street_type       { "St" }
   end
 
@@ -28,4 +28,6 @@ FactoryGirl.define do
   factory :notification do
     #are there any fields to require?
   end
+  
+  
 end

@@ -22,12 +22,13 @@ describe AddressesController do
 
   describe "GET search" do
     it "matches the full address if it's given" do
-      get :search, :address => "123 Perdido St"
-      assigns(:addresses).should eq([@address])
+      get :search, :address => "1019 CHARBONNET ST"
+#      response.should be_success
+      response.should redirect_to('/addresses/424704')
     end
 
     it "matches the street name if no number is given" do
-      get :search, :address => "Perdido St"
+      get :search, :address => "CHARBONNET ST"
       assigns(:addresses).should eq([@address])
     end
 
