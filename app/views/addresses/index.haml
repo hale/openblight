@@ -1,0 +1,6 @@
+-@addresses.each do |a|
+  .address
+    =link_to a.address_long, address_path(a.id)
+
+.row
+  =will_paginate @addresses

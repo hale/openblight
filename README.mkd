@@ -20,7 +20,7 @@ You can see a running version of the application at
 
 ## <a name="installation"></a>Installation
     git clone git://github.com/codeforamerica/openblight.git
-    cd adopt-a-hydrant
+    cd openblight
     bundle install
     rake db:migrate
 

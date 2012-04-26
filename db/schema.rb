@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329214236) do
+ActiveRecord::Schema.define(:version => 20120425161550) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(:version => 20120329214236) do
     t.float    "x"
     t.float    "y"
     t.string   "status"
-    t.datetime "created_at",                                              :null => false
-    t.datetime "updated_at",                                              :null => false
-    t.spatial  "point",         :limit => {:srid=>-1, :type=>"geometry"}
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+    t.spatial  "point",            :limit => {:srid=>-1, :type=>"geometry"}
     t.string   "parcel_id"
     t.boolean  "official"
+    t.string   "street_full_name"
   end
 
   create_table "case_managers", :force => true do |t|
@@ -44,18 +45,38 @@ ActiveRecord::Schema.define(:version => 20120329214236) do
     t.integer  "geopin"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "address_id"
   end
 
   create_table "demolitions", :force => true do |t|
     t.string   "case_number"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.integer  "address_id"
+    t.string   "house_num"
+    t.string   "street_name"
+    t.string   "street_type"
+    t.string   "address_long"
+    t.string   "zip_code"
+    t.string   "program_name"
+    t.datetime "date_started"
+    t.datetime "date_completed"
+    t.integer  "address_match_confidence"
   end
 
   create_table "foreclosures", :force => true do |t|
     t.string   "case_number"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "house_num"
+    t.string   "street_name"
+    t.string   "street_type"
+    t.string   "address_long"
+    t.string   "status"
+    t.string   "notes"
+    t.integer  "address_match_confidence"
+    t.integer  "address_id"
+    t.datetime "sale_date"
   end
 
   create_table "hearings", :force => true do |t|
@@ -63,7 +84,6 @@ ActiveRecord::Schema.define(:version => 20120329214236) do
     t.string   "hearing_time"
     t.string   "hearing_status"
     t.boolean  "reset_hearing"
-    t.string   "hearing_result"
     t.integer  "one_time_fine"
     t.integer  "court_cost"
     t.integer  "recordation_cost"
@@ -77,8 +97,6 @@ ActiveRecord::Schema.define(:version => 20120329214236) do
     t.string   "case_manager"
     t.integer  "tax_id"
     t.string   "case_number"
-    t.integer  "notice_id"
-    t.integer  "inspection_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
@@ -104,6 +122,8 @@ ActiveRecord::Schema.define(:version => 20120329214236) do
     t.string   "case_number"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "status"
+    t.string   "notes"
   end
 
   create_table "maintenances", :force => true do |t|
@@ -115,12 +135,20 @@ ActiveRecord::Schema.define(:version => 20120329214236) do
     t.datetime "date_recorded"
     t.datetime "date_completed"
     t.datetime "status"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.integer  "address_id"
+    t.integer  "address_match_confidence"
   end
 
   create_table "notifications", :force => true do |t|
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "case_number"
+    t.datetime "notified"
+  end
+
+  create_table "parcels", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -137,6 +165,23 @@ ActiveRecord::Schema.define(:version => 20120329214236) do
     t.string   "case_number"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.datetime "reset_date"
+  end
+
+  create_table "streets", :force => true do |t|
+    t.string   "prefix"
+    t.string   "prefix_type"
+    t.string   "name"
+    t.string   "suffix"
+    t.string   "suffix_type"
+    t.string   "full_name"
+    t.integer  "length_numberic"
+    t.integer  "shape_len"
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
+    t.spatial  "the_geom",         :limit => {:srid=>-1, :type=>"geometry"}
+    t.string   "prefix_direction"
+    t.string   "suffix_direction"
   end
 
 end
