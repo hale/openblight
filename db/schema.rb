@@ -179,7 +179,7 @@ ActiveRecord::Schema.define(:version => 20120425161550) do
     t.integer  "shape_len"
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
-    t.spatial  "the_geom",         :limit => {:srid=>-1, :type=>"geometry"}
+    t.spatial  "the_geom",         :limit => { :srid=>-1, :type=>"geometry" }
     t.string   "prefix_direction"
     t.string   "suffix_direction"
   end
