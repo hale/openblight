@@ -3,7 +3,7 @@ class Inspection < ActiveRecord::Base
   belongs_to :inspector
 
   def date
-    self.inspection_date || self.scheduled_date
+    self.inspection_date.to_datetime || self.scheduled_date.to_datetime
   end
 
 end
