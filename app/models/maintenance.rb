@@ -3,6 +3,6 @@ class Maintenance < ActiveRecord::Base
   belongs_to :address
 
   def date
-    self.date_completed
+    self.date_completed || DateTime.new(0)
   end
 end

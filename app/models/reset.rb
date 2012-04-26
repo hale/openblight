@@ -2,6 +2,6 @@ class Reset < ActiveRecord::Base
 	belongs_to :case, :foreign_key => :case_number, :primary_key => :case_number
 
   def date
-    self.reset_date
+    self.reset_date || DateTime.new(0)
   end
 end
