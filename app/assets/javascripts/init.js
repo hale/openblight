@@ -8,36 +8,33 @@ OpenBlight = {
   
   addresses: {
     init: function(){
-      console.log("using addresses:init");
     },
-   	search: function(){
-      console.log("using addresses:search");
+    search: function(){
       wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
         function(tilejson) {
-          
           // this shoud be moved into a function
-          json_path = window.location.toString().replace(/search\?/i, 'search.json\?');
-          
+          var json_path = window.location.toString().replace(/search\?/i, 'search.json\?');
+
           jQuery.getJSON( json_path, function(data) {
-              var map = new L.Map('map').addLayer(new wax.leaf.connector(tilejson));
-              popup = new L.Popup();
+            var map = new L.Map('map').addLayer(new wax.leaf.connector(tilejson));
+            var popup = new L.Popup();
+            console.log(data);
 
-              for ( i = 0; i < data.length; i++ ){
-                var point = data[i].point.substring(7, data[i].point.length -1).split(' ');
-                var y = point[1];
-                var x= point[0];                				
-                var popupContent = '<h3><a href="/addresses/'+ data[i].id +'">'+ data[i].address_long + '</a></h3>' 
-                map.addLayer(new L.Marker(new L.LatLng(point[1] , point[0])).bindPopup(popupContent) );					
-              }
-              
-              // we center the map on the last position
-              map.setView(new L.LatLng(y, x), 14);
-              
+            var y = 29.95;
+            var x = -90.05;
+            var zoom = 12
 
+            for ( i = 0; i < data.length; i++ ){
+              var point = data[i].point.substring(7, data[i].point.length -1).split(' ');
+              var y = point[1];
+              var x= point[0];                				
+              var popupContent = '<h3><a href="/addresses/'+ data[i].id +'">'+ data[i].address_long + '</a></h3><h4>'+ data[i].most_recent_status_preview.type + ' on ' + data[i].most_recent_status_preview.date + '</h4>' 
+              map.addLayer(new L.Marker(new L.LatLng(point[1] , point[0])).bindPopup(popupContent));
+      zoom = 14
+            }
+            // we center the map on the last position
+            map.setView(new L.LatLng(y, x), zoom);
           });
-            
-
-            
       });
     },
     show: function(){
@@ -51,7 +48,7 @@ OpenBlight = {
         
         var map = new L.Map('map')
           .addLayer(new wax.leaf.connector(tilejson))
-          .addLayer(new L.Marker(new L.LatLng(y , x)) )
+          .addLayer(new L.Marker(new L.LatLng(y , x)))
           .setView(new L.LatLng(y , x), 18);
       });
     }
