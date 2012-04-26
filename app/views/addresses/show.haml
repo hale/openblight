@@ -26,12 +26,13 @@
           -@case.inspections.each do |i|
             .inspection
               =i.inspection_date
+              =i.inspection_type
                     
         %h2 2) Notice:
-        -unless @case.resets.nil?
-          -@case.resets.each do |r|
-            .reset
-              =r.reset_date
+        -unless @case.notifications.nil?
+          -@case.notifications.each do |n|
+            .notificaton
+              =n.notified
           
         %h2 3) Hearing:          
         %span{:class =>'badge badge-inverse'}
@@ -42,8 +43,11 @@
               =h.hearing_status
 
         %h2 4) Judgement:          
-        %span{:class =>'badge badge-info'}
-          Information
+        -#%span{:class =>'badge badge-info'}
+        -unless @case.judgement.nil?
+          .hearing
+            %b=@case.judgement.status.upcase
+            %t=@case.judgement.notes
 
         %h2 5) Resolution:           
         %span{:class =>'badge badge-error'}
