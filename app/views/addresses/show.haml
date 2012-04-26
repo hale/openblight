@@ -52,3 +52,9 @@
         %h2 5) Resolution:           
         %span{:class =>'badge badge-error'}
 
+        %h2 6) Resets:
+        -unless @case.resets.nil?
+          -@case.resets.each do |r|
+            .reset
+              ="This case was reset on " << r.reset_date.to_s
+
