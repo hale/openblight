@@ -24,8 +24,8 @@ gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
 gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 gem 'docsplit'
-
 
 gem 'thin'
 

@@ -1,26 +1,39 @@
 .inner
   .row-fluid{"class" => "show-grid"}        
     .span5
-      #address{"data-x" => @address.point.x, "data-y" => @address.point.y }
-        %span{:class=>'badge badge-success'} 
-          2
-        
-        #map{:style => "height: 400px;"}
+      #address{"data-x" => @address.point.x, "data-y" => @address.point.y }        
+        #map{:style => "height: 200px;"}
     .span5
-      .h1 Address:
-      %h2=@address.address_long
-      .h1 Status:
-
+      %h1=@address.address_long
       -unless @case.nil?
-        %h3 The most recent step was a #{@case.most_recent_status.class}, on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
+        %h4 The most recent event: 
+        %p #{@case.most_recent_status.class}
+        %p on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
 
+
+    .span10
+      %p
+
+    .span10
+      .progress
+        .bar{ :style => "width: 90%"}
+          %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"And here's some amazing content.",  'data-original-title'=>"A Title"}
+            %a Inspection
+          %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"And here's some amazing content.",  'data-original-title'=>"A Title"}
+            %a Notice
+          %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"And here's some amazing content.",  'data-original-title'=>"A Title"} 
+            %a Hearing
+          %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"And here's some amazing content.",  'data-original-title'=>"A Title"} 
+            %a Judgement
+          %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"And here's some amazing content.",  'data-original-title'=>"A Title"}
+            %a Resolution
 
     .span10
       -unless @case.nil?
         -unless @case.case_number.nil?
-          %h1=@case.case_number
+          %h5=@case.case_number
 
-        %h2 1) Inspection:
+        %h5 1) Inspection:
         %span{:class=>'badge badge-success'}
         -unless @case.inspects.nil?
           -@case.inspects.each do |i|
@@ -28,13 +41,13 @@
               =i.inspection_date
               =i.inspection_type
                     
-        %h2 2) Notice:
+        %h5 2) Notice:
         -unless @case.notices.nil?
           -@case.notices.each do |n|
             .notificaton
               =n.date
           
-        %h2 3) Hearing:          
+        %h5 3) Hearing:          
         %span{:class =>'badge badge-inverse'}
         -unless @case.hearings.nil?
           -@case.hearings.each do |h|
@@ -42,19 +55,18 @@
               =h.hearing_date
               =h.hearing_status
 
-        %h2 4) Judgement:          
+        %h5 4) Judgement:          
         -#%span{:class =>'badge badge-info'}
         -unless @case.judgement.nil?
           .hearing
             %b=@case.judgement.status.upcase
             %t=@case.judgement.notes
 
-        %h2 5) Resolution:           
+        %h5 5) Resolution:           
         %span{:class =>'badge badge-error'}
 
-        %h2 6) Resets:
+        %h5 6) Resets:
         -unless @case.resets.nil?
           -@case.resets.each do |r|
             .reset
               ="This case was reset on " << r.reset_date.to_s
-

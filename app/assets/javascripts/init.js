@@ -38,6 +38,8 @@ OpenBlight = {
       });
     },
     show: function(){
+      $(".property-status").popover({placement: 'bottom'});
+		
       console.log("using addresses:show");
       wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
         function(tilejson) {
@@ -49,7 +51,7 @@ OpenBlight = {
         var map = new L.Map('map')
           .addLayer(new wax.leaf.connector(tilejson))
           .addLayer(new L.Marker(new L.LatLng(y , x)))
-          .setView(new L.LatLng(y , x), 18);
+          .setView(new L.LatLng(y , x), 20);
       });
     }
   }

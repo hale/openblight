@@ -31,7 +31,6 @@
 		color: #fff; 
 		font-family: 'Arvo'; 
 		font-size: 12px; 
-		margin-top: 5px; 
 		font-weight: bold;
 		vertical-align: middle; 
 		font-weight: 300; 
@@ -53,16 +52,22 @@
 }
 
 
-
-
-#tag{
-	position: absolute;
-	right: 5%;
-	top: 0;
+#main-search-field{
+  font-size: 150%;
+  height: 30px;
+  padding: 5px 10px;
+  width: 300px;
 }
 
-.row .pagination a {
-  float: none;
+.well {
+    border: 0 none;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+    background-color: white !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    height: 350px;
 }
 
 header {
@@ -82,14 +87,35 @@ header {
 }
 
 
-footer{
-	text-align: center;
-}
 
 
-.form-search label{
-	width: auto;
+.progress {
+	height: 50px !important; 
+  width: 100%;
+  .bar {
+  	height: 50px !important; 
+    width: 60%;
+    span {
+			border-color: #AAAAAA !important;
+			border-style: solid !important;
+			border-width: 0 1px 0 0;
+			float: left;
+			padding: 16px;
+      font-size: 120%;
+      width: 100px;
+			&:hover{
+				text-decoration: none;
+				color: black;
+        cursor: pointer;
+			}      
+      a{
+        color: white;
+        text-decoration: none;
+      }
+		}
+	}
 }
+
 
 .ui-autocomplete {
   width: 300px;
@@ -103,6 +129,30 @@ footer{
     color: #fff;
     &:hover {
       color: whiteSmoke;
+	  cursor: pointer;
     }
   }
 }
+
+
+footer{
+	text-align: center;
+}
+
+
+.form-search label{
+	width: auto;
+}
+
+
+#tag{
+	position: absolute;
+	right: 5%;
+	top: -8px;
+}
+
+.row .pagination a {
+  float: none;
+}
+
+

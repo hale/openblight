@@ -1,16 +1,18 @@
 %h2 Search Results:
 
--unless @addresses.nil?
+-unless @addresses.empty?
   .span3
     -@addresses.each do |a|
       .address.result
         =link_to a.address_long, address_path(a.id)
   .span12
     #map{:style => "height: 400px;"}
-
-
   .row
-    =will_paginate @addresses
+  
+
+  .btn-toolbar
+    .btn-group
+      =will_paginate @addresses
 	  
 -else
   %h4 No matches found
