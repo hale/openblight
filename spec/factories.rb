@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :address do
-    # address_id        { 424704 }
+    address_id        { 85102061 }
     # parcel_id         { 1 + rand(20000) }
-    # geopin            { 1 + rand(30000) }
+    geopin            { 41125604 }
     address_long      { "1019 CHARBONNET ST" }
     street_type       { "St" }
   end

@@ -37,8 +37,8 @@ module AddressHelpers
   def abbreviate_street_direction(streetname)
     streetname = streetname.upcase
     @street_direction.each do |(value, label)|
-      unless streetname.match(/#{label}$/).nil?
-        return streetname.sub(/#{label}$/, value)
+      unless streetname.match(/#{label}/).nil?
+        return streetname.sub(/#{label}/, value)
       end
     end
     return streetname.single_space;
@@ -47,8 +47,8 @@ module AddressHelpers
   def unabbreviate_street_direction(streetname)
     streetname = streetname.upcase
     @street_direction.each do |(value, label)|
-      unless streetname.match(/#{label}$/).nil?
-        return streetname.sub(/#{label}$/, value)
+      unless streetname.match(/#{label}/).nil?
+        return streetname.sub(/#{label}/, value)
       end
     end
     return streetname.single_space;
@@ -113,8 +113,6 @@ module AddressHelpers
 
 
   def find_address(address_string)
-
-
     address_string = address_string.upcase.single_space
 
     if(address_string.start_with?("4072"))
@@ -150,7 +148,6 @@ module AddressHelpers
     unless address.empty?
       return address   
     end
-
 
     address_string = abbreviate_street_direction(address_string)
     if(address_string.start_with?("4072"))
