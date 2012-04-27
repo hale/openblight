@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425161550) do
+ActiveRecord::Schema.define(:version => 20120427010154) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(:version => 20120425161550) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.datetime "reset_date"
+    t.string   "notes"
   end
 
   create_table "streets", :force => true do |t|
@@ -179,7 +180,7 @@ ActiveRecord::Schema.define(:version => 20120425161550) do
     t.integer  "shape_len"
     t.datetime "created_at",                                                 :null => false
     t.datetime "updated_at",                                                 :null => false
-    t.spatial  "the_geom",         :limit => { :srid=>-1, :type=>"geometry" }
+    t.spatial  "the_geom",         :limit => {:srid=>-1, :type=>"geometry"}
     t.string   "prefix_direction"
     t.string   "suffix_direction"
   end

@@ -56,7 +56,7 @@ namespace :hearings do
                 time = time.split(":")
 
                 reset_date = DateTime.new(date[2].to_i,date[0].to_i,date[1].to_i,time[0].to_i,time[1].to_i,time[2].to_i)
-                r = Reset.find_or_create_by_case_number_and_reset_date(:case_number => oo.row(row)[10], :reset_date => reset_date)#oo.row(row)[22].to_s + " " + oo.row(row)[23])
+                r = Reset.find_or_create_by_case_number_and_reset_date(:case_number => oo.row(row)[10], :reset_date => reset_date, :notes => oo.row(row)[21])#oo.row(row)[22].to_s + " " + oo.row(row)[23])
             end
 
             unless oo.row(row)[14].nil?

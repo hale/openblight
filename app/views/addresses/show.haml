@@ -29,10 +29,10 @@
               =i.inspection_type
                     
         %h2 2) Notice:
-        -unless @case.notifications.nil?
-          -@case.notifications.each do |n|
+        -unless @case.notices.nil?
+          -@case.notices.each do |n|
             .notificaton
-              =n.notified
+              =n.date
           
         %h2 3) Hearing:          
         %span{:class =>'badge badge-inverse'}
