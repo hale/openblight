@@ -22,8 +22,8 @@
 
         %h2 1) Inspection:
         %span{:class=>'badge badge-success'}
-        -unless @case.inspections.nil?
-          -@case.inspections.each do |i|
+        -unless @case.inspects.nil?
+          -@case.inspects.each do |i|
             .inspection
               =i.inspection_date
               =i.inspection_type
