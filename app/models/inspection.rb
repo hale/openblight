@@ -6,4 +6,7 @@ class Inspection < ActiveRecord::Base
     self.inspection_date.to_datetime || self.scheduled_date.to_datetime || DateTime.new(0)
   end
 
+  def notes
+  	self.result
+  end
 end

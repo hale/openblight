@@ -4,4 +4,9 @@ class Notification < ActiveRecord::Base
   def date
     self.notified || DateTime.new(0)
   end
+
+  def notes
+  	""
+  end
+
 end
