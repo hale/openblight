@@ -113,9 +113,12 @@ module AddressHelpers
 
 
   def find_address(address_string)
+    unless address_string
+      return []
+    end
     address_string = address_string.upcase.single_space
 
-    if(address_string.start_with?("4072"))
+    if(address_string.start_with?("2332"))
       puts "1: #{address_string}"
     end
 
@@ -127,12 +130,12 @@ module AddressHelpers
     # if there is no direct hit, then we look for units in the address
     # and strip the unit number
     address_string = strip_address_unit(address_string)
-    if(address_string.start_with?("4072"))
+    if(address_string.start_with?("2332"))
       puts "2: #{address_string}"
     end
     address = Address.where("address_long = ?", "#{address_string}")
     unless address.empty?
-        if(address_string.start_with?("4072"))
+        if(address_string.start_with?("2332"))
           puts "2.1 id: " +  address.first.id.to_s#{address_string}"
         end
       return address   
@@ -141,7 +144,7 @@ module AddressHelpers
     # first we match just by abbriviating street suffixes
     # if we match we return
     address_string = abbreviate_street_types(address_string)
-    if(address_string.start_with?("4072"))
+    if(address_string.start_with?("2332"))
       puts "3: #{address_string}"
     end
     address = Address.where("address_long = ?", "#{address_string}")
@@ -150,7 +153,7 @@ module AddressHelpers
     end
 
     address_string = abbreviate_street_direction(address_string)
-    if(address_string.start_with?("4072"))
+    if(address_string.start_with?("2332"))
       puts "4: #{address_string}"
     end
     address = Address.where("address_long = ?", "#{address_string}")

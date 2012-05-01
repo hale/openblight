@@ -19,6 +19,10 @@ namespace :demolitions do
     SpreadsheetHelpers.workbook_to_hash(downloaded_file_path).each do |row|
       unless SpreadsheetHelpers.row_is_empty? row
         if row['Status Update']  == '12.Demolished'
+          if row['Number'].to_s.end_with?(".0")
+            row['Number'] = row['Number'].to_i.to_s
+            puts "row number is now #{row['Number']}"
+          end
           Demolition.find_or_create_by_address_long_and_date_completed(:house_num => row['Number'], :street_name => row['Street'].upcase, :address_long => "#{row['Number']} #{row['Street']}".upcase, :date_started => row['Demo Start'], :date_completed => row['Demo Complete'], :program_name => "NORA")
         end
       end
@@ -34,6 +38,10 @@ namespace :demolitions do
 
     SpreadsheetHelpers.workbook_to_hash(downloaded_file_path).each do |row|
       unless SpreadsheetHelpers.row_is_empty? row
+        if row['Number'].to_s.end_with?(".0")
+            row['Number'] = row['Number'].to_i.to_s
+            puts "row number is now #{row['Number']}"
+          end
         Demolition.create(:house_num => row['Number'], :street_name => row['Street'].upcase, :address_long =>  row['Address'].upcase, :date_started => row['Demo Start'], :date_completed => row['Demo Complete'], :program_name => "NORA")
       end
     end
@@ -48,6 +56,10 @@ namespace :demolitions do
 
     SpreadsheetHelpers.workbook_to_hash(downloaded_file_path).each do |row|
       unless SpreadsheetHelpers.row_is_empty? row
+        if row['Number'].to_s.end_with?(".0")
+            row['Number'] = row['Number'].to_i.to_s
+            puts "row number is now #{row['Number']}"
+          end
         #:date_completed => row['Demo Complete'], this throws error. need to format date.
         Demolition.create(:house_num => row['Number'], :street_name => row['Street'].upcase, :address_long =>  row['Address'].upcase, :date_started => row['Demo Start'],  :program_name => "NOSD")
       end
