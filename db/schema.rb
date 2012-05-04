@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503235547) do
+ActiveRecord::Schema.define(:version => 20120504031005) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(:version => 20120503235547) do
 
   create_table "hearings", :force => true do |t|
     t.datetime "hearing_date"
-    t.string   "hearing_time"
     t.string   "hearing_status"
     t.boolean  "reset_hearing"
     t.integer  "one_time_fine"
