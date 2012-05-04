@@ -44,4 +44,11 @@ class AddressesController < ApplicationController
       format.json { render :json => @addresses.to_json(:methods => [:most_recent_status_preview]) }
     end
   end
+
+
+  def stats
+
+  end
+  
+
 end
