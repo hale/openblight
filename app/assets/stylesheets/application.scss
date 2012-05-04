@@ -53,10 +53,25 @@
 
 
 #main-search-field{
-  font-size: 150%;
+  font-size: 200%;
   height: 30px;
   padding: 5px 10px;
   width: 300px;
+}
+
+.address{
+	&.result{
+		border: 1px solid;
+		padding: 5px;
+		background-color: #eee;
+
+		img{
+			float: left;
+			width: 20px;
+			padding-right: 5px;
+
+		}
+	}
 }
 
 .well {
@@ -90,46 +105,59 @@ header {
 
 
 .progress {
-	height: 50px !important; 
-  width: 100%;
-  .bar {
-  	height: 50px !important; 
-    width: 60%;
-    span {
-			border-color: #AAAAAA !important;
-			border-style: solid !important;
-			border-width: 0 1px 0 0;
-			float: left;
-			padding: 16px;
-      font-size: 120%;
-      width: 100px;
-			&:hover{
-				text-decoration: none;
-				color: black;
-        cursor: pointer;
-			}      
-      a{
-        color: white;
-        text-decoration: none;
-      }
-		}
+	height: 30px !important; 
+	width: 100%;
+	.bar {
+	  	height: 30px !important; 
+	    width: 60%;
 	}
+
+	    span {
+				border-color: #AAAAAA !important;
+				border-style: solid !important;
+				border-width: 0 1px 0 0;
+				float: left;
+				padding: 5px;
+				font-size: 120%;
+				width: 100px;
+				&:hover{
+					text-decoration: none;
+					color: black;
+	        		cursor: pointer;
+				}      
+	      a{
+	        color: white;
+	        text-decoration: none;
+	      }
+		}	
 }
 
 
 .ui-autocomplete {
-  width: 300px;
-  padding: 5px 10px 10px;
-  background: #0069D6;
-  color: #fff;
+	background: none repeat scroll 0 0 #EEEEEE;
+    color: #AAAAAA;
+    padding: 5px 10px 10px;
+    width: 300px;
+	border: 1px solid #DDDDDD;
+    box-shadow: 0 2px 6px #CCCCCC;
+
   li {
+	border-color: #DDDDDD;
+    border-style: solid;
+    border-width: 0 0 1px;
     list-style-type: none;
+    padding: 3px 10px 5px 3px;
+
+    &:hover{
+    	background-color: red;
+    }
   }
   a {
-    color: #fff;
+    color: #333;
     &:hover {
-      color: whiteSmoke;
+      color: #333;
 	  cursor: pointer;
+	  text-decoration: none;
     }
   }
 }
@@ -155,4 +183,18 @@ footer{
   float: none;
 }
 
+
+.leaflet-control-attribution{
+	display: none;
+}
+
+.case-history{
+	border: 1px solid black;
+	.span13{
+		border: 1px solid #eee;
+		padding: 5px;
+		width: 90%;
+
+	}
+}
 
