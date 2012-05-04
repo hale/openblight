@@ -1,16 +1,19 @@
-%h2 Search Results:
-
--unless @addresses.nil?
-  .span3
+-unless @addresses.empty?
+  .span4
+    %h2 Search Results:
     -@addresses.each do |a|
       .address.result
-        =link_to a.address_long, address_path(a.id)
-  .span12
+        %img{ :width => "10px", :src => "http://code.leafletjs.com/leaflet-0.3.1/images/marker.png"  }
+        %h4
+          =link_to a.address_long, address_path(a.id)
+  .span11
     #map{:style => "height: 400px;"}
-
-
   .row
-    =will_paginate @addresses
+  
+
+  .btn-toolbar
+    .btn-group
+      =will_paginate @addresses
 	  
 -else
   %h4 No matches found

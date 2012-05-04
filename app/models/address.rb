@@ -40,4 +40,9 @@ class Address < ActiveRecord::Base
   def self.find_addresses_by_geopin(geopin)
  	 Address.where("geopin = ?", geopin)
   end
+  def resolutions
+    res_ary = []
+    res_ary << self.foreclosures << self.demolitions << self.maintenances
+    res_ary.flatten.compact
+  end
 end

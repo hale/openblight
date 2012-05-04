@@ -1,60 +1,122 @@
 .inner
   .row-fluid{"class" => "show-grid"}        
     .span5
-      #address{"data-x" => @address.point.x, "data-y" => @address.point.y }
-        %span{:class=>'badge badge-success'} 
-          2
-        
-        #map{:style => "height: 400px;"}
-    .span5
-      .h1 Address:
-      %h2=@address.address_long
-      .h1 Status:
-
+      #address{"data-x" => @address.point.x, "data-y" => @address.point.y }        
+        #map{:style => "height: 200px;"}
+    .span6
+      %h1=@address.address_long
+      -if @case.nil?
+        %h4
+          This house does not have a record in the city. This could mean that 
+          If you would like to make a report.
       -unless @case.nil?
-        %h3 The most recent step was a #{@case.most_recent_status.class}, on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
+        %h4 The most recent event: #{@case.most_recent_status.class} on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
 
 
     .span10
+      %p
+
+    .span10
       -unless @case.nil?
-        -unless @case.case_number.nil?
-          %h1=@case.case_number
+        .progress
+          .bar{ :style => "width: 90%"}
+            %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"Inspectors ",  'data-original-title'=>"Inspectors"}
+              %a Inspection
+            %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"df",  'data-original-title'=>"Notifications"}
+              %a Notifications
+            %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"df",  'data-original-title'=>"Hearings"}
+              %a Hearings
+            %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"ssdf",  'data-original-title'=>"Judgements"} 
+              %a Judgements
+            %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"sdfsf",  'data-original-title'=>"Resolutions"} 
+              %a Resolution
+            %span{ :class=> 'property-status', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"sdfsdf",  'data-original-title'=>"Resolution"}
+              %a Resolution
 
-        %h2 1) Inspection:
-        %span{:class=>'badge badge-success'}
-        -unless @case.inspections.nil?
-          -@case.inspections.each do |i|
-            .inspection
-              =i.inspection_date
-              =i.inspection_type
-                    
-        %h2 2) Notice:
-        -unless @case.notifications.nil?
-          -@case.notifications.each do |n|
-            .notificaton
-              =n.notified
-          
-        %h2 3) Hearing:          
-        %span{:class =>'badge badge-inverse'}
+
+    %div{ :class => 'case-history span10' }
+
+      .span13
+        -unless @case.nil?
+          -unless @case.case_number.nil?
+            %h5=@case.case_number
+
+
+      .span13
+        .span5
+          %span{:class=>'badge badge-success'} Inspections
+        -unless @case.inspects.nil?
+          .span5
+            -@case.inspects.each do |i|
+              .inspection
+                =i.inspection_date.strftime("%m/%d/%Y")
+                =i.inspection_type
+        -else
+          %p
+            No Data Found
+
+
+      .span13
+        -unless @case.notices.nil?
+          .span5
+            %span{:class=>'badge badge-success'} Notification
+          .span5
+            -@case.notices.each do |n|
+              .notificaton
+                =n.date.strftime("%m/%d/%Y")
+                =n.notes
+        -else
+          %p
+            No Data Found
+
+
+      .span13
         -unless @case.hearings.nil?
-          -@case.hearings.each do |h|
-            .hearing
-              =h.hearing_date
-              =h.hearing_status
+          .span5
+            %span{:class=>'badge badge-success'} Hearing
+          .span5
+            -@case.hearings.each do |h|
+              .hearing
+                =h.hearing_date.strftime("%m/%d/%Y")
+                =h.hearing_status
+        -else
+          %p
+            No Data Found
 
-        %h2 4) Judgement:          
-        -#%span{:class =>'badge badge-info'}
+
+      .span13
         -unless @case.judgement.nil?
-          .hearing
-            %b=@case.judgement.status.upcase
-            %t=@case.judgement.notes
+          .span5
+            %span{:class=>'badge badge-success'} Judgement
+          .span5
+            .hearing
+              %t=@case.judgement.notes
+        -else
+          %p
+            No Data Found
 
-        %h2 5) Resolution:           
-        %span{:class =>'badge badge-error'}
 
-        %h2 6) Resets:
+      .span13
         -unless @case.resets.nil?
-          -@case.resets.each do |r|
-            .reset
-              ="This case was reset on " << r.reset_date.to_s
+          .span5
+            %span{:class=>'badge badge-success'} Resets
+          .span5 
+            -@case.resets.each do |r|
+              .reset
+                ="This case was reset on " << r.reset_date.strftime("%m/%d/%Y")
+        -else
+          %p
+            No Data Found
 
+      .span13
+        -unless @address.resolutions.nil?
+          .span5
+            %span{:class=>'badge badge-success'} Resolution
+            -@address.resolutions.each do |r|
+              .resolution
+                =r.class
+                =r.date.strftime("%m/%d/%Y")
+        -else
+          %p
+            No Data Found
+        

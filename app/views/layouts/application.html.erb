@@ -20,10 +20,16 @@
 </head>
 <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
 
-<<<<<<< Updated upstream
 	<div id="tag"><a href="www.codeforamerica.org"><img width="100px" border="0" src="http://jlord.us/tag_cfa.png"></a></div>
 	<div id="topbar"><p><img src="http://jlord.us/code_flag.png" height="20px"/>Created for residents by Code for America in their partnership with the City of New Orleans.  	<a href="http://www.codeforamerica.org" target="_blank">Learn more</a>.</p></div>
 
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container" >
+    </div>
+    
+  </div>
+</div>
 
   <div class="container" >
 
@@ -38,7 +44,11 @@
       <a href="">Terms of Service </a> -
       <a href="">Send feedback </a>
 	  
-	  <p>Sample Address: <b>1019 CHARBONNET</b></p>
+	  <p>
+      Sample Exact Address: <b>1700 S DUPRE ST</b><br>
+      Sample Ambigious Address: <b>1019 CHARBONNET</b>
+    </p>
+
 
     </footer>
 =======
@@ -71,16 +81,20 @@
   
     <script type='text/javascript' src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
     <script type='text/javascript' src='https://raw.github.com/mapbox/wax/master/dist/wax.leaf.min.js'></script>
-    <!-- script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
 
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
     <![endif]-->
     <%= javascript_include_tag "application" %>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     <%= javascript_include_tag "autocomplete-rails.js" %>  
 =======
 >>>>>>> Stashed changes
+=======
+
+>>>>>>> master
     <script>
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
@@ -88,5 +102,6 @@
       s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
   </div>
+  
 </body>
 </html>

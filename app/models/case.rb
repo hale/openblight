@@ -45,4 +45,13 @@ class Case < ActiveRecord::Base
   def most_recent_status
     self.accela_steps.last
   end
+
+  def notices
+    notices = []
+    notices << self.notifications << Inspection.find_by_inspection_type("Posting of Hearing")
+    notices.flatten.compact.sort{ |a, b| a.date <=> b.date }
+  end
+  def inspects
+    inspects = Inspection.where("inspection_type <> 'Posting of Hearing' and case_number = '#{self.case_number}'")
+  end
 end

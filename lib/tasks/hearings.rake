@@ -42,8 +42,24 @@ namespace :hearings do
                 status = status.split(" ")[0].delete(":").downcase
             end
 
+            hearing_datetime = DateTime.new(0)
+
+            unless oo.row(row)[19].nil?
+                date = oo.row(row)[19].to_s.split("-")
+                time = 0
+                unless oo.row(row)[20].nil? 
+                    time = oo.row(row)[20]
+                end
+                time = Time.at(time).gmtime.strftime('%R:%S')
+                
+                time = time.split(":")
+                hearing_datetime = DateTime.new(date[0].to_i,date[1].to_i,date[2].to_i,time[0].to_i,time[1].to_i,time[2].to_i)
+            end
+
+
             unless status == "reset" || status.nil?
-                j = Judgement.find_or_create_by_case_number_and_status(:case_number => oo.row(row)[10], :status => status, :notes => oo.row(row)[21])
+                
+                Judgement.find_or_create_by_case_number_and_status(:case_number => oo.row(row)[10], :status => status, :notes => oo.row(row)[21], :judgement_date => hearing_datetime)
             end
 
             unless oo.row(row)[22].nil?
@@ -56,14 +72,14 @@ namespace :hearings do
                 time = time.split(":")
 
                 reset_date = DateTime.new(date[2].to_i,date[0].to_i,date[1].to_i,time[0].to_i,time[1].to_i,time[2].to_i)
-                r = Reset.find_or_create_by_case_number_and_reset_date(:case_number => oo.row(row)[10], :reset_date => reset_date)#oo.row(row)[22].to_s + " " + oo.row(row)[23])
+                Reset.find_or_create_by_case_number_and_reset_date(:case_number => oo.row(row)[10], :reset_date => reset_date, :notes => oo.row(row)[21])
             end
 
             unless oo.row(row)[14].nil?
-                n = Notification.find_or_create_by_case_number_and_notified(:case_number => oo.row(row)[10], :notified => oo.row(row)[14])
+                Notification.find_or_create_by_case_number_and_notified(:case_number => oo.row(row)[10], :notified => oo.row(row)[14])
             end
 
-            Hearing.find_or_create_by_case_number(:case_number => c.case_number, :hearing_date => oo.row(row)[19],:hearing_time => oo.row(row)[20], :hearing_status => status, :reset_hearing => oo.row(row)[22].nil?, :one_time_fine => oo.row(row)[25], :court_cost => oo.row(row)[25], :recordation_cost => oo.row(row)[26], :hearing_fines_owed => oo.row(row)[27], :daily_fines_owed => oo.row(row)[28], :fines_paid => oo.row(row)[29], :date_paid => oo.row(row)[30], :amount_still_owed => oo.row(row)[31], :grace_days=> oo.row(row)[32], :grace_end => oo.row(row)[33], :case_manager => m.id, :tax_id => oo.row(row)[34])
+            Hearing.find_or_create_by_case_number(:case_number => c.case_number, :hearing_date => hearing_datetime, :hearing_status => status, :reset_hearing => oo.row(row)[22].nil?, :one_time_fine => oo.row(row)[25], :court_cost => oo.row(row)[25], :recordation_cost => oo.row(row)[26], :hearing_fines_owed => oo.row(row)[27], :daily_fines_owed => oo.row(row)[28], :fines_paid => oo.row(row)[29], :date_paid => oo.row(row)[30], :amount_still_owed => oo.row(row)[31], :grace_days=> oo.row(row)[32], :grace_end => oo.row(row)[33], :case_manager => m.id, :tax_id => oo.row(row)[34])
             status = nil
         end
     end
