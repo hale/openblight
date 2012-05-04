@@ -9,76 +9,39 @@
   <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
   <link href='/wax/theme/controls.css' rel='stylesheet' type='text/css' />
   <link href='https://raw.github.com/mapbox/wax/master/ext/leaflet.css' rel='stylesheet' type='text/css' />
-
-
-
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
   <meta name="description" content="">
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
   <meta name="viewport" content="width=device-width">
 </head>
+
 <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
 
 	<div id="tag"><a href="www.codeforamerica.org"><img width="100px" border="0" src="http://jlord.us/tag_cfa.png"></a></div>
 	<div id="topbar"><p><img src="http://jlord.us/code_flag.png" height="20px"/>Created for residents by Code for America in their partnership with the City of New Orleans.  	<a href="http://www.codeforamerica.org" target="_blank">Learn more</a>.</p></div>
 
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="container" >
-    </div>
-    
-  </div>
-</div>
-
   <div class="container" >
 
     <div class="navbar navbar-fixed-top">
     </div>
+
     <header class="page-header">
-    <h1><%= link_to("BlightStatus", root_path) -%></h1>
+      <h1><%= link_to("BlightStatus", root_path) -%></h1>
     </header>
+
   	<%= yield %>
+
     <footer>
       <a href="">About </a> - 
       <a href="">Terms of Service </a> -
       <a href="">Send feedback </a>
-	  
-	  <p>
-      Sample Exact Address: <b>1700 S DUPRE ST</b><br>
-      Sample Ambigious Address: <b>1019 CHARBONNET</b>
-    </p>
-
-
+      <p>
+        Sample Exact Address: <b>1700 S DUPRE ST</b><br>
+        Sample Ambigious Address: <b>1019 CHARBONNET</b>
+      </p>
     </footer>
-=======
-  <div class="container" >
 
-  <header>
-    <p>Created for residents by Code for America in their partnership with the City of New Orleans. Learn more <a href="#">here</a>.</p>
-  </header>
-
-  <%= yield %>
-
-  <footer>
-    <div class="cityscape"></div>
-    <nav>
-      <ul>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Terms</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-
-    <p>
-      Sample Exact Address: <b>1700 S DUPRE ST</b><br>
-      Sample Ambigious Address: <b>1019 CHARBONNET</b>
-    </p>
-  </footer>
->>>>>>> Stashed changes
-    <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-         mathiasbynens.be/notes/async-analytics-snippet -->
-  
     <script type='text/javascript' src="http://code.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
     <script type='text/javascript' src='https://raw.github.com/mapbox/wax/master/dist/wax.leaf.min.js'></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
@@ -87,14 +50,9 @@
         <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
     <![endif]-->
     <%= javascript_include_tag "application" %>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    <%= javascript_include_tag "autocomplete-rails.js" %>  
-=======
->>>>>>> Stashed changes
-=======
 
->>>>>>> master
+    <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+         mathiasbynens.be/notes/async-analytics-snippet -->
     <script>
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];

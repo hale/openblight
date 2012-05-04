@@ -1,9 +1,0 @@
-<% @addresses.each do |a| %>
-	<div class="address">
-    	<%= link_to a.address_long, address_path(a.id) %>
-	</div>
-<% end %>
-
-<div class="row">
-  <%= will_paginate @addresses %>
-</div>
