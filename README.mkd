@@ -14,7 +14,7 @@ A dashboard for the city of New Orlean's Code Enforecement process
 
 ## <a name="demo"></a>Demo
 You can see a running version of the application at
-[http://openblight.herokuapp.com/][demo].
+[http://blightstatus-dev.herokuapp.com/][demo].
 
 [demo]: http://openblight.herokuapp.com/
 
