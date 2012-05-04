@@ -27,7 +27,7 @@
   </div>
 </div>
 
-	<div id="tag"><a href="www.codeforamerica.org"><!--<%= image_tag "images/tag_cfa.png"  %>--></a></div>
+	<div id="tag"><a href="www.codeforamerica.org"><%#= image_tag "images/tag_cfa.png"  %></a></div>
 	<div id="topbar"><p><img src="http://jlord.us/code_flag.png" height="20px"/>Created for residents by Code for America in their partnership with the City of New Orleans.  	<a href="http://www.codeforamerica.org" target="_blank">Learn more</a>.</p></div>
 
 <div class="navbar">
@@ -69,8 +69,6 @@
         <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
     <![endif]-->
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "lib/bootstrap-tooltip.js" %>
-    <%= javascript_include_tag "lib/bootstrap-popover.js" %>
 
     <script>
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
