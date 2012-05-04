@@ -1,0 +1,8 @@
+<div class="content frontpage">
+    <h1>BlightStatus</h1>
+	
+	<%= form_tag "/addresses/search", :method => "get" do-%>
+	    
+	<% autocomplete_field_tag 'address', '', autocomplete_address_address_long_addresses_path, :placeholder => "Example: 100 House ST", :id => "main-search-field" %>
+	<% end-%>						
+</div>

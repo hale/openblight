@@ -1,11 +1,17 @@
 FactoryGirl.define do
   factory :address do
+<<<<<<< Updated upstream
     # address_id        { 424704 }
     # parcel_id         { 1 + rand(20000) }
     # geopin            { 1 + rand(30000) }
+=======
+    id                { 85102061 }
+    geopin            { 41125604 }
+>>>>>>> Stashed changes
     address_long      { "1019 CHARBONNET ST" }
-    street_type       { "St" }
+    street_type       { "ST" }
   end
+
 
   factory :case do
     case_number       { "CEHB " + rand(1000).to_s()}
@@ -28,6 +34,5 @@ FactoryGirl.define do
   factory :notification do
     #are there any fields to require?
   end
-  
-  
+
 end

@@ -1,0 +1,23 @@
+<h2>Search Results</h2>
+
+<% unless @addresses.empty? %>
+  <div>
+    <% @addresses.each do |a| %>
+      <div class="address.result">
+        <% link_to a.address_long, address_path(a.id) %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div>
+    <div id="map"></div>
+  </div>  
+
+  <div class="btn-toolbar">
+    <div class="btn-group">
+      <%= will_paginate @addresses %>
+    </div>
+  </div>
+	  
+<% else %>
+  <h4> No matches found</h4>

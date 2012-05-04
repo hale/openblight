@@ -20,7 +20,9 @@ describe AddressHelpers do
 
   context "test address parsing methods" do
 
-
+class PersonTest < person =" Person.new(:name"> "Jake")
+ end
+ 
     before(:all) do
       @full_street_address = "100 Hello Street" 
       @full_avenue_address =  "100 Hello Avenue" 
@@ -43,59 +45,59 @@ describe AddressHelpers do
 
   
 
-    
-    describe "abbreviate_street_types" do
-       it "we can access variables" do
-         @real_house_ambiguous.should eq "1019 CHARBONNET"
-       end
-      it "should abbreviate street types" do
-        AddressHelpers.abbreviate_street_types(@full_street_address).should eq "100 HELLO ST"
-      end
-      it "should abbreviate street types but not filter out other address types" do
-        AddressHelpers.abbreviate_street_types(@multiple_street_types).should eq "100 SOUTH STREET AVE"
-      end
-      it "should abbreviate street types" do
-        AddressHelpers.abbreviate_street_types(@full_avenue_address).should eq "100 HELLO AVE"
-      end
-      it "abbreviate street is not provided and should remain ambigious" do
-        AddressHelpers.abbreviate_street_types(@no_street_type).should eq "100 HELLO"
-      end      
-    end
-  
-    
-    describe "unabbreviate_street_types" do
-      it "should not abbreviate street type" do
-        AddressHelpers.unabbreviate_street_types(@full_street_address).should eq "100 HELLO STREET"
-      end
-      it "should abbreviate street types but not filter out other address types" do
-        AddressHelpers.unabbreviate_street_types(@multiple_street_types).should eq "100 SOUTH STREET AVENUE"
-      end
-      it "should not abbreviate street types" do
-        AddressHelpers.unabbreviate_street_types(@full_avenue_address).should eq "100 HELLO AVENUE"
-      end
-      it "unabbreviate street is not provided and should remain ambigious" do
-        AddressHelpers.unabbreviate_street_types(@no_street_type).should eq "100 HELLO"
-      end      
-    end
-    
-
-
-    # describe "find_address" do
-    #   context "find_address" do
-    #     it "should not abbreviate street type" do
-    #       AddressHelpers.find_address(@real_house_st).should eq "100 HELLO STREET"
-    #     end
-    #     it "should abbreviate south but nothing else" do
-    #       AddressHelpers.find_address(@real_house_st).should eq "100 SOUTH STREET AVENUE"
-    #     end
-    #     it "should not abbreviate street types" do
-    #       AddressHelpers.find_address(@real_house_st).should eq "100 HELLO AVE"
-    #     end
-    #     it "unabbreviate street is not provided and should remain ambigious" do
-    #       AddressHelpers.find_address(@real_house_st).should eq "100 HELLO"
-    #     end      
+    # 
+    # describe "abbreviate_street_types" do
+    #    it "we can access variables" do
+    #      @real_house_ambiguous.should eq "1019 CHARBONNET"
+    #    end
+    #   it "should abbreviate street types" do
+    #     AddressHelpers.abbreviate_street_types(@full_street_address).should eq "100 HELLO ST"
     #   end
+    #   it "should abbreviate street types but not filter out other address types" do
+    #     AddressHelpers.abbreviate_street_types(@multiple_street_types).should eq "100 SOUTH STREET AVE"
+    #   end
+    #   it "should abbreviate street types" do
+    #     AddressHelpers.abbreviate_street_types(@full_avenue_address).should eq "100 HELLO AVE"
+    #   end
+    #   it "abbreviate street is not provided and should remain ambigious" do
+    #     AddressHelpers.abbreviate_street_types(@no_street_type).should eq "100 HELLO"
+    #   end      
     # end
+    #   
+    # 
+    # describe "unabbreviate_street_types" do
+    #   it "should not abbreviate street type" do
+    #     AddressHelpers.unabbreviate_street_types(@full_street_address).should eq "100 HELLO STREET"
+    #   end
+    #   it "should abbreviate street types but not filter out other address types" do
+    #     AddressHelpers.unabbreviate_street_types(@multiple_street_types).should eq "100 SOUTH STREET AVENUE"
+    #   end
+    #   it "should not abbreviate street types" do
+    #     AddressHelpers.unabbreviate_street_types(@full_avenue_address).should eq "100 HELLO AVENUE"
+    #   end
+    #   it "unabbreviate street is not provided and should remain ambigious" do
+    #     AddressHelpers.unabbreviate_street_types(@no_street_type).should eq "100 HELLO"
+    #   end      
+    # end
+    # 
+
+
+    describe "find_address" do
+      context "find_address" do
+        it "should not abbreviate street type" do
+          AddressHelpers.find_address(@real_house_st).should eq "1019 CHARBONNET ST"
+        end
+        # it "should abbreviate south but nothing else" do
+        #   AddressHelpers.find_address(@real_house_st).should eq "100 SOUTH STREET AVENUE"
+        # end
+        # it "should not abbreviate street types" do
+        #   AddressHelpers.find_address(@real_house_st).should eq "100 HELLO AVE"
+        # end
+        # it "unabbreviate street is not provided and should remain ambigious" do
+        #   AddressHelpers.find_address(@real_house_st).should eq "100 HELLO"
+        # end      
+      end
+    end
 
 
   end
