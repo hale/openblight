@@ -41,9 +41,9 @@
             %h5=@case.case_number
 
         .span13
-          .span5
-            %span{:class=>'badge badge-success'} Inspections
-          -unless @case.inspects.nil?
+          -unless @case.inspects.empty?
+            .span5
+              %span{:class=>'badge badge-success'} Inspections
             .span5
               -@case.inspects.each do |i|
                 .inspection
@@ -54,7 +54,7 @@
               No Data Found
 
         .span13
-          -unless @case.notices.nil?
+          -unless @case.notices.empty?
             .span5
               %span{:class=>'badge badge-success'} Notification
             .span5
@@ -67,7 +67,7 @@
               No Data Found
 
         .span13
-          -unless @case.hearings.nil?
+          -unless @case.hearings.empty?
             .span5
               %span{:class=>'badge badge-success'} Hearing
             .span5
@@ -91,7 +91,7 @@
               No Data Found
 
         .span13
-          -unless @case.resets.nil?
+          -unless @case.resets.empty?
             .span5
               %span{:class=>'badge badge-success'} Resets
             .span5 
@@ -103,7 +103,7 @@
               No Data Found
 
       .span13
-        -unless @address.resolutions.nil?
+        -unless @address.resolutions.empty?
           .span5
             %span{:class=>'badge badge-success'} Resolution
             -@address.resolutions.each do |r|
