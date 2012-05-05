@@ -110,7 +110,7 @@ header {
 	.bar {
 	  	height: 30px !important; 
 	    width: 60%;
-	}
+  }
 
 	    span {
 				border-color: #AAAAAA !important;
@@ -132,32 +132,30 @@ header {
 		}	
 }
 
-
 .ui-autocomplete {
 	background: none repeat scroll 0 0 #EEEEEE;
     color: #AAAAAA;
     padding: 5px 10px 10px;
     width: 300px;
-	border: 1px solid #DDDDDD;
+    border: 1px solid #DDDDDD;
     box-shadow: 0 2px 6px #CCCCCC;
 
   li {
-	border-color: #DDDDDD;
+    border-color: #DDDDDD;
     border-style: solid;
     border-width: 0 0 1px;
     list-style-type: none;
-    padding: 3px 10px 5px 3px;
-
-    &:hover{
-    	background-color: red;
-    }
   }
   a {
     color: #333;
-    &:hover {
+    padding: 3px 10px 5px 5px;
+    display: block;
+    width: 95%;
+    &:hover, &.ui-state-hover {
       color: #333;
-	  cursor: pointer;
-	  text-decoration: none;
+      cursor: pointer;
+      text-decoration: none;
+      background-color: red;
     }
   }
 }

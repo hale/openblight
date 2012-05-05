@@ -2,6 +2,9 @@ OpenBlight = {
   common: {
     init: function() {
       // application-wide code
+      $("#main-search-field").autocomplete({
+        source: "/addresses/autocomplete_address_address_long"
+      });
     }
   },
   
