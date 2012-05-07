@@ -1,0 +1,20 @@
+.span10.status-update
+  -if @case.nil?
+    .no-status
+      .no-record-notice No violations have been reported for this property.
+      .recommended-next-action If you feel it is in violation of New Orleans building code (link to blight section of code violations), please report it to NOLA 311 (link to NOLA 311 site or phone #). 
+  -else
+    .recent
+      .recent-update-notice most recent update:
+      .recent-update #{@case.most_recent_status.class} on #{@case.most_recent_status.date.strftime('%B %e, %Y')}.
+      -case @case.most_recent_status.class
+        - when 'Inspection'
+          .recommended-next-action This could mean that it has not been reported to the city. If you would like to make a report, you can do so by calling 311.
+        - when 'Hearing'
+          .recommended-next-action This could mean that it has not been reported to the city. If you would like to make a report, you can do so by calling 311.
+        - when 'Judgement'
+          .recommended-next-action This could mean that it has not been reported to the city. If you would like to make a report, you can do so by calling 311.
+        - when 'Reset'
+          .recommended-next-action This could mean that it has not been reported to the city. If you would like to make a report, you can do so by calling 311.
+        - when 'Resolution'
+          .recommended-next-action This could mean that it has not been reported to the city. If you would like to make a report, you can do so by calling 311.
