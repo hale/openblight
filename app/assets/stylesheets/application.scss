@@ -34,6 +34,7 @@
 		vertical-align: middle; 
 		font-weight: 300; 
 		letter-spacing: 2px;
+		padding: 4px;
 	}
 	
 	img {
@@ -46,7 +47,7 @@
 		text-decoration: none; 
 		border-bottom:1px dotted #fff;
 	}
-	
+
 
 }
 
@@ -55,20 +56,27 @@
   font-size: 200%;
   height: 30px;
   padding: 5px 10px;
-  width: 300px;
+  width: 320px;
 }
 
 .address{
 	&.result{
-		border: 1px solid;
+		background-color: #FAFAFA;
+		border: 1px solid #CCCCCC;
+		margin-top: -1px;
 		padding: 5px;
-		background-color: #eee;
 
 		img{
 			float: left;
-			width: 20px;
+			width: 12px;
 			padding-right: 5px;
+		}
 
+		a{
+
+			&:hover{
+				text-decoration: none;
+			}
 		}
 	}
 }
@@ -87,7 +95,7 @@
 header {
 	text-align: center;
 	h1{
-    margin: 35px 0;
+    	margin: 35px 0;
 		 a{
 			color: #333333;
 			font-family: 'Trebuchet MS';
@@ -99,6 +107,9 @@ header {
 			}
 		}		
 	}
+
+
+
 }
 
 

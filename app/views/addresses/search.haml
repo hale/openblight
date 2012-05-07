@@ -1,14 +1,15 @@
 -unless @addresses.empty?
-  .span4
-    %h2 Search Results:
-    -@addresses.each do |a|
-      .address.result
-        %img{ :width => "10px", :src => "http://code.leafletjs.com/leaflet-0.3.1/images/marker.png"  }
-        %h4
-          =link_to a.address_long, address_path(a.id)
-  .span11
-    #map{:style => "height: 400px;"}
-  .row
+  .search-results
+    .left-bar
+      %h2 Search Results:
+      -@addresses.each do |a|
+        .address.result
+          %img{ :width => "10px", :src => "http://code.leafletjs.com/leaflet-0.3.1/images/marker.png"  }
+          %h8
+            =link_to a.address_long, address_path(a.id)
+    .right-bar
+      #map{:style => "height: 400px;"}
+    .row
   
 
   .btn-toolbar

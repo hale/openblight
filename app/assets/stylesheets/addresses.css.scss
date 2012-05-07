@@ -4,5 +4,42 @@
 
 
 .leaflet-container .leaflet-control-attribution{
-	display: none
+	display: none;
 }
+
+.container-addresses{
+
+	width: 100% !important;
+
+	h1 {
+	    font-size: 75%;
+	    margin: 0;
+	    padding: 15px 0 0 15px;
+	    text-align: left;
+	}
+
+
+	.search-results{
+		width: 100% !important;
+
+		.left-bar{
+			float:left;
+			padding: 0 20px;
+			border-width: 0 1px 0 0;
+			border-style: solid;
+			border-color: #eee;
+			height: 100%;
+			min-height: 500px;
+			width: 300px;
+		}
+
+		.right-bar{
+			float:left;
+			width: 840px;
+			padding-left: 20px;
+		}
+	}
+	
+}
+
+

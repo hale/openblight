@@ -1,14 +1,3 @@
-<h1>BlightStatus</h1>
+%div{:class =>'well form-search'}
+  =render "addresses/search"
 
--#%div{:class =>'well form-search'}
-%div{:class => 'content frontpage' }
-
-  =form_tag("/addresses/search", :method => "get") do
-    .span3
-      %br
-    .span6
-      =autocomplete_field_tag 'address', '', autocomplete_address_address_long_addresses_path, :placeholder => "Example: 100 House ST", :id => "main-search-field"
-    .span4
-      =submit_tag("Search Address", :class => 'btn-primary btn-large')
-								
-			
