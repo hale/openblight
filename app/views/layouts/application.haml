@@ -27,7 +27,7 @@
     %div{:class => "container container-#{controller_name}"}
       .navbar.navbar-fixed-top
       %header.page-header
-        %h1= link_to("BlightStatus", root_path)
+        %h1#logo= link_to("BlightStatus", root_path)
         %div{ :class => "top-search-bar"}
           - if(controller_name == 'addresses')
             =render "addresses/search"

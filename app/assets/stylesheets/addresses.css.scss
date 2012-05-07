@@ -3,9 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.leaflet-container .leaflet-control-attribution{
-	display: none;
-}
 
 .container-addresses{
 
@@ -16,11 +13,23 @@
 	    margin: 0;
 	    padding: 15px 0 0 15px;
 	    text-align: left;
+      float: left;
+      width: 300px;
 	}
 
 
+	.top-search-bar{
+    float: left; 
+    
+    .main-search-field{
+      font-size: 100%;
+    }
+  
+  }
+  
 	.search-results{
 		width: 100% !important;
+    clear: both;
 
 		.left-bar{
 			float:left;
@@ -38,8 +47,9 @@
 			width: 840px;
 			padding-left: 20px;
 		}
-	}
-	
+	}	
 }
 
-
+.leaflet-container .leaflet-control-attribution{
+	display: none;
+}

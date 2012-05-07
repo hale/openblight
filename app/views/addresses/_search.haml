@@ -1,9 +1,8 @@
 =form_tag("/addresses/search", :method => "get") do
-  .span3
-    %br
-  .span6
-    =autocomplete_field_tag 'address', '', autocomplete_address_address_long_addresses_path, :placeholder => "Example: 100 House ST", :id => "main-search-field"
-  .span4
+
+  .search-form
+    =text_field_tag 'address', '', :placeholder => "Example: 100 House ST", :id => "main-search-field"
+  .search-button
     =submit_tag("Search Address", :class => 'btn')
-							
+-# => =autocomplete_field_tag 'address', '', autocomplete_address_address_long_addresses_path, :placeholder => "Example: 100 House ST", :id => "main-search-field"
 		

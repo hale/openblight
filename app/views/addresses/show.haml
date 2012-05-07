@@ -7,9 +7,9 @@
       %h1=@address.address_long
       -if @case.nil?
         %h4
-          This house does not have a record in the city. This could mean that 
-          If you would like to make a report.
-      -unless @case.nil?
+          This house does not have a code enforcement record. This could mean that it has not been reported to the city.
+          If you would like to make a report, you can do so by calling 311.
+      -else
         %h4 The most recent event: #{@case.most_recent_status.class} on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
 
 
@@ -35,81 +35,75 @@
 
 
     %div{ :class => 'case-history span10' }
-
-      .span13
-        -unless @case.nil?
+      -unless @case.nil?
+        .span13
           -unless @case.case_number.nil?
             %h5=@case.case_number
 
+        .span13
+          -unless @case.inspections.empty?
+            .span5
+              %span{:class=>'badge badge-success'} Inspections
+            .span5
+              -@case.inspections.each do |i|
+                .inspection
+                  =i.inspection_date.strftime("%m/%d/%Y")
+                  =i.inspection_type
+          -else
+            %p
+              No Data Found
 
-      .span13
-        .span5
-          %span{:class=>'badge badge-success'} Inspections
-        -unless @case.inspects.nil?
-          .span5
-            -@case.inspects.each do |i|
-              .inspection
-                =i.inspection_date.strftime("%m/%d/%Y")
-                =i.inspection_type
-        -else
-          %p
-            No Data Found
+        .span13
+          -unless @case.notifications.empty?
+            .span5
+              %span{:class=>'badge badge-success'} Notification
+            .span5
+              -@case.notifications.each do |n|
+                .notificaton
+                  =n.date.strftime("%m/%d/%Y")
+                  =n.notes
+          -else
+            %p
+              No Data Found
 
+        .span13
+          -unless @case.hearings.empty?
+            .span5
+              %span{:class=>'badge badge-success'} Hearing
+            .span5
+              -@case.hearings.each do |h|
+                .hearing
+                  =h.hearing_date.strftime("%m/%d/%Y")
+                  =h.hearing_status
+          -else
+            %p
+              No Data Found
 
-      .span13
-        -unless @case.notices.nil?
-          .span5
-            %span{:class=>'badge badge-success'} Notification
-          .span5
-            -@case.notices.each do |n|
-              .notificaton
-                =n.date.strftime("%m/%d/%Y")
-                =n.notes
-        -else
-          %p
-            No Data Found
-
-
-      .span13
-        -unless @case.hearings.nil?
-          .span5
-            %span{:class=>'badge badge-success'} Hearing
-          .span5
-            -@case.hearings.each do |h|
+        .span13
+          -unless @case.judgement.nil?
+            .span5
+              %span{:class=>'badge badge-success'} Judgement
+            .span5
               .hearing
-                =h.hearing_date.strftime("%m/%d/%Y")
-                =h.hearing_status
-        -else
-          %p
-            No Data Found
+                %t=@case.judgement.notes
+          -else
+            %p
+              No Data Found
 
-
-      .span13
-        -unless @case.judgement.nil?
-          .span5
-            %span{:class=>'badge badge-success'} Judgement
-          .span5
-            .hearing
-              %t=@case.judgement.notes
-        -else
-          %p
-            No Data Found
-
+        .span13
+          -unless @case.resets.empty?
+            .span5
+              %span{:class=>'badge badge-success'} Resets
+            .span5 
+              -@case.resets.each do |r|
+                .reset
+                  ="This case was reset on " << r.reset_date.strftime("%m/%d/%Y")
+          -else
+            %p
+              No Data Found
 
       .span13
-        -unless @case.resets.nil?
-          .span5
-            %span{:class=>'badge badge-success'} Resets
-          .span5 
-            -@case.resets.each do |r|
-              .reset
-                ="This case was reset on " << r.reset_date.strftime("%m/%d/%Y")
-        -else
-          %p
-            No Data Found
-
-      .span13
-        -unless @address.resolutions.nil?
+        -unless @address.resolutions.empty?
           .span5
             %span{:class=>'badge badge-success'} Resolution
             -@address.resolutions.each do |r|
