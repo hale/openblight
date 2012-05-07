@@ -11,7 +11,7 @@ include ImportHelpers
 # this script works locally, needs testing in different systems
 namespace :hearings do
   desc "Downloading files from s3.amazon.com"  
-  task :load => :environment  do |t, args|
+  task :load, [:file_name, :bucket_name] => :environment  do |t, args|
         args.with_defaults(:bucket_name => "neworleansdata", :file_name => "HCEB Hearing Docket for Hearing Dates.xls")  
         puts args
 
@@ -42,7 +42,7 @@ namespace :hearings do
                 status = status.split(" ")[0].delete(":").downcase
             end
 
-            hearing_datetime = DateTime.new(0)
+            hearing_datetime = nil
 
             unless oo.row(row)[19].nil?
                 date = oo.row(row)[19].to_s.split("-")
@@ -51,14 +51,11 @@ namespace :hearings do
                     time = oo.row(row)[20]
                 end
                 time = Time.at(time).gmtime.strftime('%R:%S')
-                
                 time = time.split(":")
                 hearing_datetime = DateTime.new(date[0].to_i,date[1].to_i,date[2].to_i,time[0].to_i,time[1].to_i,time[2].to_i)
             end
 
-
             unless status == "reset" || status.nil?
-                
                 Judgement.find_or_create_by_case_number_and_status(:case_number => oo.row(row)[10], :status => status, :notes => oo.row(row)[21], :judgement_date => hearing_datetime)
             end
 

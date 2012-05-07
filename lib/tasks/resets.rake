@@ -4,8 +4,9 @@ include ImportHelpers
 
 namespace :resets do
   desc "Load Multiple Resets report into database"
-  task :load_multiples => :environment do |t, args|
+  task :load_multiples, [:file_name, :bucket_name] => :environment do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "HCEB Multiple Resets.pdf")
+    p args
 
     ImportHelpers.connect_to_aws
     s3obj = AWS::S3::S3Object.find(args.file_name, args.bucket_name)

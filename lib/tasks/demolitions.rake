@@ -10,8 +10,10 @@ include AddressHelpers
 
 namespace :demolitions do
   desc "Downloading FEMA files from s3.amazon.com and load them into the db"  
-  task :load_fema => :environment  do |t, args|
+  task :load_fema, [:file_name, :bucket_name] => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "FEMA Validated_Demo_DataEntry_2012_January.xlsx")  
+    p args
+
     ImportHelpers.connect_to_aws
     s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
     downloaded_file_path = ImportHelpers.download_from_aws(s3obj)
@@ -30,8 +32,10 @@ namespace :demolitions do
   end
 
   desc "Downloading NORA files from s3.amazon.com and load them into the db"  
-  task :load_nora => :environment  do |t, args|
+  task :load_nora, [:file_name, :bucket_name] => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "NORA Validated_Demo_DataEntry_2012.xlsx")  
+    p args
+
     ImportHelpers.connect_to_aws
     s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
     downloaded_file_path = ImportHelpers.download_from_aws(s3obj)
@@ -48,8 +52,10 @@ namespace :demolitions do
   end
 
   desc "Downloading NOSD files from s3.amazon.com and load them into the db"  
-  task :load_nosd => :environment  do |t, args|
+  task :load_nosd, [:file_name, :bucket_name] => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "NOSD  BlightStat Report  January 2012.xlsx")  
+    p args
+
     ImportHelpers.connect_to_aws
     s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
     downloaded_file_path = ImportHelpers.download_from_aws(s3obj)

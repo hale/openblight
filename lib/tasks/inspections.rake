@@ -5,7 +5,7 @@ include ImportHelpers
 
 namespace :inspections do
   desc "Downloading files from s3.amazon.com"  
-  task :load => :environment  do |t, args|
+  task :load, [:file_name, :bucket_name] => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "HCEB Completed Insp by Inspector.xls")  
     puts args
 
