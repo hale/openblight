@@ -1,0 +1,91 @@
+.inner
+  .row-fluid{"class" => "show-grid"}
+    .span10
+      %h1 Statistics
+      %p Find me in app/views/statistics/show.haml
+      %table{:border => "0"}
+        %tr
+          %th/
+          %th Total
+          %th # Matched
+          %th # Unmatched
+          %th % Matched
+          %tr
+            %tr
+              %th Addresses
+              %td= Address.count
+              %td/
+              %td/
+              %td/
+            %tr
+              %th Cases
+              %td= Case.count
+              %td= Case.count(:conditions => "address_id is not null")
+              %td= Case.count(:conditions => "address_id is null")
+              %td
+                = Case.count(:conditions => "address_id is not null").to_f / Case.count.to_f * 100
+                \%
+            %tr
+              %th Inspections
+              %td= Inspection.count
+              %td= Inspection.count(:conditions => "case_number is not null")
+              %td= Inspection.count(:conditions => "case_number is null")
+              %td
+                = Inspection.count(:conditions => "case_number is not null").to_f / Inspection.count.to_f * 100
+                \%
+            %tr
+              %th Notifications
+              %td= Notification.count
+              %td= Notification.count(:conditions => "case_number is not null")
+              %td= Notification.count(:conditions => "case_number is null")
+              %td
+                = Notification.count(:conditions => "case_number is not null").to_f / Notification.count.to_f * 100
+                \%
+            %tr
+              %th Hearings
+              %td= Hearing.count
+              %td= Hearing.count(:conditions => "case_number is not null")
+              %td= Hearing.count(:conditions => "case_number is null")
+              %td
+                = Hearing.count(:conditions => "case_number is not null").to_f / Hearing.count.to_f * 100
+                \%
+            %tr
+              %th Resets
+              %td= Reset.count
+              %td= Reset.count(:conditions => "case_number is not null")
+              %td= Reset.count(:conditions => "case_number is null")
+              %td
+                = Reset.count(:conditions => "case_number is not null").to_f / Reset.count.to_f * 100
+                \%
+            %tr
+              %th Judgements
+              %td= Judgement.count
+              %td= Judgement.count(:conditions => "case_number is not null")
+              %td= Judgement.count(:conditions => "case_number is null")
+              %td
+                = Judgement.count(:conditions => "case_number is not null").to_f / Judgement.count.to_f * 100
+                \%
+            %tr
+              %th Maintenances
+              %td= Maintenance.count
+              %td= Maintenance.count(:conditions => "address_id is not null")
+              %td= Maintenance.count(:conditions => "address_id is null")
+              %td
+                = Maintenance.count(:conditions => "address_id is not null").to_f / Maintenance.count.to_f * 100
+                \%
+            %tr
+              %th Foreclosures
+              %td= Foreclosure.count
+              %td= Foreclosure.count(:conditions => "address_id is not null")
+              %td= Foreclosure.count(:conditions => "address_id is null")
+              %td
+                = Foreclosure.count(:conditions => "address_id is not null").to_f / Foreclosure.count.to_f * 100
+                \%
+            %tr
+              %th Demolitions
+              %td= Demolition.count
+              %td= Demolition.count(:conditions => "address_id is not null")
+              %td= Demolition.count(:conditions => "address_id is null")
+              %td
+                = Demolition.count(:conditions => "address_id is not null").to_f / Demolition.count.to_f * 100
+                \%
