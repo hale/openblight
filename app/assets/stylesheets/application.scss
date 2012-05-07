@@ -20,8 +20,8 @@ header {
     	margin: 35px 0;
 		 a{
 			color: #333333;
-			font-family: 'Trebuchet MS';
-			font-size: 300%;
+		    font-family: 'Open Sans Condensed', sans-serif;
+			font-size: 250%;
 			text-align: center;
 			&:hover{
 				text-decoration: none;
@@ -29,11 +29,7 @@ header {
 			}
 		}		
 	}
-  
-  #logo{
-    font-family: 'Open Sans Condensed', sans-serif;
-  }
-  
+
 }
 
 #topbar { 
