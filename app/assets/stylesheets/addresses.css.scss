@@ -6,20 +6,40 @@
 
 .container-addresses{
 	width: 100% !important;
-	h1 {
-    font-size: 75%;
-    margin: 0;
-    padding: 15px 0 0 15px;
-    text-align: left;
-    float: left;
-    width: 300px;
+
+	header{
+		height: 40px;
+		h1 {
+			float: left;
+			font-size: 135%;
+			margin: 0;
+			padding: 0 0 0 15px;
+			text-align: left;
+			width: 300px;
+		}
+		.top-search-bar{
+	    float: left; 
+
+	    .search-form{
+	      font-size: 100%;
+				float: left;
+				
+				#main-search-field {
+					font-size: 140%;
+					height: 23px;
+					margin-right: 10px;
+					padding: 3px 10px;
+					width: 320px;
+				}
+	    }
+	    .search-button{
+	      font-size: 100%;
+				float: left;
+	    }
+			
+	  }
 	}
-	.top-search-bar{
-    float: left; 
-    .main-search-field{
-      font-size: 100%;
-    }
-  }
+	
 	.search-results{
 		width: 100% !important;
     clear: both;
@@ -36,10 +56,28 @@
 		}
 		.right-bar{
 			float:left;
-			width: 840px;
+			width: 70%;
 			padding-left: 20px;
 		}
-	}	
+	}
+	
+	.single{
+		width: 50% !important;
+		margin: 0 auto;
+		.badge-info{
+      width: 58%;
+      margin: 0 auto;
+    }
+		.case-history{
+			.span3{
+				margin-left: 0;
+			}
+		}
+	}
+	
+
+	
+		
 }
 
 .leaflet-container .leaflet-control-attribution{
