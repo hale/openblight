@@ -23,7 +23,6 @@ namespace :demolitions do
         if row['Status Update']  == '12.Demolished'
           if row['Number'].to_s.end_with?(".0")
             row['Number'] = row['Number'].to_i.to_s
-            puts "row number is now #{row['Number']}"
           end
           Demolition.find_or_create_by_address_long_and_date_completed(:house_num => row['Number'], :street_name => row['Street'].upcase, :address_long => "#{row['Number']} #{row['Street']}".upcase, :date_started => row['Demo Start'], :date_completed => row['Demo Complete'], :program_name => "NORA")
         end
@@ -44,7 +43,6 @@ namespace :demolitions do
       unless SpreadsheetHelpers.row_is_empty? row
         if row['Number'].to_s.end_with?(".0")
             row['Number'] = row['Number'].to_i.to_s
-            puts "row number is now #{row['Number']}"
           end
         Demolition.create(:house_num => row['Number'], :street_name => row['Street'].upcase, :address_long =>  row['Address'].upcase, :date_started => row['Demo Start'], :date_completed => row['Demo Complete'], :program_name => "NORA")
       end
@@ -72,14 +70,14 @@ namespace :demolitions do
     end
   end
 
-  desc "Downloading Socrata files from s3.amazon.com and load them into the db"  
+  desc "Downloading Socrata files from s3.amazon.com and load them into the db"
   task :load_socrata => :environment  do |t, args|
     properties = ImportHelpers.download_json_convert_to_hash('https://data.nola.gov/api/views/abvi-rghr/rows.json?accessType=DOWNLOAD')
-    exceptions = [] 
+    exceptions = []
     properties[:data].each do |row|
       begin
-        house_num = row[16].split(' ')[0]
-        Demolition.find_or_create_by_address_long_and_date_completed(:house_num => house_num, :street_name => row[16].sub(house_num + ' ', '').upcase, :address_long =>  row[16], :date_completed => row[11], :program_name => row[9])
+        house_num = row[12].split(' ')[0]
+        Demolition.find_or_create_by_address_long_and_date_completed(:house_num => house_num, :street_name => row[12].sub(house_num + ' ', '').upcase, :address_long =>  row[12], :date_completed => row[15], :program_name => row[8])
       rescue
         #these exceptions are for properties that are missing most data, except for address, date demolished, and program (they are all NORA). What do we want to do with them?
         exceptions.push({ :exception => $!, :row => row })
