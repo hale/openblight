@@ -21,22 +21,25 @@ class AddressesController < ApplicationController
       @case = Case.find(@c.first.id)
     end
 
-    unless @case.inspections.nil?
-      @progressbar = '20%'
-    end
-    unless @case.notifications.nil?
-      @progressbar = '40%'
-    end
-    unless @case.hearings.nil?
-      @progressbar = '60%'
-    end
-    unless @case.judgement.nil?
-      @progressbar = '80%'
-    end
-    # unless @case.resolutions.nil?
-    #   @progressbar = '100%'
-    # end
 
+    @progressbar = '0%'
+    unless @case.nil?
+      unless @case.inspections.nil?
+        @progressbar = '20%'
+      end
+      unless @case.notifications.nil?
+        @progressbar = '40%'
+      end
+      unless @case.hearings.nil?
+        @progressbar = '60%'
+      end
+      unless @case.judgement.nil?
+        @progressbar = '80%'
+      end
+      # unless @case.resolutions.nil?
+      #   @progressbar = '100%'
+      # end
+    end
   
     
     respond_with(@address, @case, @progressbar)
