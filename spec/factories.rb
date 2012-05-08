@@ -8,6 +8,7 @@ FactoryGirl.define do
     address_id        { 85102061 }
     # parcel_id         { 1 + rand(20000) }
     address_long      { "1019 CHARBONNET ST" }
+    street_name       { "CHARBONNET" }
     street_type       { "ST" }
   end
 

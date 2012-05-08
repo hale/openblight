@@ -92,8 +92,8 @@ module AddressHelpers
   def strip_address_number(streetname)
     streetname = streetname.upcase
     unless streetname.match(/^\d+\s/).nil?
-      return streetname.sub(/^\d+\s/, '')      
-    end    
+      return streetname.sub(/^\d+\s/, '')
+    end
     return streetname.single_space
   end
 
@@ -122,7 +122,7 @@ module AddressHelpers
     end
     address_string = address_string.upcase.single_space
     address_string = address_string.delete('.')
-    
+
     address = Address.where("address_long = ?", "#{address_string}")
     unless address.empty?
       return address
@@ -158,7 +158,7 @@ module AddressHelpers
       return address   
     end
 
-    
+
     address_street = strip_direction(address_string)
     address_street = get_street_name(address_street)
     address = Address.where("house_num = ? and street_name = ?", "#{address_string.split(' ')[0]}", "#{address_street}")
