@@ -10,7 +10,7 @@
         .classification
           %span{:class=>'badge-yellow'} Inspections
         .status
-          =image_tag('check_mark.png', :width => '30px')
+          =image_tag('check_mark.png', :width => '20px')
         -unless @case.inspections.empty?
           .note
             -@case.inspections.each do |i|
@@ -18,59 +18,47 @@
                 property was inspected
                 =i.inspection_date.strftime("%m/%d/%Y")
                 =i.inspection_type
-        -else
-          .span4.no-data-found
-            No Data Found
 
       .span13
         .classification
           %span{:class=>'badge-yellow'} Notification
+        .status
+          =image_tag('check_mark.png', :width => '20px')
         -unless @case.notifications.empty?
-          .status
-            =image_tag('check_mark.png', :width => '30px')
           .note
             -@case.notifications.each do |n|
               .notificaton
                 =n.date.strftime("%m/%d/%Y")
                 =n.notes
-        -else
-          .span4.no-data-found
-            No Data Found
 
       .span13
         -unless @case.hearings.empty?
           .classification
             %span{:class=>'badge-yellow'} Hearing
           .status
-            =image_tag('check_mark.png', :width => '30px')
+            =image_tag('check_mark.png', :width => '20px')
           .note
             -@case.hearings.each do |h|
               .hearing
                 =h.hearing_date.strftime("%m/%d/%Y")
                 =h.hearing_status
-        -else
-          .span4.no-data-found
-            No Data Found
 
       .span13
         -unless @case.judgement.nil?
           .classification
             %span{:class=>'badge-yellow'} Judgement
           .status
-            =image_tag('check_mark.png', :width => '30px')
+            =image_tag('check_mark.png', :width => '20px')
           .note
             .hearing
               %t=@case.judgement.notes
-        -else
-          .span4.no-data-found
-            No Data Found
 
       -unless @case.resets.empty?
         .span13
           .classification
             %span{:class=>'badge-yellow'} Resets
           .status
-            =image_tag('check_mark.png', :width => '30px')
+            =image_tag('check_mark.png', :width => '20px')
           .note
             .span4 
               -@case.resets.each do |r|
@@ -82,7 +70,7 @@
           .classification
             %span{:class=>'badge-yellow'} Resolution
           .status
-            =image_tag('check_mark.png', :width => '30px')
+            =image_tag('check_mark.png', :width => '20px')
           .note
             .span4
               -@address.resolutions.each do |r|
