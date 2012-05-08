@@ -10,6 +10,8 @@ gem 'pg'
 gem 'foreigner'
 gem 'aws-s3'
 gem 'roo' #excel parser
+gem 'docsplit'
+gem 'rubyXL'
 
 
 # GIS 
@@ -25,7 +27,6 @@ gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
-gem 'docsplit'
 
 gem 'thin'
 
