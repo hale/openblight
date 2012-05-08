@@ -9,11 +9,12 @@ describe Address do
   #it { should validate_uniqueness_of(:parcel_id) }
   #it { should validate_uniqueness_of(:geopin) }
   describe "find_addresses_with_cases_by_street" do
-  	it "should return array of addreses that havee cases on a street" do
-  		result = Address.new
-  		result = result.find_addresses_with_cases_by_street("BENTON")
-  		result.count.should > 0
-  	end
+   it "should return array of addreses that havee cases on a street" do
+      c = FactoryGirl.create(:case, :address => @address)
+
+      result = Address.find_addresses_with_cases_by_street("CHARBONNET")
+      result.count.should > 0
+    end
   end
 
   describe "#workflow_steps" do
