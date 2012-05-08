@@ -9,9 +9,10 @@ include AddressHelpers
 
 namespace :foreclosures do
   desc "Downloading files from s3.amazon.com"  
-  task :load => :environment  do |t, args|
+  task :load, [:file_name, :bucket_name] => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "Sheriff Sale.xlsx")  
-    puts args;
+    puts args
+
     #connect to amazon
     ImportHelpers.connect_to_aws
     s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
@@ -20,11 +21,9 @@ namespace :foreclosures do
     oo = Excelx.new(downloaded_file_path)
     oo.default_sheet = oo.sheets[7]
 
-    38.upto(oo.last_row) do |row|      
-      unless SpreadsheetHelpers.row_is_empty?(oo.row(row))
-        unless oo.row(row)[8].to_s.empty?
-          Foreclosure.create(:house_num => oo.row(row)[8].to_i, :street_name => AddressHelpers.get_street_name(oo.row(row)[9]), :address_long => "#{oo.row(row)[8].to_i} #{oo.row(row)[9]}".upcase, :notes => oo.row(row)[13], :sale_date => oo.row(row)[14])
-        end
+    38.upto(oo.last_row) do |row|  
+      unless oo.row(row)[8].to_s.empty?
+        Foreclosure.create(:house_num => oo.row(row)[8], :street_name => AddressHelpers.get_street_name(oo.row(row)[9]), :address_long => "#{oo.row(row)[8].to_i} #{oo.row(row)[9]}".upcase, :notes => oo.row(row)[13], :sale_date => oo.row(row)[14])
       end        
     end 
   end
@@ -35,7 +34,7 @@ namespace :foreclosures do
     success = 0
     failure = 0
 
-    Foreclosure.find(:all).each do |row|
+    Foreclosure.where('address_id is null').each do |row|
       # compare each address in demo list to our address table
       #address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
       address = AddressHelpers.find_address(row.address_long)

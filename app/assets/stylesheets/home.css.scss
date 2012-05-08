@@ -2,11 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/*
-.page-header{
-	margin-top: 140px !important;
+.container-home{
+	
+	input.btn[type="submit"] {
+		font-size: 150%;
+	}	
+
+
+	.content{
+
+		width: 350px;
+		margin: 0 auto;
+		form {
+			text-align: center;
+		}	
+	
+	}
+	
+
+  footer{
+    position: absolute;
+	bottom: 0;
+  }
+
 }
 
-.container{
-	width: 570px;
-}*/

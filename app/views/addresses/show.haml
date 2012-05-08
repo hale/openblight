@@ -1,50 +1,11 @@
-.inner
-  .row-fluid{"class" => "show-grid"}        
-    .span5
+.inner.single
+  .show-grid
+    .map
       #address{"data-x" => @address.point.x, "data-y" => @address.point.y }
-        %span{:class=>'badge badge-success'} 
-          2
-        
-        #map{:style => "height: 400px;"}
-    .span5
-      .h1 Address:
-      %h2=@address.address_long
-      .h1 Status:
+        #map{:style => "height: 200px;"}
+    .address
+      %h1=@address.address_long
 
-      -unless @case.nil?
-        %h3 The most recent step was a #{@case.most_recent_status.class}, on #{@case.most_recent_status.date.strftime('%e %B, %Y')}.
-
-
-    .span10
-      -unless @case.nil?
-        -unless @case.case_number.nil?
-          %h1=@case.case_number
-
-        %h2 1) Inspection:
-        %span{:class=>'badge badge-success'}
-        -unless @case.inspections.nil?
-          -@case.inspections.each do |i|
-            .inspection
-              =i.inspection_date
-                    
-        %h2 2) Notice:
-        -unless @case.resets.nil?
-          -@case.resets.each do |r|
-            .reset
-              =r.reset_date
-          
-        %h2 3) Hearing:          
-        %span{:class =>'badge badge-inverse'}
-        -unless @case.hearings.nil?
-          -@case.hearings.each do |h|
-            .hearing
-              =h.hearing_date
-              =h.hearing_status
-
-        %h2 4) Judgement:          
-        %span{:class =>'badge badge-info'}
-          Information
-
-        %h2 5) Resolution:           
-        %span{:class =>'badge badge-error'}
-
+    =render "addresses/progress-bar"
+    =render "addresses/status-update"
+    =render "addresses/property-history"

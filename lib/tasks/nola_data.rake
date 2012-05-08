@@ -4,10 +4,10 @@ namespace :nola_data do
     Rake::Task["inspections:load"].invoke
     Rake::Task["hearings:load"].invoke
     Rake::Task["resets:load_multiples"].invoke
+    Rake::Task["demolitions:load_socrata"].invoke
     Rake::Task["demolitions:load_fema"].invoke
     Rake::Task["demolitions:load_nora"].invoke
     Rake::Task["demolitions:load_nosd"].invoke
-    Rake::Task["demolitions:load_socrata"].invoke
     Rake::Task["demolitions:match"].invoke
     Rake::Task["foreclosures:load"].invoke
     Rake::Task["foreclosures:match"].invoke
@@ -26,9 +26,9 @@ namespace :nola_data do
 
   desc "Delete all workflow data from database"
   task :drop do
-    Rake::Tash["hearings:drop"].invoke
-    Rake::Tash["demolitions:drop"].invoke
-    Rake::Tash["foreclosures:drop"].invoke
-    Rake::Tash["maintenances:drop"].invoke
+    Rake::Task["hearings:drop"].invoke
+    Rake::Task["demolitions:drop"].invoke
+    Rake::Task["foreclosures:drop"].invoke
+    Rake::Task["maintenances:drop"].invoke
   end
 end

@@ -1,3 +1,235 @@
 // Place all the styles related to the addresses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.container-addresses{
+	width: 100% !important;
+
+	header{
+		height: 40px;
+    
+		h1 {
+  		float: left;
+  		font-size: 135%;
+  		margin: 0;
+  		padding: 0 0 0 15px;
+  		text-align: left;
+  		width: 290px;
+		}
+    
+		.top-search-bar{
+      
+	    float: left;
+      padding: 5px;
+
+	    .search-form{
+	      font-size: 100%;
+				float: left;
+				
+				#main-search-field {
+					font-size: 140%;
+					height: 23px;
+					margin-right: 10px;
+					padding: 3px 10px;
+					width: 320px;
+				}
+	    }
+	    .search-button{
+	      font-size: 100%;
+				float: left;
+	    }
+			
+	  }
+	}
+  
+  .show-grid{
+    
+    .address{
+      line-height: 20px;
+      margin-top: 20px;
+    }
+    .map{
+    }
+  }
+	
+	.search-results{
+		
+    width: 100% !important;
+    clear: both;
+    
+		.left-bar{
+			float:left;
+			padding: 0 20px;
+			border-width: 0 1px 0 0;
+			border-style: solid;
+			border-color: #eee;
+			height: 100%;
+			min-height: 500px;
+			width: 20%;
+		}
+    
+		.right-bar{
+			float:left;
+			width: 74%;
+			padding-left: 20px;
+		}
+	}
+	
+	.single{
+		margin: 0 auto;
+    width: 500px;
+    .show-grid{
+    }
+    .map{
+      width: 500px;
+    }
+    .progress-bar{
+      border: 1px solid #aaa;
+      background-color: #f8dc8d;
+      border-radius: 5px 5px 5px;
+      height: 20px;
+      padding: 3px;
+      position: relative;
+
+      .progress-bar-overlay{
+        background: none repeat scroll 0 0 yellow !important;
+        border-radius: 4px 0 0 4px;
+        height: 26px;
+        width: 80%;
+        position: absolute;
+        left: 0;
+        top: 0;
+                  
+        .property-status-inspection{
+          height: 24px;
+          left: 5px;
+          padding-top: 3px;
+        }
+        .property-status-notification{
+          left: 100px;
+          height: 24px;
+          padding-top: 3px;
+        }
+        .property-status-hearing{
+          height: 24px;
+          padding-top: 3px;
+          left: 200px;
+        }
+        .property-status-judgement{
+          height: 24px;
+          padding-top: 3px;
+          left: 300px;
+        }
+        .property-status-resolution{
+          height: 24px;
+          padding-top: 3px;
+          left: 400px;
+        }
+        
+      }
+
+      
+      .property-status{
+        width: 75px;
+        padding: 0 15px;
+        position: absolute;
+        a{
+          color: #6A6867;
+          text-decoration: none;
+          &:hover{
+            text-decoration: none;
+            color: #6A6867;
+            cursor: pointer;
+          }
+        }
+      }
+
+      
+    }
+    
+    
+		.badge-info{
+      width: 58%;
+      margin: 0 auto;
+    }
+    .case-history{
+    	border: solid #aaa;
+      border-width: 1px 0 0 0 ;
+      min-height: 400px;
+			.no-data-found{
+				margin-left: 0;
+			}
+
+    	.span13{
+        border: 0 solid #EEEEEE;
+        padding: 15px 0;
+        width: 90%;    
+    	}
+    }
+    
+    
+    
+    .status-update{
+      margin: 0 auto;
+      padding: 25px 0;
+      text-align: center;
+      width: 100%;
+
+
+      .recent-update-notice{
+        text-transform: uppercase;
+        color: red;
+        font-weight: bold;
+        display: inline;
+      }
+    
+      .recent-update{
+        display: inline;
+      }
+
+    }
+    
+
+    
+  	#map{
+      border: 2px solid #DFDFDF;
+      height: 600px;
+      position: relative;  
+    }
+    
+    .classification{
+      float: left;
+      width: 100px;
+    }
+    .status{
+      float: left;
+      text-align: center;
+      width: 50px;
+    }
+    .note{
+      float: left;
+      width: 245px;
+
+      .span3{
+        margin-left: 0;
+        padding-left: 0;
+      }
+      .span4{
+        margin-left: 0;
+        padding-left: 0;
+      }
+      
+    }
+
+	}
+	
+
+	
+		
+}
+
+.leaflet-container .leaflet-control-attribution{
+	display: none;
+}

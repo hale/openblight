@@ -22,16 +22,18 @@ describe AddressesController do
 
   describe "GET search" do
     it "matches the full address if it's given" do
-      get :search, :address => "123 Perdido St"
+      get :search, :address => "1019 CHARBONNET ST"
+      response.should redirect_to(address_path(@address))
+    end
+
+    it "matches the street name if no number is given and the searched address has a case" do
+      c = FactoryGirl.create(:case, :address_id => @address.id)
+
+      get :search, :address => "CHARBONNET ST"
       assigns(:addresses).should eq([@address])
     end
 
-    it "matches the street name if no number is given" do
-      get :search, :address => "Perdido St"
-      assigns(:addresses).should eq([@address])
-    end
-
-    it "should return no addresses if none matching are found" do
+    it "returns no addresses if none matching are found" do
       get :search, :address => "155 9th St, San Francisco, CA" 
       assigns(:addresses).should eq([])
     end

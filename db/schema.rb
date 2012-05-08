@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424183850) do
+ActiveRecord::Schema.define(:version => 20120504031005) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -72,16 +72,15 @@ ActiveRecord::Schema.define(:version => 20120424183850) do
     t.string   "street_name"
     t.string   "street_type"
     t.string   "address_long"
-    t.string   "sale_date"
     t.string   "status"
     t.string   "notes"
     t.integer  "address_match_confidence"
     t.integer  "address_id"
+    t.datetime "sale_date"
   end
 
   create_table "hearings", :force => true do |t|
     t.datetime "hearing_date"
-    t.string   "hearing_time"
     t.string   "hearing_status"
     t.boolean  "reset_hearing"
     t.integer  "one_time_fine"
@@ -120,10 +119,11 @@ ActiveRecord::Schema.define(:version => 20120424183850) do
 
   create_table "judgements", :force => true do |t|
     t.string   "case_number"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "status"
     t.string   "notes"
+    t.datetime "judgement_date"
   end
 
   create_table "maintenances", :force => true do |t|
@@ -142,10 +142,11 @@ ActiveRecord::Schema.define(:version => 20120424183850) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "case_number"
-    t.datetime "notified"
+    t.date     "notified"
+    t.string   "notification_type"
   end
 
   create_table "parcels", :force => true do |t|
@@ -166,6 +167,7 @@ ActiveRecord::Schema.define(:version => 20120424183850) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.datetime "reset_date"
+    t.string   "notes"
   end
 
   create_table "streets", :force => true do |t|

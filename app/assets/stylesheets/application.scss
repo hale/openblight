@@ -1,0 +1,195 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ *= require bootstrap
+*/
+
+
+header {
+	text-align: center;
+	h1{
+    	margin: 35px 0;
+		 a{
+      color: #333333;
+      font-family: 'Open Sans Condensed', sans-serif;
+      font-size: 250%;
+      text-align: center;
+			&:hover{
+				text-decoration: none;
+				color: black;
+			}
+		}		
+	}
+}
+
+.container{
+  width: 100% !important;
+}
+
+#topbar { 
+	text-align: center; 
+	top: 0px; 
+	left: 0px; 
+	height: 30px; 
+	width: 100%; 
+	background: #419ED8; 
+	-moz-box-shadow: 0px 0px 5px 0px #888; 
+	-webkit-box-shadow: 0px 0px 9px 0px #888; 
+	box-shadow: 0px 0px 5px 0px #888; 
+	z-index: 99999;
+
+	p {
+		color: #fff; 
+		font-family: 'Arvo'; 
+		font-size: 12px; 
+		font-weight: bold;
+		vertical-align: middle; 
+		font-weight: 300; 
+		letter-spacing: 2px;
+		padding: 4px;
+	}
+	
+	img {
+		vertical-align: middle; 
+		margin-right: 15px;
+    height: 20px;
+	}
+
+	a {
+		color: #fff; 
+		text-decoration: none; 
+		border-bottom:1px dotted #fff;
+	}
+
+
+}
+
+
+#main-search-field{
+  font-size: 200%;
+  height: 30px;
+  padding: 5px 10px;
+  width: 320px;
+}
+
+.address{
+
+	&.result{
+		background-color: #FAFAFA;
+		border: 1px solid #CCCCCC;
+		margin-top: -1px;
+		padding: 5px;
+
+		img{
+			float: left;
+			width: 12px;
+			padding-right: 5px;
+		}
+
+		a{
+
+			&:hover{
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.well {
+    border: 0 none;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+    background-color: white !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    height: 350px;
+}
+
+
+
+.progress {
+	height: 30px !important; 
+	width: 100%;
+  
+	.bar {
+	  	height: 30px !important; 
+	    width: 60%;
+  }
+  
+  span {
+		border-color: #AAAAAA !important;
+		border-style: solid !important;
+		border-width: 0 1px 0 0;
+		float: left;
+		padding: 5px;
+		font-size: 120%;
+		width: 100px;
+    
+		&:hover{
+			text-decoration: none;
+			color: black;
+      		cursor: pointer;
+		}
+          
+    a{
+      color: white;
+      text-decoration: none;
+    }
+  }	
+}
+
+
+
+
+footer{
+  border-top: 1px solid #EEEEEE;
+  clear: both;
+  margin-top: 17px;
+  padding-top: 17px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.form-search label{
+	width: auto;
+}
+
+
+#tag{
+	position: absolute;
+	right: 5%;
+	top: -8px;
+}
+
+.row .pagination a {
+  float: none;
+}
+
+
+.leaflet-control-attribution{
+	display: none;
+}
+
+
+.badge-yellow{
+  background-color: #F8DC8D;
+  color: #6A6867;
+  font-size: 110%;
+  font-style: italic;
+  letter-spacing: 0.7px;
+  padding: 4px 10px;
+  border-radius: 5px 5px 5px;
+
+}
+

@@ -10,6 +10,8 @@ gem 'pg'
 gem 'foreigner'
 gem 'aws-s3'
 gem 'roo' #excel parser
+gem 'docsplit'
+gem 'rubyXL'
 
 
 # GIS 
@@ -24,8 +26,9 @@ gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 gem 'nifty-generators'
 gem 'will_paginate', '~> 3.0'
-gem 'docsplit'
+gem 'bootstrap-will_paginate'
 
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require autocomplete-rails
 //= require_directory ./controllers
 //= require init
+//= require ./lib/bootstrap-tooltip
+//= require ./lib/bootstrap-popover

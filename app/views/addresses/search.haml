@@ -1,16 +1,24 @@
-%h2 Search Results:
+-unless @addresses.empty?
+  .search-results
+    .left-bar
+      %h2 Search Results:
+      -@addresses.each do |a|
+        .address.result
+          %img{ :width => "10px", :src => "http://code.leafletjs.com/leaflet-0.3.1/images/marker.png"  }
+          %h8
+            =link_to a.address_long, address_path(a.id)
+    .right-bar
+      #map{:style => "height: 400px;"}
+    .row
+  
 
--unless @addresses.nil?
-  .span3
-    -@addresses.each do |a|
-      .address.result
-        =link_to a.address_long, address_path(a.id)
-  .span12
-    #map{:style => "height: 400px;"}
-
-
-  .row
-    =will_paginate @addresses
+  .btn-toolbar
+    .btn-group
+      =will_paginate @addresses
 	  
 -else
-  %h4 No matches found
+  .no-search-results
+    .left-bar
+    .right-bar
+      %h4 No matches found
+      %p This means that:

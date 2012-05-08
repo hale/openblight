@@ -45,4 +45,5 @@ class Case < ActiveRecord::Base
   def most_recent_status
     self.accela_steps.last
   end
+
 end
