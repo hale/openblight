@@ -25,26 +25,43 @@ namespace :maintenances do
     end
   end
 
-  desc "Correlate demolition data with addresses"  
+  desc "Downloading archival file from s3.amazon.com"
+  task :load_2011 => :environment do |t, args|
+    args.with_defaults(:bucket_name => "neworleansdata", :file_name => "INAP_2011_ytd.xlsm")
+    p args
+
+    #connect to amazon
+    ImportHelpers.connect_to_aws
+    s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
+    downloaded_file_path = ImportHelpers.download_from_aws(s3obj)
+
+    workbook = RubyXL::Parser.parse(downloaded_file_path)
+    workbook[1].each do |row|
+      date = workbook.num_to_date(row[4].value.to_i)
+      Maintenance.create(:address_long => row[1].value, :date_completed => date, :status => row[3].value, :program_name => "INAP")
+    end
+  end
+
+  desc "Correlate maintenances data with addresses"  
   task :match => :environment  do |t, args|
     # go through each demolition
     success = 0
     failure = 0
 
-    Maintenance.find(:all).each do |row|
+    Maintenance.find(:all).each do |m|
       # compare each address in demo list to our address table
-      #address = Address.where("address_long LIKE ?", "%#{row.address_long}%")
+      #address = Address.where("address_long LIKE ?", "%#{m.address_long}%")
 
-      address = AddressHelpers.find_address(row.address_long)
+      address = AddressHelpers.find_address(m.address_long)
       unless (address.empty?)
-        Maintenance.find(row.id).update_attributes(:address_id => address.first.id)      
+        m.update_attributes(:address_id => address.first.id)
         success += 1
       else
-        puts "#{row.address_long} address not found in address table"
+        puts "#{m.address_long} address not found in address table"
         failure += 1
       end
     end
-    puts "There were #{success} successful matches and #{failure} failed matches"      
+    puts "There were #{success} successful matches and #{failure} failed matches"
   end
 
   desc "Delete all maintenances from database"
