@@ -148,40 +148,16 @@ header {
   }	
 }
 
-.ui-autocomplete {
-	background: none repeat scroll 0 0 #EEEEEE;
-    color: #AAAAAA;
-    padding: 5px 10px 10px;
-    width: 300px;
-    border: 1px solid #DDDDDD;
-    box-shadow: 0 2px 6px #CCCCCC;
 
-  li {
-    border-color: #DDDDDD;
-    border-style: solid;
-    border-width: 0 0 1px;
-    list-style-type: none;
-  }
-  a {
-    color: #333;
-    padding: 3px 10px 5px 5px;
-    display: block;
-    width: 95%;
-    &:hover, &.ui-state-hover {
-      color: #333;
-      cursor: pointer;
-      text-decoration: none;
-      background-color: red;
-    }
-  }
-}
 
 
 footer{
   border-top: 1px solid #EEEEEE;
-  bottom: 0;
+  clear: both;
+  margin-top: 17px;
+  padding-top: 17px;
+  position: relative;
   width: 100%;
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -205,12 +181,15 @@ footer{
 	display: none;
 }
 
-.case-history{
-	border: 1px solid black;
-	.span13{
-		border: 1px solid #eee;
-		padding: 5px;
-		width: 90%;
-	}
+
+.badge-yellow{
+  background-color: #F8DC8D;
+  color: #6A6867;
+  font-size: 110%;
+  font-style: italic;
+  letter-spacing: 0.7px;
+  padding: 4px 10px;
+  border-radius: 5px 5px 5px;
+
 }
 
