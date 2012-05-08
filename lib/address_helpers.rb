@@ -83,14 +83,6 @@ module AddressHelpers
     end
     return streetname;
   end
-
-  def remove_direction(streetname)
-      @street_direction.each do |(label, value)|
-        unless streetname.match(/#{label}/).nil?
-          return streetname.sub(/#{label}/, value)
-        end
-      end
-  end
   
   # even needed? should just be model call
   def find_street(name)
