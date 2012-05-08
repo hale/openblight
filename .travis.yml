@@ -9,6 +9,4 @@ before_script: "./script/ci/before.sh"
 
 script: "bundle exec rake spec"
 
-notifications:
-  email: false
 

@@ -21,5 +21,5 @@ echo "Migrate the test database"
 bundle exec rake db:test:prepare
 
 # Set up database
-echo "Creating databases for $DB and loading schema"
-bundle exec rake db:schema:load --trace
+#echo "Creating databases for $DB and loading schema"
+#bundle exec rake db:schema:load --trace
