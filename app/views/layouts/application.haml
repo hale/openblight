@@ -1,0 +1,63 @@
+!!!
+%html
+  /[if lt IE 7] <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+  /[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
+  /[if IE 8] <html class="no-js lt-ie9" lang="en">
+  %head
+    %title BlightStat.us
+    = stylesheet_link_tag    "application", :media => "all"
+    %link{:href => "http://code.leafletjs.com/leaflet-0.3.1/leaflet.css", :rel => "stylesheet"}/
+    %link{:href => "/wax/theme/controls.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://raw.github.com/mapbox/wax/master/ext/leaflet.css", :rel => "stylesheet", :type => "text/css"}/
+    = csrf_meta_tags
+    %meta{:charset => "utf-8"}
+      %meta{:content => "", :name => "description"}
+        / Mobile viewport optimized: h5bp.com/viewport
+        %meta{:content => "width=device-width", :name => "viewport"}
+  %body{"data-action" => action_name, "data-controller" => controller_name}
+    #tag
+      %a{:href => "www.codeforamerica.org"}
+        %img{:border => "0", :src => "http://jlord.us/tag_cfa.png", :width => "100px"}/
+    #topbar
+      %p
+        %img{:height => "20px", :src => "http://jlord.us/code_flag.png"}>/
+        Created for residents by Code for America in their partnership with the City of New Orleans.
+        = succeed "." do
+          %a{:href => "http://www.codeforamerica.org", :target => "_blank"} Learn more
+    %div{:class => "container container-#{controller_name} container-#{controller_name}-#{action_name}"}
+      .navbar.navbar-fixed-top
+      %header.page-header
+        %h1#logo= link_to("BlightStatus", root_path)
+        %div{ :class => "top-search-bar"}
+          - if(controller_name == 'addresses')
+            =render "addresses/search"
+
+      = yield
+      %footer
+        %a{:href => ""} About
+        \-
+        %a{:href => ""} Terms of Service
+        \-
+        %a{:href => "/stats"} Statistics
+        \-
+        %a{:href => ""} Send feedback
+        %p
+          Sample Exact Address:
+          %b 1700 S DUPRE ST
+          %br
+          Sample Ambigious Address:
+          %b 1019 CHARBONNET
+      %script{:src => "http://code.leafletjs.com/leaflet-0.3.1/leaflet.js", :type => "text/javascript"}
+      %script{:src => "https://raw.github.com/mapbox/wax/master/dist/wax.leaf.min.js", :type => "text/javascript"}
+      %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js", :type => "text/javascript"}
+      /[if lte IE 8]
+        <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.ie.css" />
+      = javascript_include_tag "application"
+      /
+        Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+        mathiasbynens.be/notes/async-analytics-snippet
+      :javascript
+        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));

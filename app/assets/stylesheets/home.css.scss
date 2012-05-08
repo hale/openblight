@@ -3,12 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .container-home{
-
-
-
+	
 	input.btn[type="submit"] {
 		font-size: 150%;
 	}	
+
+
+	.content{
+
+		width: 350px;
+		margin: 0 auto;
+		form {
+			text-align: center;
+		}	
+	
+	}
+
+  footer{
+    position: absolute;
+  }
 
 }
 

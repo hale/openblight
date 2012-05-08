@@ -1,11 +1,10 @@
-%div{:class =>'well form-search'}
-
-  =form_tag("/addresses/search", :method => "get") do
-    .span3
-      %br
-    .span6
-      =autocomplete_field_tag 'address', '', autocomplete_address_address_long_addresses_path, :placeholder => "Example: 100 House ST", :id => "main-search-field"
-    .span4
-      =submit_tag("Search Address", :class => 'btn')
-								
-			
+%div{:class => 'content frontpage' }
+  =render "addresses/search"
+  
+%div{:style => "width: 100px; text-align: center; margin:0 auto"}
+  .btn
+    %a{:href => "/map"} View Map
+  .btn
+    %a{:href => "/stats"} View Stats
+  .btn
+    %a{:href => "/cases"} View Cases

@@ -26,9 +26,9 @@ namespace :nola_data do
 
   desc "Delete all workflow data from database"
   task :drop do
-    Rake::Tash["hearings:drop"].invoke
-    Rake::Tash["demolitions:drop"].invoke
-    Rake::Tash["foreclosures:drop"].invoke
-    Rake::Tash["maintenances:drop"].invoke
+    Rake::Task["hearings:drop"].invoke
+    Rake::Task["demolitions:drop"].invoke
+    Rake::Task["foreclosures:drop"].invoke
+    Rake::Task["maintenances:drop"].invoke
   end
 end

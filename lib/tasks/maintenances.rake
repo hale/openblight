@@ -9,8 +9,10 @@ include AddressHelpers
 
 namespace :maintenances do
   desc "Downloading files from s3.amazon.com"  
-  task :load => :environment  do |t, args|
+  task :load, [:file_name, :bucket_name] => :environment  do |t, args|
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "INAP Validated Address Data entry sheet 2012.xlsx")  
+    p args
+
     #connect to amazon
     ImportHelpers.connect_to_aws
     s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name

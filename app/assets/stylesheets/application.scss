@@ -14,6 +14,26 @@
 */
 
 
+header {
+	text-align: center;
+	h1{
+    	margin: 35px 0;
+		 a{
+      color: #333333;
+      font-family: 'Open Sans Condensed', sans-serif;
+      font-size: 250%;
+      text-align: center;
+			&:hover{
+				text-decoration: none;
+				color: black;
+			}
+		}		
+	}
+}
+
+.container{
+  width: 100% !important;
+}
 
 #topbar { 
 	text-align: center; 
@@ -35,11 +55,13 @@
 		vertical-align: middle; 
 		font-weight: 300; 
 		letter-spacing: 2px;
+		padding: 4px;
 	}
 	
 	img {
 		vertical-align: middle; 
 		margin-right: 15px;
+    height: 20px;
 	}
 
 	a {
@@ -47,7 +69,7 @@
 		text-decoration: none; 
 		border-bottom:1px dotted #fff;
 	}
-	
+
 
 }
 
@@ -60,16 +82,24 @@
 }
 
 .address{
+
 	&.result{
-		border: 1px solid;
+		background-color: #FAFAFA;
+		border: 1px solid #CCCCCC;
+		margin-top: -1px;
 		padding: 5px;
-		background-color: #eee;
 
 		img{
 			float: left;
-			width: 20px;
+			width: 12px;
 			padding-right: 5px;
+		}
 
+		a{
+
+			&:hover{
+				text-decoration: none;
+			}
 		}
 	}
 }
@@ -85,88 +115,75 @@
     height: 350px;
 }
 
-header {
-	text-align: center;
-	h1{
-		 a{
-			color: #333333;
-			font-family: 'Trebuchet MS';
-			font-size: 300%;
-			text-align: center;
-			&:hover{
-				text-decoration: none;
-				color: black;
-			}
-		}		
-	}
-}
-
-
 
 
 .progress {
 	height: 30px !important; 
 	width: 100%;
+  
 	.bar {
 	  	height: 30px !important; 
 	    width: 60%;
-	}
-
-	    span {
-				border-color: #AAAAAA !important;
-				border-style: solid !important;
-				border-width: 0 1px 0 0;
-				float: left;
-				padding: 5px;
-				font-size: 120%;
-				width: 100px;
-				&:hover{
-					text-decoration: none;
-					color: black;
-	        		cursor: pointer;
-				}      
-	      a{
-	        color: white;
-	        text-decoration: none;
-	      }
-		}	
+  }
+  
+  span {
+		border-color: #AAAAAA !important;
+		border-style: solid !important;
+		border-width: 0 1px 0 0;
+		float: left;
+		padding: 5px;
+		font-size: 120%;
+		width: 100px;
+    
+		&:hover{
+			text-decoration: none;
+			color: black;
+      		cursor: pointer;
+		}
+          
+    a{
+      color: white;
+      text-decoration: none;
+    }
+  }	
 }
-
 
 .ui-autocomplete {
 	background: none repeat scroll 0 0 #EEEEEE;
     color: #AAAAAA;
     padding: 5px 10px 10px;
     width: 300px;
-	border: 1px solid #DDDDDD;
+    border: 1px solid #DDDDDD;
     box-shadow: 0 2px 6px #CCCCCC;
 
   li {
-	border-color: #DDDDDD;
+    border-color: #DDDDDD;
     border-style: solid;
     border-width: 0 0 1px;
     list-style-type: none;
-    padding: 3px 10px 5px 3px;
-
-    &:hover{
-    	background-color: red;
-    }
   }
   a {
     color: #333;
-    &:hover {
+    padding: 3px 10px 5px 5px;
+    display: block;
+    width: 95%;
+    &:hover, &.ui-state-hover {
       color: #333;
-	  cursor: pointer;
-	  text-decoration: none;
+      cursor: pointer;
+      text-decoration: none;
+      background-color: red;
     }
   }
 }
 
 
 footer{
-	text-align: center;
+  border-top: 1px solid #EEEEEE;
+  bottom: 0;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
-
 
 .form-search label{
 	width: auto;
@@ -194,7 +211,6 @@ footer{
 		border: 1px solid #eee;
 		padding: 5px;
 		width: 90%;
-
 	}
 }
 

@@ -22,9 +22,11 @@ describe AddressesController do
 
   describe "GET search" do
     it "matches the full address if it's given" do
-      get :search, :address => "1019 CHARBONNET ST"
-#      response.should be_success
-      response.should redirect_to('/addresses/424704')
+      get :search, :address => "CHARBONNET ST"
+      response.should be_success            
+      fill_in 'main-search-field', :with => 'some text'      
+      click_button "Search Address"
+      response.should redirect_to('/addresses/85102061')
     end
 
     it "matches the street name if no number is given" do
