@@ -5,7 +5,7 @@ include ImportHelpers
 
 namespace :mystery do
   desc "Download and load mystery report from s3.amazon.com"
-  task :load => :environment do |t, args|
+  task :load, [:file_name, :bucket_name] => :environment do |t, args|
     #workflow_map = { 16 => "Case Manager", 17 => "Supervisor Review", 18 => "Schedule Hearing", 19 => "Times Posting", 20 => "Web Posted", 21=>"Hearing", 22=>"Inspection (Posting of Judgement)", 23=>"Short Term Remediation", 24=>"Demolition", 25=>"Administrative", 26=>"Lien Foreclosure", 27=>"Inspection", 28=>"Closed", 29=>"Record Judgement", 30=>"Supervisor Review- Judgement" }, "HCEVU" => { }, "HCEC" => {}, "HCEID" => {}, "HCES" => { 1 => "Verify Owner", 2=> "Closed", 3=>"Sweep inspection"} }
 
     args.with_defaults(:bucket_name => "neworleansdata", :file_name => "HCEB Mystery Report.xls")
