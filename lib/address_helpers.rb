@@ -116,6 +116,7 @@ module AddressHelpers
     end
     return streetname.single_space
   end
+
   def find_address(address_string)
     unless address_string
       return []
@@ -155,7 +156,7 @@ module AddressHelpers
     address_string = abbreviate_street_direction(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
     unless address.empty?
-      return address   
+      return address
     end
 
 
@@ -163,9 +164,9 @@ module AddressHelpers
     address_street = get_street_name(address_street)
     address = Address.where("house_num = ? and street_name = ?", "#{address_string.split(' ')[0]}", "#{address_street}")
     unless address.empty?
-      return address   
+      return address
     end
     puts "Not matched: #{address_string}"
-    return []
+    []
   end
 end
