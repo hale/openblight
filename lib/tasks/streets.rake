@@ -17,7 +17,6 @@ namespace :streets do
     end
   end
 
-
   desc "Empty streets table"  
   task :drop => :environment  do |t, args|
     Street.destroy_all
