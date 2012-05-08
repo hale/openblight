@@ -16,7 +16,7 @@
   		margin: 0;
   		padding: 0 0 0 15px;
   		text-align: left;
-  		width: 300px;
+  		width: 290px;
 		}
     
 		.top-search-bar{
@@ -45,6 +45,7 @@
 	}
   
   .show-grid{
+    
     .address{
       line-height: 20px;
       margin-top: 20px;
@@ -66,20 +67,24 @@
 			border-color: #eee;
 			height: 100%;
 			min-height: 500px;
-			width: 300px;
+			width: 20%;
 		}
     
 		.right-bar{
 			float:left;
-			width: 70%;
+			width: 75%;
 			padding-left: 20px;
 		}
 	}
 	
 	.single{
-		width: 50% !important;
 		margin: 0 auto;
-    
+    width: 500px;
+    .show-grid{
+    }
+    .map{
+      width: 500px;
+    }
     .progress-bar{
       border: 1px solid #aaa;
       background-color: #f8dc8d;
@@ -149,19 +154,28 @@
       width: 58%;
       margin: 0 auto;
     }
-		.case-history{
-
+    .case-history{
+    	border: solid #aaa;
+      border-width: 1px 0 0 0 ;
+      min-height: 400px;
 			.no-data-found{
 				margin-left: 0;
 			}
-		}
+
+    	.span13{
+        border: 0 solid #EEEEEE;
+        padding: 15px 0;
+        width: 90%;    
+    	}
+    }
+    
     
     
     .status-update{
       margin: 0 auto;
       padding: 25px 0;
       text-align: center;
-      width: 80%;
+      width: 100%;
 
 
       .recent-update-notice{
@@ -181,7 +195,7 @@
     
   	#map{
       border: 2px solid #DFDFDF;
-      height: 400px;
+      height: 600px;
       position: relative;  
     }
     

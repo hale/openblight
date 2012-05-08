@@ -1,7 +1,7 @@
-.span10
+.progress-bar-wrapper
   -unless @case.nil?
     .progress-bar
-      .progress-bar-overlay{:style => "width: 80%"}    
+      .progress-bar-overlay{:style => "width: #{@progressbar}"}    
         %span{ :class=> 'property-status property-status-inspection', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"Inspectors ",  'data-original-title'=>"Inpection"}
           %a Inspection
         %span{ :class=> 'property-status property-status-notification', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"df",  'data-original-title'=>"Notification"}

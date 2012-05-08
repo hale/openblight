@@ -1,9 +1,9 @@
 .inner.single
-  .row-fluid.show-grid
-    .span10.map
+  .show-grid
+    .map
       #address{"data-x" => @address.point.x, "data-y" => @address.point.y }
         #map{:style => "height: 200px;"}
-    .span10.address
+    .address
       %h1=@address.address_long
 
     =render "addresses/progress-bar"

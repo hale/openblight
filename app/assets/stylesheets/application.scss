@@ -153,9 +153,11 @@ header {
 
 footer{
   border-top: 1px solid #EEEEEE;
-  bottom: 0;
+  clear: both;
+  margin-top: 17px;
+  padding-top: 17px;
+  position: relative;
   width: 100%;
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -179,14 +181,6 @@ footer{
 	display: none;
 }
 
-.case-history{
-	border: 1px solid black;
-	.span13{
-    border: 0 solid #EEEEEE;
-    padding: 15px 0;
-    width: 90%;    
-	}
-}
 
 .badge-yellow{
   background-color: #F8DC8D;
