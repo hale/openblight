@@ -26,16 +26,15 @@ namespace :inspections do
           if oo.row(row)[0] == label then
             inspector = Inspector.find_or_create_by_name(oo.row(row)[3])
           end
-        
           if (oo.row(row)[0].to_s.start_with?("HCEB") || oo.row(row)[0].to_s.start_with?("CEHB"))
-            c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[0], :geopin => oo.row(row)[23])
-            # i = Inspection.find_by_case_number_and_inspection_date(c.case_number,oo.row(row)[19]);#, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
-            # unless i.nil?
-            #   puts row.to_s + ": duplicate found:  #{oo.row(row).to_s}"
-            # end
-            Inspection.create(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
+            c = Case.find_or_initialize_by_case_number(:case_number => oo.row(row)[0], :geopin => oo.row(row)[23])
+            address = AddressHelpers.find_address(oo.row(row)[5])
+            unless address.empty?
+              c.address = address.first
+            end
+            c.save
+            i = Inspection.create(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
             #Inspection.find_or_create_by_case_number_and_inspection_date_and_scheduled_date_and_inspection_type_and_result(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
-            \
           end
         end
       rescue Exception=>e
