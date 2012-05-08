@@ -62,7 +62,7 @@ OpenBlight = {
         var map = new L.Map('map')
           .addLayer(new wax.leaf.connector(tilejson))
           .addLayer(new L.Marker(new L.LatLng(y , x)))
-          .setView(new L.LatLng(y , x), 20);
+          .setView(new L.LatLng(y , x), 19);
       });
     }
   }
