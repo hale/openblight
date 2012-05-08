@@ -75,15 +75,59 @@
 		width: 50% !important;
 		margin: 0 auto;
     
+      
+      
+    
     .progress-bar{
       border: 1px solid #aaa;
       background-color: #f8dc8d;
       border-radius: 5px 5px 5px;
       height: 20px;
       padding: 3px;
+      position: relative;
+
+      .progress-bar-overlay{
+        background: none repeat scroll 0 0 yellow !important;
+        border-radius: 4px 0 0 4px;
+        height: 26px;
+        width: 80%;
+        position: absolute;
+        left: 0;
+        top: 0;
+                  
+        .property-status-inspection{
+          height: 24px;
+          left: 5px;
+          padding-top: 3px;
+        }
+        .property-status-notification{
+          left: 100px;
+          height: 24px;
+          padding-top: 3px;
+        }
+        .property-status-hearing{
+          height: 24px;
+          padding-top: 3px;
+          left: 200px;
+        }
+        .property-status-judgement{
+          height: 24px;
+          padding-top: 3px;
+          left: 300px;
+        }
+        .property-status-resolution{
+          height: 24px;
+          padding-top: 3px;
+          left: 400px;
+        }
+        
+      }
+
+      
       .property-status{
-        width: 100px;
+        width: 75px;
         padding: 0 15px;
+        position: absolute;
         a{
           color: #6A6867;
           text-decoration: none;
@@ -94,6 +138,8 @@
           }
         }
       }
+
+      
     }
     
     
@@ -102,7 +148,7 @@
       margin: 0 auto;
     }
 		.case-history{
-			.span3{
+			.no-data-found{
 				margin-left: 0;
 			}
 		}
@@ -111,13 +157,23 @@
     .status-update{
       text-align: center;
       padding: 35px 0;
+      margin: 0 auto;
+      width: 300px;
+
+      .recent-update-notice{
+        text-transform: uppercase;
+        color: red;
+        font-weight: bold;
+        float: left;
+      }
+    
+      .recent-update{
+        float: left;
+      }
+
     }
     
-    .recent-update-notice{
-      text-transform: uppercase;
-      color: red;
-      font-weight: bold;
-    }
+
     
   	#map{
       border: 2px solid #DFDFDF;
@@ -131,6 +187,7 @@
     }
     .status{
       float: left;
+      text-align: center;
       width: 50px;
     }
     .note{

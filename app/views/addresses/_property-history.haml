@@ -9,11 +9,11 @@
           %h5 Case Number: #{@case.case_number}
 
     .span13
+      .classification
+        %span{:class=>'badge-yellow'} Inspections
+      .status
+        =image_tag('check_mark.png', :width => '30px')
       -unless @case.inspections.empty?
-        .classification
-          %span{:class=>'badge-yellow'} Inspections
-        .status
-          =image_tag('check_mark.png', :width => '30px')
         .note
           -@case.inspections.each do |i|
             .inspection
@@ -21,13 +21,13 @@
               =i.inspection_date.strftime("%m/%d/%Y")
               =i.inspection_type
       -else
-        .span4
+        .span4.no-data-found
           No Data Found
 
     .span13
+      .classification
+        %span{:class=>'badge-yellow'} Notification
       -unless @case.notifications.empty?
-        .classification
-          %span{:class=>'badge-yellow'} Notification
         .status
           =image_tag('check_mark.png', :width => '30px')
         .note
@@ -36,7 +36,7 @@
               =n.date.strftime("%m/%d/%Y")
               =n.notes
       -else
-        .span4 
+        .span4.no-data-found
           No Data Found
 
     .span13
@@ -51,7 +51,7 @@
               =h.hearing_date.strftime("%m/%d/%Y")
               =h.hearing_status
       -else
-        .span4 
+        .span4.no-data-found
           No Data Found
 
     .span13
@@ -64,36 +64,30 @@
           .hearing
             %t=@case.judgement.notes
       -else
-        .span4 
+        .span4.no-data-found
           No Data Found
 
-    .span13
-      .classification
-        %span{:class=>'badge-yellow'} Resets
-      .status
-        =image_tag('check_mark.png', :width => '30px')
-      .note
-      -unless @case.resets.empty?
-        .span4 
-          -@case.resets.each do |r|
-            .reset
-              ="This case was reset on " << r.reset_date.strftime("%m/%d/%Y")
-      -else
-        .span3
-          No Data Found
+    -unless @case.resets.empty?
+      .span13
+        .classification
+          %span{:class=>'badge-yellow'} Resets
+        .status
+          =image_tag('check_mark.png', :width => '30px')
+        .note
+          .span4 
+            -@case.resets.each do |r|
+              .reset
+                ="This case was reset on " << r.reset_date.strftime("%m/%d/%Y")
 
-    .span13
-      .classification
-        %span{:class=>'badge-yellow'} Resolution
-      .status
-        =image_tag('check_mark.png', :width => '30px')
-      .note
-      -unless @address.resolutions.empty?
-        .span4
-          -@address.resolutions.each do |r|
-            .resolution
-              =r.class
-              =r.date.strftime("%m/%d/%Y")
-      -else
-        .span3
-          No Data Found
+    -unless @address.resolutions.empty?
+      .span13
+        .classification
+          %span{:class=>'badge-yellow'} Resolution
+        .status
+          =image_tag('check_mark.png', :width => '30px')
+        .note
+          .span4
+            -@address.resolutions.each do |r|
+              .resolution
+                =r.class
+                =r.date.strftime("%m/%d/%Y")

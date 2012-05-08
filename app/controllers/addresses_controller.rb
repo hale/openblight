@@ -20,7 +20,26 @@ class AddressesController < ApplicationController
     unless @c.first.nil?
       @case = Case.find(@c.first.id)
     end
-    respond_with(@address, @case)
+
+    unless @case.inspections.nil?
+      @progressbar = '20%'
+    end
+    unless @case.notifications.nil?
+      @progressbar = '40%'
+    end
+    unless @case.hearings.nil?
+      @progressbar = '60%'
+    end
+    unless @case.judgement.nil?
+      @progressbar = '80%'
+    end
+    # unless @case.resolutions.nil?
+    #   @progressbar = '100%'
+    # end
+
+  
+    
+    respond_with(@address, @case, @progressbar)
   end
   
   def search
@@ -45,10 +64,6 @@ class AddressesController < ApplicationController
     end
   end
 
-
-  def stats
-
-  end
   
 
 end
