@@ -183,7 +183,18 @@ module AddressHelpers
       return address
     end
 
-    puts "Not matched: #{orig_address}"
+    puts "Not matched by address: #{orig_address}"
+    []
+  end
+
+  def find_address_by_geopin(geopin)
+    unless geopin
+      return []
+    end
+    address = Address.where("geopin = ?", geopin)
+    unless address.empty?
+      return address
+    end
     []
   end
 end
