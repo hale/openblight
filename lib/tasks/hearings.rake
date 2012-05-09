@@ -72,14 +72,14 @@ namespace :hearings do
                 time = time.split(":")
 
                 reset_date = DateTime.new(date[2].to_i,date[0].to_i,date[1].to_i,time[0].to_i,time[1].to_i,time[2].to_i)
-                Reset.find_or_create_by_case_number_and_reset_date(:case_number => oo.row(row)[10], :reset_date => reset_date, :notes => oo.row(row)[21])
+                Reset.create(:case_number => oo.row(row)[10], :reset_date => reset_date, :notes => oo.row(row)[21])
             end
 
             unless oo.row(row)[14].nil?
-                Notification.find_or_create_by_case_number_and_notified(:case_number => oo.row(row)[10], :notified => oo.row(row)[14], :notification_type => 'hearing owner')
+                Notification.create(:case_number => oo.row(row)[10], :notified => oo.row(row)[14], :notification_type => 'Notice of Hearing')
             end
 
-            Hearing.find_or_create_by_case_number(:case_number => c.case_number, :hearing_date => hearing_datetime, :hearing_status => status, :reset_hearing => oo.row(row)[22].nil?, :one_time_fine => oo.row(row)[25], :court_cost => oo.row(row)[25], :recordation_cost => oo.row(row)[26], :hearing_fines_owed => oo.row(row)[27], :daily_fines_owed => oo.row(row)[28], :fines_paid => oo.row(row)[29], :date_paid => oo.row(row)[30], :amount_still_owed => oo.row(row)[31], :grace_days=> oo.row(row)[32], :grace_end => oo.row(row)[33], :case_manager => m.id, :tax_id => oo.row(row)[34])
+            Hearing.create(:case_number => c.case_number, :hearing_date => hearing_datetime, :hearing_status => status, :reset_hearing => oo.row(row)[22].nil?, :one_time_fine => oo.row(row)[25], :court_cost => oo.row(row)[25], :recordation_cost => oo.row(row)[26], :hearing_fines_owed => oo.row(row)[27], :daily_fines_owed => oo.row(row)[28], :fines_paid => oo.row(row)[29], :date_paid => oo.row(row)[30], :amount_still_owed => oo.row(row)[31], :grace_days=> oo.row(row)[32], :grace_end => oo.row(row)[33], :case_manager => m.id, :tax_id => oo.row(row)[34])
             status = nil
         end
     end

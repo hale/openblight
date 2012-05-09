@@ -32,7 +32,7 @@ namespace :mystery do
         i.case = c
         i.save
       end
-      
+
       if row[5].to_i == 21 #hearing
         h = Hearing.new(:hearing_date => row[8])
         h.case = c
