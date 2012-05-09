@@ -20,6 +20,10 @@ psql -c "CREATE DATABASE openblight_test WITH TEMPLATE = template_postgis;" -U p
 echo "Migrate the test database"
 bundle exec rake db:test:prepare
 
+echo "Run Migrations"
+bundle exec rake db:migrate
+
+
 # Set up database
 #echo "Creating databases for $DB and loading schema"
 #bundle exec rake db:schema:load --trace
