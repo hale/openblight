@@ -11,7 +11,7 @@
 
 	.content{
 
-		width: 350px;
+		width: 525px;
 		margin: 0 auto;
 		form {
 			text-align: center;
@@ -35,13 +35,14 @@
 
 
   .search-form{
-    width: 500px;
-
+    width: 515px;
+    
     .search-field{
       float: left;
     }
     .search-button{
       float: left;
+      padding: 1px 2px;
     }
   }
   
