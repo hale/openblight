@@ -26,10 +26,10 @@ namespace :maintenances do
       end
     else
       workbook = RubyXL::Parser.parse(downloaded_file_path)
-      workbook[1].each do |row|
-        r_date = workbook.num_to_date(row[5].value.to_i)
-        c_date = workbook.num_to_date(row[7].value.to_i)
-        Maintenance.create(:house_num => row[0].value, :street_name => row[1].value, :street_type => AddressHelpers.get_street_type(row[2].value), :address_long => AddressHelpers.abbreviate_street_types(row[3].value), :date_recorded => r_date, :date_completed => c_date, :program_name => row[10].value, :status => row[9].value)
+      if workbook[1][0][0].value == "Number"
+        Maintenance.import_from_workbook(workbook, workbook[1])
+      else
+        Maintenance.import_from_workbook(workbook, workbook[2])
       end
     end
   end
