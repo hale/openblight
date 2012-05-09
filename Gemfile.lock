@@ -231,6 +231,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.2)
   rails3-jquery-autocomplete
+  rake
   rgeo
   rgeo-geojson
   rgeo-shapefile
