@@ -1,7 +1,7 @@
 .progress-bar-wrapper
   -unless @case.nil?
     .progress-bar
-      .progress-bar-overlay{:style => "width: #{@progressbar}"}    
+      .progress-bar-overlay{:style => "width: #{@progressbar}"}
         %span{ :class=> 'property-status property-status-inspection', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"Inspectors ",  'data-original-title'=>"Inpection"}
           %a Inspection
         %span{ :class=> 'property-status property-status-notification', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"df",  'data-original-title'=>"Notification"}
@@ -12,4 +12,6 @@
           %a Judgements
         %span{ :class=> 'property-status property-status-resolution', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"sdfsf",  'data-original-title'=>"Resolution"} 
           %a Resolution
+      .progress-bar-icon{:style => "left: #{@progressarrow}"}
+		  
         

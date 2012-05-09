@@ -1,7 +1,8 @@
 .inner
   .row-fluid{"class" => "show-grid"}
     %h1 Statistics
-    %p Find me in app/views/statistics/show.haml
+	
+    %h2 Data Quality
     %table{:border => "0"}
       %tr
         %th/
@@ -88,3 +89,36 @@
             %td
               = Demolition.count(:conditions => "address_id is not null").to_f / Demolition.count.to_f * 100
               \%
+			  
+    %h2 City Stats
+    %table{:border => "0"}
+      %tr
+        %tr
+          %th Hearings
+          %td Guilty
+          %td Reset
+          %td Closed
+        %tr
+        %tr
+          %th 
+          %td=Hearing.count(:conditions => "hearing_status = 'guilty'")
+          %td=Hearing.count(:conditions => "hearing_status = 'reset'")
+          %td=Hearing.count(:conditions => "hearing_status = 'closed'")
+        %tr
+      %tr
+        %tr
+          %th Inspections
+          %td Abated
+          %td Violation WIP
+          %td Violation Posted No WIP
+          %td Violation Unoccupied
+          %td Demolished
+        %tr
+        %tr
+          %th 
+          %td=Inspection.count(:conditions => "result = 'Abated'")
+          %td=Inspection.count(:conditions => "result = 'Violation WIP'")
+          %td=Inspection.count(:conditions => "result = 'Violation Posted No WIP'")
+          %td=Inspection.count(:conditions => "result = 'Violation Unoccupied'")
+          %td=Inspection.count(:conditions => "result = 'Demolished'")
+        %tr

@@ -21,24 +21,39 @@ class AddressesController < ApplicationController
       @case = Case.find(@c.first.id)
     end
 
-
+    # TODO: better solution to this; once we break down the regions into subregions this should be 
+    # developed or use bootstrap
     @progressbar = '0%'
     unless @case.nil?
-      unless @case.inspections.nil?
+      unless @case.inspections.empty?
         @progressbar = '20%'
+        @progressarrow = '18%'
       end
-      unless @case.notifications.nil?
+      unless @case.notifications.empty?
         @progressbar = '40%'
+        @progressarrow = '38%'
       end
-      unless @case.hearings.nil?
+      unless @case.hearings.empty?
         @progressbar = '60%'
+        @progressarrow = '58%'
       end
       unless @case.judgement.nil?
         @progressbar = '80%'
+        @progressarrow = '78%'
       end
-      # unless @case.resolutions.nil?
-      #   @progressbar = '100%'
-      # end
+      unless @address.maintenances.empty?
+        @progressbar = '100%'
+        @progressarrow = '98%'
+      end      
+      unless @address.demolitions.empty?
+        @progressbar = '100%'
+        @progressarrow = '98%'
+      end      
+      unless @address.foreclosures.empty?
+        @progressbar = '100%'
+        @progressarrow = '98%'
+      end      
+      
     end
   
     respond_with(@address, @case, @progressbar)

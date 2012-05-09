@@ -19,11 +19,31 @@
 	
 	}
 	
+  
+  .demo{
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    bottom: 100px;
+  }
 
   footer{
     position: absolute;
-	bottom: 0;
+  	bottom: 0;
+  	padding-bottom: 15px;
   }
 
+
+  .search-form{
+    width: 500px;
+
+    .search-field{
+      float: left;
+    }
+    .search-button{
+      float: left;
+    }
+  }
+  
 }
 

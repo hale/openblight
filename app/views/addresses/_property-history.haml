@@ -1,6 +1,7 @@
 %div{ :class => 'case-history' }
   .span13
     -unless @case.nil?
+    
       %h3 Property History
       .case_number
         -unless @case.case_number.nil?
@@ -17,18 +18,27 @@
               .inspection
                 Property was inspected
                 %b #{i.inspection_date.strftime("%m/%d/%Y")}
+        -if @case.inspections.empty? && !@case.notifications.empty?
+          .inspection
+            No Data Available
+          
+                
 
       .span13
-        .classification
-          %span{:class=>'badge-yellow'} Notification
-        .status
-          =image_tag('check_mark.png', :width => '20px')
         -unless @case.notifications.empty?
-          .note
-            -@case.notifications.each do |n|
-              .notificaton
-                =n.date.strftime("%m/%d/%Y")
-                =n.notes
+          .classification
+            %span{:class=>'badge-yellow'} Notification
+          .status
+            =image_tag('check_mark.png', :width => '20px')
+          -unless @case.notifications.empty?
+            .note
+              -@case.notifications.each do |n|
+                .notificaton
+                  The owner was notified on #{n.date.strftime("%m/%d/%Y")} that an administrative case is being brought against this property for violations of New Orleans Building Code.
+          -if @case.notifications.empty? && !@case.hearings.empty?
+            .notificaton
+              No Data Available
+
 
       .span13
         -unless @case.hearings.empty?
@@ -39,7 +49,7 @@
           .note
             -@case.hearings.each do |h|
               .hearing
-                =h.hearing_date.strftime("%m/%d/%Y")
+                The case against this property will be heard in a public hearing at 10:00am on #{h.hearing_date.strftime("%m/%d/%Y")} at New Orleans Courthouse, 1234 Perdido St.         
                 =h.hearing_status
 
       .span13
@@ -64,6 +74,7 @@
                 .reset
                   ="This case was reset on " << r.reset_date.strftime("%m/%d/%Y")
 
+
       -unless @address.resolutions.empty?
         .span13
           .classification
@@ -74,5 +85,5 @@
             .span4
               -@address.resolutions.each do |r|
                 .resolution
-                  =r.class
+                  This property was successfully demolished by #{r.program_name} on 
                   =r.date.strftime("%m/%d/%Y")
