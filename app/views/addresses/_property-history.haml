@@ -1,5 +1,5 @@
 %div{ :class => 'case-history' }
-  .span13
+  %div
     -unless @case.nil?
     
       %h3 Property History
@@ -42,10 +42,10 @@
               No Data Available
 
 
-      .span13
-        -unless @case.hearings.empty?
+      -unless @case.hearings.empty?
+        .span13
           .classification
-            %span{:class=>'badge-yellow'} Hearing
+            %span{:class=>'badge-yellow'} Hearing Scheduled?
           .status
             =image_tag('check_mark.png', :width => '20px')
           .note
@@ -57,12 +57,18 @@
                 %b #{h.hearing_date.strftime("%m/%d/%Y")} 
                 at New Orleans Courthouse, 1234 Perdido St.         
                 =h.hearing_status
+                
+      .span13                
         -if !@case.hearings.empty? && @case.judgement.nil?
-          .alert{:style => "clear: both; margin-top: 100px; color: black"}
-            %h3
-              Inspection Scheduled
-            %p
-              The Department of Code Enforcement is working to schedule a hearing of this property. The hearing date will be displayed here as soon as it is scheduled. 
+          .classification
+            %span{:class=>'badge-yellow'} Judgment Reached?
+          .status 
+            %b{:style=>"color:red"} Pending
+          .note
+            Hearings provide an opportunity for the property owner and other concerned citizens to bring evidence to help inform the judge’s decision. 
+            A judgement will be posted shortly after the scheduled hearing date.
+
+              
                 
 
       .span13

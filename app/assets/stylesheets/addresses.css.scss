@@ -24,6 +24,7 @@
 	    .search-field{
 	      font-size: 100%;
 				float: left;
+        margin-left: 20px;
 				
 				#main-search-field {
 					font-size: 140%;
@@ -236,7 +237,8 @@
     .status{
       float: left;
       text-align: center;
-      width: 50px;
+      width: 100px;
+
     }
     .note{
       float: left;
@@ -254,12 +256,16 @@
     }
 
 	}
-	
-
-	
-		
+  	
 }
 
 .leaflet-container .leaflet-control-attribution{
 	display: none;
+}
+
+
+.leaflet-popup-content h4{
+  font-size: 14px;
+  line-height: 16px;
+  padding-bottom: 10px;
 }
