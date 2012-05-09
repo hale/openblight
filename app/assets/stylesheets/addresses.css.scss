@@ -21,10 +21,7 @@
     
 		.top-search-bar{
       
-	    float: left;
-      padding: 5px;
-
-	    .search-form{
+	    .search-field{
 	      font-size: 100%;
 				float: left;
 				
@@ -68,23 +65,48 @@
 			height: 100%;
 			min-height: 500px;
 			width: 20%;
+      
+      h8{
+        text-transform:capitalize;
+      }
 		}
     
 		.right-bar{
 			float:left;
 			width: 74%;
 			padding-left: 20px;
+
+    	#map{
+        border: 1px solid black;
+        height: 600px !important;
+        position: relative;  
+      }
+      
 		}
 	}
 	
 	.single{
 		margin: 0 auto;
     width: 500px;
+    
     .show-grid{
+    
     }
+    
     .map{
       width: 500px;
     }
+  
+    
+    .progress-bar-icon{
+      background: url('/assets/progress_arrow.png') no-repeat;
+      bottom: -11px;
+      height: 10px;
+      position: absolute;
+      right: 0;
+      width: 25px;
+    }
+                    
     .progress-bar{
       border: 1px solid #aaa;
       background-color: #f8dc8d;
@@ -94,14 +116,14 @@
       position: relative;
 
       .progress-bar-overlay{
-        background: none repeat scroll 0 0 yellow !important;
+        background-color: yellow !important;
         border-radius: 4px 0 0 4px;
         height: 26px;
         width: 80%;
         position: absolute;
         left: 0;
         top: 0;
-                  
+        
         .property-status-inspection{
           height: 24px;
           left: 5px;
@@ -187,17 +209,25 @@
     
       .recent-update{
         display: inline;
+        text-align:left;
+      }
+      
+      .no-record-notice{
+        font-size: 120%;
+        font-weight: bold;
+        color: red;
+        padding: 0 0 10px;
+        text-align: left;
+      }
+      
+      .recommended-next-action{
+        text-align: left;
       }
 
     }
     
 
     
-  	#map{
-      border: 2px solid #DFDFDF;
-      height: 600px;
-      position: relative;  
-    }
     
     .classification{
       float: left;

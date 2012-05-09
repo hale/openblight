@@ -1,9 +1,6 @@
-=form_tag("/addresses/search", :method => "get") do
-
-  .search-form
-    =text_field_tag 'address', '', :placeholder => "Example: 100 House ST", :id => "main-search-field"
-  .search-button
-    =submit_tag("Search Address", :class => 'btn')
-
--# => =autocomplete_field_tag 'address', '', autocomplete_address_address_long_addresses_path, :placeholder => "Example: 100 House ST", :id => "main-search-field"
-		
+.search-form
+  =form_tag("/addresses/search", :method => "get") do
+    .search-field
+      =text_field_tag 'address', '', :placeholder => "Example: 100 House ST", :id => "main-search-field"
+    .search-button
+      =submit_tag("Search Address", :class => 'btn')
