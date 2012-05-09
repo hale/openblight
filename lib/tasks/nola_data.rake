@@ -27,6 +27,10 @@ namespace :nola_data do
     Rake::Task["inspections:load"].invoke("HCEB_Completed_Inspection_by_Inspector_20111101-20120131.xls")
     Rake::Task["inspections:load"].reenable
     Rake::Task["inspections:load"].invoke("HCEB_Completed_Inspection_by_Inspector_20120401-20120501.xls")
+    Rake::Task["inspections:load"].reenable
+    Rake::Task["inspections:load"].invoke("HCEB_Completed_Inspections_By_Inspector_20110901-20110930.xls")
+    Rake::Task["inspections:load"].reenable
+    Rake::Task["inspections:load"].invoke("HCEB_Completed_Inspections_By_Inspector_20111001-20111031.xls")
 
     #hearings
     Rake::Task["hearings:load"].invoke("HCEB_Hearings_Docket_09012011-10312011.xls")
