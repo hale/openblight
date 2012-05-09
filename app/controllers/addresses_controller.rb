@@ -56,6 +56,7 @@ class AddressesController < ApplicationController
       
     end
   
+    puts @address.inspect
     respond_with(@address, @case, @progressbar)
   end
   
