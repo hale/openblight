@@ -33,8 +33,7 @@ namespace :inspections do
               c.address = address.first
             end
             c.save
-            i = Inspection.create(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
-            #Inspection.find_or_create_by_case_number_and_inspection_date_and_scheduled_date_and_inspection_type_and_result(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
+            i = Inspection.find_or_create_by_case_number_and_inspection_date(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
           end
         end
       rescue Exception=>e
