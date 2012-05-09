@@ -9,7 +9,7 @@
 
       .span13
         .classification
-          %span{:class=>'badge-yellow'} Inspections
+          %span{:class=>'badge-yellow'} Inspected?
         .status
           =image_tag('check_mark.png', :width => '20px')
         -unless @case.inspections.empty?
@@ -27,7 +27,7 @@
       .span13
         -unless @case.notifications.empty?
           .classification
-            %span{:class=>'badge-yellow'} Notification
+            %span{:class=>'badge-yellow'} Owner Notified?
           .status
             =image_tag('check_mark.png', :width => '20px')
           -unless @case.notifications.empty?
@@ -74,7 +74,7 @@
       .span13
         -unless @case.judgement.nil?
           .classification
-            %span{:class=>'badge-yellow'} Judgement
+            %span{:class=>'badge-yellow'} Judgment Reached?
           .status
             =image_tag('check_mark.png', :width => '20px')
           .note
@@ -97,7 +97,7 @@
       -unless @address.resolutions.empty?
         .span13
           .classification
-            %span{:class=>'badge-yellow'} Resolution
+            %span{:class=>'badge-yellow'} Resolved?
           .status
             =image_tag('check_mark.png', :width => '20px')
           .note

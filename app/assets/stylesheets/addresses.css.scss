@@ -20,7 +20,10 @@
 		}
     
 		.top-search-bar{
-      
+      float: left;
+      margin: -10px 20px;
+      padding: 0;
+
 	    .search-field{
 	      font-size: 100%;
 				float: left;
@@ -37,6 +40,9 @@
 	    .search-button{
 	      font-size: 100%;
 				float: left;
+        .btn{
+          height: 30px;
+        }
 	    }
 			
 	  }
@@ -109,46 +115,48 @@
     }
                     
     .progress-bar{
-      border: 1px solid #aaa;
-      background-color: #f8dc8d;
-      border-radius: 5px 5px 5px;
-      height: 20px;
+      background-color: #F8DC8D;
+      border: 0 solid #AAAAAA;
+      border-radius: 10px 10px 10px 10px;
+      height: 30px;
       padding: 3px;
       position: relative;
-
+      text-transform: uppercase;
+      margin-top: 10px;
+          
       .progress-bar-overlay{
-        background-color: yellow !important;
-        border-radius: 4px 0 0 4px;
-        height: 26px;
+        background-color: #f9CC5d !important;
+        border-radius: 10px 0 0 10px;
+        height: 35px;
         width: 80%;
         position: absolute;
         left: 0;
         top: 0;
         
         .property-status-inspection{
-          height: 24px;
+          height: 35px;
           left: 5px;
-          padding-top: 3px;
+          padding-top: 9px;
         }
         .property-status-notification{
           left: 100px;
           height: 24px;
-          padding-top: 3px;
+          padding-top: 9px;
         }
         .property-status-hearing{
           height: 24px;
-          padding-top: 3px;
-          left: 200px;
+          padding-top: 9px;
+          left: 210px;
         }
         .property-status-judgement{
           height: 24px;
-          padding-top: 3px;
-          left: 300px;
+          padding-top: 9px;
+          left: 290px;
         }
         .property-status-resolution{
           height: 24px;
-          padding-top: 3px;
-          left: 400px;
+          padding-top: 9px;
+          left: 390px;
         }
         
       }
@@ -203,7 +211,7 @@
 
       .recent-update-notice{
         text-transform: uppercase;
-        color: red;
+        color: #DC5C52;
         font-weight: bold;
         display: inline;
       }
@@ -216,7 +224,7 @@
       .no-record-notice{
         font-size: 120%;
         font-weight: bold;
-        color: red;
+        color: #DC5C52;
         padding: 0 0 10px;
         text-align: left;
       }
