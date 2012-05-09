@@ -34,7 +34,9 @@
             .note
               -@case.notifications.each do |n|
                 .notificaton
-                  The owner was notified on #{n.date.strftime("%m/%d/%Y")} that an administrative case is being brought against this property for violations of New Orleans Building Code.
+                  The owner was notified on 
+                  %b #{n.date.strftime("%m/%d/%Y")} 
+                  that an administrative case is being brought against this property for violations of New Orleans Building Code.
           -if @case.notifications.empty? && !@case.hearings.empty?
             .notificaton
               No Data Available
@@ -49,8 +51,19 @@
           .note
             -@case.hearings.each do |h|
               .hearing
-                The case against this property will be heard in a public hearing at 10:00am on #{h.hearing_date.strftime("%m/%d/%Y")} at New Orleans Courthouse, 1234 Perdido St.         
+                The case against this property will be heard in a public hearing at 
+                %b 10:00am 
+                on 
+                %b #{h.hearing_date.strftime("%m/%d/%Y")} 
+                at New Orleans Courthouse, 1234 Perdido St.         
                 =h.hearing_status
+        -if !@case.hearings.empty? && @case.judgement.nil?
+          .alert{:style => "clear: both; margin-top: 100px; color: black"}
+            %h3
+              Inspection Scheduled
+            %p
+              The Department of Code Enforcement is working to schedule a hearing of this property. The hearing date will be displayed here as soon as it is scheduled. 
+                
 
       .span13
         -unless @case.judgement.nil?
@@ -85,5 +98,5 @@
             .span4
               -@address.resolutions.each do |r|
                 .resolution
-                  This property was successfully demolished by #{r.program_name} on 
-                  =r.date.strftime("%m/%d/%Y")
+                  This property was successfully demolished by #{r.program_name} 
+                  -# =r.date.strftime("%m/%d/%Y")

@@ -16,7 +16,7 @@ A dashboard for the city of New Orlean's Code Enforecement process
 You can see a running version of the application at
 [http://blightstatus-dev.herokuapp.com/][demo].
 
-[demo]: http://openblight.herokuapp.com/
+[demo]: http://blightstatus-dev.herokuapp.com/
 
 ## <a name="installation"></a>Installation
     git clone git://github.com/codeforamerica/openblight.git

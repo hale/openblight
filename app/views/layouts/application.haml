@@ -4,7 +4,7 @@
   /[if IE 7] <html class="no-js lt-ie9 lt-ie8" lang="en">
   /[if IE 8] <html class="no-js lt-ie9" lang="en">
   %head
-    %title BlightStatus
+    %title blightSTATUS
     = stylesheet_link_tag    "application", :media => "all"
     %link{:href => "http://code.leafletjs.com/leaflet-0.3.1/leaflet.css", :rel => "stylesheet"}/
     %link{:href => "/wax/theme/controls.css", :rel => "stylesheet", :type => "text/css"}/
@@ -16,7 +16,7 @@
         %meta{:content => "width=device-width", :name => "viewport"}
   %body{"data-action" => action_name, "data-controller" => controller_name}
     #tag
-      %a{:href => "www.codeforamerica.org"}
+      %a{:href => "http://www.codeforamerica.org"}
         %img{:border => "0", :src => "http://jlord.us/tag_cfa.png", :width => "100px"}/
     #topbar
       %p
@@ -27,7 +27,7 @@
     %div{:class => "container container-#{controller_name} container-#{controller_name}-#{action_name}"}
       .navbar.navbar-fixed-top
       %header.page-header
-        %h1#logo= link_to("BlightStatus", root_path)
+        %h1#logo= link_to("blightSTATUS", root_path)
         %div{ :class => "top-search-bar"}
           - if(controller_name == 'addresses')
             =render "addresses/search"
@@ -51,13 +51,13 @@
             %a{:href => "/addresses/search?utf8=%E2%9C%93&address=MISTLETOE+ST+&commit=Search+Address"} MISTLETOE ST
             %br
             %b No Case:
-            %a{:href => "/addresses/433193" } 100 ALDEN PL
+            %a{:href => "/addresses/15642" } 100 ALDEN PL
             %br
-            %b Judgement Compliance:
-            %a{:href => "/addresses/584591"} 2534 MISTLETOE ST
+            %b Hearing Pending:
+            %a{:href => "/addresses/70086"} 2534 MISTLETOE ST
             %br
             %b Resolution:
-            %a{:href => "/addresses/462192"} 3137 PAUGER ST
+            %a{:href => "/addresses/44641"} 3137 PAUGER ST
 
             %br
             .btn
