@@ -17,11 +17,11 @@ psql -d template_postgis -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatia
 echo "Setup test database"
 psql -c "CREATE DATABASE openblight_test WITH TEMPLATE = template_postgis;" -U postgres
 
-echo "Migrate the test database"
-bundle exec rake db:test:prepare
-
 echo "Run Migrations"
 bundle exec rake db:migrate
+
+echo "Migrate the test database"
+bundle exec rake db:test:prepare
 
 
 # Set up database
