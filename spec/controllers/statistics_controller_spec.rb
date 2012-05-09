@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe StatisticsController do
 
-  describe "GET 'show'" do
-    it "returns http success" do
-      get 'show'
+  describe "GET index" do
+    it "returns a response" do
+      get 'index'
       response.should be_success
     end
   end
