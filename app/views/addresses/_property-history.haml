@@ -1,7 +1,7 @@
 %div{ :class => 'case-history' }
   %div
     -unless @case.nil?
-    
+
       %h3 Property History
       .case_number
         -unless @case.case_number.nil?
@@ -21,8 +21,6 @@
         -if @case.inspections.empty? && !@case.notifications.empty?
           .inspection
             No Data Available
-          
-                
 
       .span13
         -unless @case.notifications.empty?
@@ -51,13 +49,12 @@
           .note
             -@case.hearings.each do |h|
               .hearing
-                The case against this property will be heard in a public hearing at 
+                The case against this property #{h.date > Time.now ? 'will be' : 'was'} heard in a public hearing at 
                 %b 10:00am 
                 on 
                 %b #{h.hearing_date.strftime("%m/%d/%Y")} 
-                at New Orleans Courthouse, 1234 Perdido St.         
-                =h.hearing_status
-                
+                at New Orleans Courthouse, 1234 Perdido St. with an outcome of #{h.hearing_status}
+
       .span13                
         -if !@case.hearings.empty? && @case.judgement.nil?
           .classification
