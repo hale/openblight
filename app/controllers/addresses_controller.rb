@@ -15,11 +15,7 @@ class AddressesController < ApplicationController
 
   def show
     @address = Address.find(params[:id])
-    @c = Case.where("address_id = ?", @address.id)
-    @case = nil
-    unless @c.first.nil?
-      @case = Case.find(@c.first.id)
-    end
+    @case = @address.cases.first
 
     # TODO: better solution to this; once we break down the regions into subregions this should be 
     # developed or use bootstrap
