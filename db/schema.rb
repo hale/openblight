@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504031005) do
+ActiveRecord::Schema.define(:version => 20120511005104) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -168,6 +168,13 @@ ActiveRecord::Schema.define(:version => 20120504031005) do
     t.datetime "updated_at",  :null => false
     t.datetime "reset_date"
     t.string   "notes"
+  end
+
+  create_table "searches", :force => true do |t|
+    t.text     "term"
+    t.string   "ip"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "streets", :force => true do |t|

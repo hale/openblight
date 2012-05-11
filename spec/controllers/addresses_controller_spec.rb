@@ -37,6 +37,12 @@ describe AddressesController do
       get :search, :address => "155 9th St, San Francisco, CA" 
       assigns(:addresses).should eq([])
     end
+
+    it "saves the search terms and user's ip address" do
+      get :search, :address => "My house!"
+      Search.last.term.should eq "My house!"
+      Search.last.ip.should eq "0.0.0.0"
+    end
   end
 
 end
