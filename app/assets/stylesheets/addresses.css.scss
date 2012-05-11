@@ -186,9 +186,6 @@
       margin: 0 auto;
     }
     .case-history{
-    	border: solid #aaa;
-      border-width: 1px 0 0 0 ;
-      min-height: 400px;
 			.no-data-found{
 				margin-left: 0;
 			}
@@ -200,7 +197,12 @@
     	}
     }
     
-    
+    .case {
+    	border: solid #aaa;
+      border-width: 1px 0 0 0 ;
+      margin: 30px 0 20px;
+      padding: 10px 0;
+    }
     
     .status-update{
       margin: 0 auto;

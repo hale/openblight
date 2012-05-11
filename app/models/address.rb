@@ -5,6 +5,11 @@ class Address < ActiveRecord::Base
   has_many :foreclosures
   has_many :maintenances
 
+  has_many :inspections, :through => :cases
+  has_many :notifications, :through => :cases
+  has_many :hearings, :through => :cases
+  has_many :judgements, :through => :cases
+
   validates_uniqueness_of :address_id
 	#validates_uniqueness_of :parcel_id
   #validates_uniqueness_of :geopin
