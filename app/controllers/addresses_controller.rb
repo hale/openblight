@@ -17,45 +17,10 @@ class AddressesController < ApplicationController
     @address = Address.find(params[:id])
     @cases = @address.cases
 
-    # TODO: better solution to this; once we break down the regions into subregions this should be 
-    # developed or use bootstrap
-    @progressbar = '0%'
-    unless @address.workflow_steps.nil?
-      unless @address.inspections.empty?
-        @progressbar = '20%'
-        @progressarrow = '18%'
-      end
-      unless @address.notifications.empty?
-        @progressbar = '40%'
-        @progressarrow = '38%'
-      end
-      unless @address.hearings.empty?
-        @progressbar = '60%'
-        @progressarrow = '58%'
-      end
-      unless @address.judgements.empty?
-        @progressbar = '80%'
-        @progressarrow = '78%'
-      end
-      unless @address.maintenances.empty?
-        @progressbar = '100%'
-        @progressarrow = '98%'
-      end      
-      unless @address.demolitions.empty?
-        @progressbar = '100%'
-        @progressarrow = '98%'
-      end      
-      unless @address.foreclosures.empty?
-        @progressbar = '100%'
-        @progressarrow = '98%'
-      end      
-      
-    end
-  
     puts @address.inspect
-    respond_with(@address, @case, @progressbar)
+    respond_with(@address, @case)
   end
-  
+
   def search
     search_term = params[:address]
     Search.create(:term => search_term, :ip => request.remote_ip)

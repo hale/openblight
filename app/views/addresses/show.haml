@@ -16,3 +16,19 @@
         .case
           =render :partial => "addresses/property-history", :locals => {:kase => c}
         .clearfix
+      .case
+        -unless @address.resolutions.empty?
+          .case_number
+            %h5 Resolution
+          .span13
+            .classification
+              %span{:class=>'badge-yellow'} Resolved?
+            .status
+              =image_tag('check_mark.png', :width => '20px')
+            .note
+              .span4
+                -@address.resolutions.each do |r|
+                  .resolution
+                    This property was successfully demolished by #{r.program_name} 
+                    -# =r.date.strftime("%m/%d/%Y")
+      .clearfix
