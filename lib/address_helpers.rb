@@ -21,7 +21,7 @@ module AddressHelpers
         return streetname.sub(/#{value}$/, label)
       end
     end
-    return streetname.single_space;
+    return streetname.single_space
   end
 
   def unabbreviate_street_types(streetname)
@@ -31,7 +31,7 @@ module AddressHelpers
         return streetname.sub(/\s#{label}$/, " #{value}")
       end
     end
-    return streetname.single_space;
+    return streetname.single_space
   end
 
   def abbreviate_street_direction(streetname)
@@ -43,7 +43,7 @@ module AddressHelpers
         return streetname.sub(/#{value}\s/, "#{label} ")
       end
     end
-    return streetname.single_space;
+    return streetname.single_space
   end
 
   def unabbreviate_street_direction(streetname)
@@ -53,7 +53,7 @@ module AddressHelpers
         return streetname.sub(/\s#{label}\s/, " #{value} ")
       end
     end
-    return streetname.single_space;
+    return streetname.single_space
   end
 
   def get_street_type(streetname)
@@ -63,7 +63,7 @@ module AddressHelpers
         return label
       end
     end
-    return streetname.single_space;
+    return streetname.single_space
   end
 
 
@@ -82,7 +82,7 @@ module AddressHelpers
         end
       end
     end
-    return streetname;
+    return streetname
   end
 
   # even needed? should just be model call
@@ -146,7 +146,7 @@ module AddressHelpers
     address_string = strip_address_unit(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
     unless address.empty?
-      return address   
+      return address
     end
 
     # first we match just by abbriviating street suffixes
@@ -154,14 +154,14 @@ module AddressHelpers
     address_string = unabbreviate_street_types(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
     unless address.empty?
-      return address   
+      return address
     end
     # first we match just by abbriviating street suffixes
     # if we match we return
     address_string = abbreviate_street_types(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
     unless address.empty?
-      return address   
+      return address
     end
 
     address_string = abbreviate_street_direction(address_string)
@@ -175,7 +175,7 @@ module AddressHelpers
     address_street = get_street_name(address_string)
     address = Address.where("house_num = ? and street_name = ?", "#{address_string.split(' ')[0]}", "#{address_street}")
     unless address.empty?
-      return address   
+      return address
     end
 
     address_string = strip_suffix(address_string)
