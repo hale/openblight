@@ -12,7 +12,7 @@
     .property_history
       %h3 Property History
       =render :partial => "addresses/progress-bar"
-      -@cases.each do |c|
+      -@address.sorted_cases.each do |c|
         .case
           =render :partial => "addresses/property-history", :locals => {:kase => c}
         .clearfix

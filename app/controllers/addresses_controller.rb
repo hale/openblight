@@ -15,10 +15,8 @@ class AddressesController < ApplicationController
 
   def show
     @address = Address.find(params[:id])
-    @cases = @address.cases
 
-    puts @address.inspect
-    respond_with(@address, @case)
+    respond_with(@address)
   end
 
   def search

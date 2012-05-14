@@ -35,11 +35,6 @@ describe Address do
         @address.workflow_steps.should include(@demo)
         @address.workflow_steps.should include(@hearing)
       end
-
-      it "is sorted" do
-        @address.workflow_steps.first.should eq(@demo)
-        @address.workflow_steps.last.should eq(@hearing)
-      end
     end
   end
 
@@ -51,7 +46,35 @@ describe Address do
     end
 
     context "associated workflow steps" do
+      before do
+        c = FactoryGirl.create(:case, :address => @address)
+        @inspection = FactoryGirl.create(:inspection, :case => c)
+        @demo = FactoryGirl.create(:demolition, :address => @address, :date_started => Time.now)
+      end
 
+      it "returns the last step from both cases and abatement" do
+        @address.most_recent_status.should eq(@demo)
+      end
+    end
+  end
+
+  describe "sorted cases" do
+    context "no associated cases" do
+      it "returns an empty array" do
+        @address.sorted_cases.should eq []
+      end
+    end
+
+    context "associated cases" do
+      it "returns an array of all cases sorted by their last workflow step" do
+        c1 = FactoryGirl.create(:case, :address => @address)
+        inspection = FactoryGirl.create(:inspection, :case => c1, :inspection_date => Time.now)
+
+        c2 = FactoryGirl.create(:case, :address => @address)
+        inspection = FactoryGirl.create(:inspection, :case => c2, :inspection_date => Time.now)
+
+        @address.sorted_cases.should eq([c1, c2])
+      end
     end
   end
 end
