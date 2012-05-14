@@ -15,25 +15,25 @@ class AddressesController < ApplicationController
 
   def show
     @address = Address.find(params[:id])
-    @case = @address.cases.first
+    @cases = @address.cases
 
     # TODO: better solution to this; once we break down the regions into subregions this should be 
     # developed or use bootstrap
     @progressbar = '0%'
-    unless @case.nil?
-      unless @case.inspections.empty?
+    unless @address.workflow_steps.nil?
+      unless @address.inspections.empty?
         @progressbar = '20%'
         @progressarrow = '18%'
       end
-      unless @case.notifications.empty?
+      unless @address.notifications.empty?
         @progressbar = '40%'
         @progressarrow = '38%'
       end
-      unless @case.hearings.empty?
+      unless @address.hearings.empty?
         @progressbar = '60%'
         @progressarrow = '58%'
       end
-      unless @case.judgement.nil?
+      unless @address.judgements.empty?
         @progressbar = '80%'
         @progressarrow = '78%'
       end
