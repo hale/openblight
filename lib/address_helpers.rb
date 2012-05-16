@@ -15,7 +15,7 @@ module AddressHelpers
   # WE SHOULD COMPRESS THESE FUNCTIONS
 
   def abbreviate_street_types(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_types.each do |(label, value)|
       if streetname.match(/#{value}$/)
         return streetname.sub(/#{value}$/, label)
@@ -25,7 +25,7 @@ module AddressHelpers
   end
 
   def unabbreviate_street_types(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_types.each do |(label, value)|
       if streetname.match(/\s#{label}$/)
         return streetname.sub(/\s#{label}$/, " #{value}")
@@ -35,7 +35,7 @@ module AddressHelpers
   end
 
   def abbreviate_street_direction(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_direction.each do |(label, value)|
       if streetname.match(/\s#{value}\s/)
         return streetname.sub(/\s#{value}\s/, " #{label} ")
@@ -47,7 +47,7 @@ module AddressHelpers
   end
 
   def unabbreviate_street_direction(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_direction.each do |(label, value)|
       if streetname.match(/\s#{label}\s/)
         return streetname.sub(/\s#{label}\s/, " #{value} ")
@@ -57,7 +57,7 @@ module AddressHelpers
   end
 
   def get_street_type(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_types.each do |(label, value)|
       if !streetname.match(/#{label}$/).nil? || !streetname.match(/#{value}$/).nil?
         return label
@@ -73,11 +73,9 @@ module AddressHelpers
     streetname = strip_address_unit(streetname)
     unless streetname.nil?
       @street_types.each do |(label, value)|
-        unless streetname.match(/\s#{label}$/).nil?
+        if streetname.match(/\s#{label}$/)
           return streetname.sub(/\s#{label}$/, '').single_space
-        end
-
-        unless streetname.match(/\s#{value}$/).nil?
+        elsif streetname.match(/\s#{value}$/)
           return streetname.sub(/\s#{value}$/, '').single_space
         end
       end
@@ -85,14 +83,8 @@ module AddressHelpers
     return streetname
   end
 
-  # even needed? should just be model call
-  def find_street(name)
-    return Street.where("name LIKE ?", "%#{name}%")
-  end
-
   def strip_address_number(streetname)
-    streetname = streetname.upcase
-    unless streetname.match(/^\d+\s/).nil?
+    if streetname.match(/^\d+\s/)
       return streetname.sub(/^\d+\s/, '')
     end
     return streetname
@@ -100,7 +92,7 @@ module AddressHelpers
 
   def strip_address_unit(streetname)
     streetname = streetname.upcase.sub(/\,.+/, '')
-    unless streetname.match(/^\d+\-\d+\s/).nil?
+    if streetname.match(/^\d+\-\d+\s/)
       # pair programming at it's best!
       # this is a weird mix of splits and regxp.
       return streetname.sub("-" + streetname.split(',')[0].split(' ')[0].split('-')[1], "")
@@ -109,19 +101,19 @@ module AddressHelpers
   end
 
   def strip_direction(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_direction.each do |(label, value)|
-      unless streetname.match(/^\d+\s#{label}\s/).nil?
-        return streetname.sub(/\s#{label}\s/, ' ') 
+      if streetname.match(/^\d+\s#{label}\s/)
+        return streetname.sub(/\s#{label}\s/, ' ')
       end 
     end
     return streetname
   end
 
   def strip_suffix(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @address_suffix.each do |value|
-      unless streetname.match(/\s#{value}$/).nil?
+      if streetname.match(/\s#{value}$/)
         return streetname.sub(/\s#{value}$/, '') 
       end 
     end
@@ -129,7 +121,7 @@ module AddressHelpers
   end
 
   def find_address(address_string)
-    orig_address   = address_string
+    orig_address = address_string
     unless address_string
       return []
     end
