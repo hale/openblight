@@ -30,11 +30,7 @@ class Address < ActiveRecord::Base
   end
 
   def most_recent_status
-    if !self.workflow_steps.empty?
-      self.workflow_steps.sort{ |a, b| a.date <=> b.date }.last
-    else
-      nil
-    end
+    !self.workflow_steps.empty? ? self.workflow_steps.sort{ |a, b| a.date <=> b.date }.last : nil
   end
 
   def sorted_cases
@@ -48,10 +44,6 @@ class Address < ActiveRecord::Base
 
   def self.find_addresses_with_cases_by_street(street_string)
     Address.joins(:cases).where(:addresses => {:street_name => street_string})
-  end
-
-  def self.find_addresses_by_geopin(geopin)
- 	 Address.where("geopin = ?", geopin)
   end
 
 end

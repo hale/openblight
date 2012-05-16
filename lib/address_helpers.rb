@@ -115,66 +115,48 @@ module AddressHelpers
     @address_suffix.each do |value|
       if streetname.match(/\s#{value}$/)
         return streetname.sub(/\s#{value}$/, '') 
-      end 
+      end
     end
     return streetname
   end
 
-  def find_address(address_string)
-    orig_address = address_string
-    unless address_string
-      return []
-    end
-    address_string = address_string.upcase.single_space
-    address_string = address_string.delete('.')
+  def find_address(orig_address)
+    address_string = orig_address.upcase.single_space.delete('.')
 
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     # if there is no direct hit, then we look for units in the address
     # and strip the unit number
     address_string = strip_address_unit(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     # first we match just by abbriviating street suffixes
     # if we match we return
     address_string = unabbreviate_street_types(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
+
     # first we match just by abbriviating street suffixes
     # if we match we return
     address_string = abbreviate_street_types(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     address_string = abbreviate_street_direction(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     address_string = strip_direction(address_string)
     address_street = get_street_name(address_string)
     address = Address.where("house_num = ? and street_name = ?", "#{address_string.split(' ')[0]}", "#{address_street}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     address_string = strip_suffix(address_string)
     address_street = get_street_name(address_string)
     address = Address.where("house_num = ? and street_name = ?", "#{address_string.split(' ')[0]}", "#{address_street}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     puts "Not matched by address: #{orig_address}"
     []
