@@ -183,6 +183,10 @@ GEM
       shoulda-matchers (~> 1.0.0)
     shoulda-context (1.0.0)
     shoulda-matchers (1.0.0)
+    simplecov (0.6.4)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     spreadsheet (0.6.8)
       ruby-ole (>= 1.0)
     sprockets (2.1.2)
@@ -239,6 +243,7 @@ DEPENDENCIES
   rubyXL
   sass-rails (~> 3.2.3)
   shoulda
+  simplecov
   test-unit
   thin
   uglifier (>= 1.0.3)

@@ -14,5 +14,7 @@
 /log/*.log
 /tmp
 
+coverage
+
 .amazon_keys
 .DS_Store
