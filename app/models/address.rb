@@ -11,8 +11,6 @@ class Address < ActiveRecord::Base
   has_many :judgements, :through => :cases
 
   validates_uniqueness_of :address_id
-	#validates_uniqueness_of :parcel_id
-  #validates_uniqueness_of :geopin
 
   self.per_page = 50
 
@@ -21,16 +19,26 @@ class Address < ActiveRecord::Base
     self.cases.each do |c|
       steps_ary << c.accela_steps
     end
-    steps_ary << self.demolitions 
-    steps_ary.flatten.compact.sort{ |a, b| a.date <=> b.date }
+    steps_ary << self.resolutions
+    steps_ary.flatten.compact
+  end
+
+  def resolutions
+    res_ary = []
+    res_ary << self.foreclosures << self.demolitions << self.maintenances
+    res_ary.flatten.compact
   end
 
   def most_recent_status
     if !self.workflow_steps.empty?
-      self.workflow_steps.last
+      self.workflow_steps.sort{ |a, b| a.date <=> b.date }.last
     else
       nil
     end
+  end
+
+  def sorted_cases
+    self.cases.sort{ |a, b| a.most_recent_status.date <=> b.most_recent_status.date }
   end
 
   def most_recent_status_preview
@@ -46,9 +54,4 @@ class Address < ActiveRecord::Base
  	 Address.where("geopin = ?", geopin)
   end
 
-  def resolutions
-    res_ary = []
-    res_ary << self.foreclosures << self.demolitions << self.maintenances
-    res_ary.flatten.compact
-  end
 end

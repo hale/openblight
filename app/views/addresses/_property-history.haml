@@ -4,24 +4,24 @@
     .case_number
       -unless kase.case_number.nil?
         %h5 Case Number: #{kase.case_number}
+    -if (kase.inspections.empty? && !kase.notifications.empty?) || kase.inspections != []
+      .span13
+        .classification
+          %span{:class=>'badge-yellow'} Inspected?
+        .status
+          =image_tag('check_mark.png', :width => '20px')
+        -unless kase.inspections.empty?
+          .note
+            -kase.inspections.each do |i|
+              .inspection
+                Property was inspected on
+                %b #{i.inspection_date.strftime("%m/%d/%Y")}
+        -if kase.inspections.empty? && !kase.notifications.empty?
+          .inspection
+            No Data Available
 
-    .span13
-      .classification
-        %span{:class=>'badge-yellow'} Inspected?
-      .status
-        =image_tag('check_mark.png', :width => '20px')
-      -unless kase.inspections.empty?
-        .note
-          -kase.inspections.each do |i|
-            .inspection
-              Property was inspected
-              %b #{i.inspection_date.strftime("%m/%d/%Y")}
-      -if kase.inspections.empty? && !kase.notifications.empty?
-        .inspection
-          No Data Available
-
-    .span13
-      -unless kase.notifications.empty?
+    -if (kase.notifications.empty? && !kase.hearings.empty?) || kase.notifications != []
+      .span13
         .classification
           %span{:class=>'badge-yellow'} Owner Notified?
         .status
@@ -53,8 +53,8 @@
               %b #{h.hearing_date.strftime("%m/%d/%Y")} 
               at New Orleans Courthouse, 1234 Perdido St. with an outcome of #{h.hearing_status}
 
-    .span13                
-      -if !kase.hearings.empty? && kase.judgement.nil?
+    -if !kase.hearings.empty? && kase.judgement.nil?
+      .span13                
         .classification
           %span{:class=>'badge-yellow'} Judgment Reached?
         .status 
@@ -86,15 +86,3 @@
                 ="This case was reset on " << r.reset_date.strftime("%m/%d/%Y")
 
 
-    -unless @address.resolutions.empty?
-      .span13
-        .classification
-          %span{:class=>'badge-yellow'} Resolved?
-        .status
-          =image_tag('check_mark.png', :width => '20px')
-        .note
-          .span4
-            -@address.resolutions.each do |r|
-              .resolution
-                This property was successfully demolished by #{r.program_name} 
-                -# =r.date.strftime("%m/%d/%Y")

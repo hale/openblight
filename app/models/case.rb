@@ -18,7 +18,11 @@ class Case < ActiveRecord::Base
   def accela_steps
     steps_ary = []
     steps_ary << self.hearings << self.inspections << self.demolitions << self.resets << self.foreclosure << self.notifications
-    steps_ary.flatten.compact.sort{ |a, b| a.date <=> b.date }
+    steps_ary.flatten.compact
+  end
+
+  def most_recent_status
+    self.accela_steps.sort{ |a, b| a.date <=> b.date }.last
   end
 
   def assign_address(options = {})
@@ -40,10 +44,6 @@ class Case < ActiveRecord::Base
       end
     end
     self.save!
-  end
-
-  def most_recent_status
-    self.accela_steps.last
   end
 
 end

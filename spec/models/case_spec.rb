@@ -21,8 +21,8 @@ describe Case do
       @hearing = FactoryGirl.create(:hearing, :case => @case, :hearing_date => Time.now - 1.day)
 
       steps = @case.accela_steps
-      steps.first.should eq(@inspection)
-      steps.last.should eq(@hearing)
+      steps.should include(@inspection)
+      steps.should include(@hearing)
       steps.length.should eq(2)
     end
 

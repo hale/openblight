@@ -132,6 +132,10 @@
         position: absolute;
         left: 0;
         top: 0;
+
+        &.full {
+          border-radius: 10px 10px 10px 10px;
+        }
         
         .property-status-inspection{
           height: 35px;
@@ -190,11 +194,6 @@
 				margin-left: 0;
 			}
 
-    	.span13{
-        border: 0 solid #EEEEEE;
-        padding: 15px 0;
-        width: 90%;    
-    	}
     }
     
     .case {
@@ -202,6 +201,12 @@
       border-width: 1px 0 0 0 ;
       margin: 30px 0 20px;
       padding: 10px 0;
+
+    	.span13{
+        border: 0 solid #EEEEEE;
+        padding: 15px 0;
+        width: 90%;    
+    	}
     }
     
     .status-update{

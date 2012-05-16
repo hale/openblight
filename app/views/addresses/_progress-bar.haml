@@ -1,6 +1,9 @@
 .progress-bar-wrapper
+  -p = progressbar(@address)
   .progress-bar
-    .progress-bar-overlay{:style => "width: #{@progressbar}"}
+    -## TODO: better solution to this; once we break down the regions into subregions this should be 
+    -## developed or use bootstrap
+    .progress-bar-overlay{:style => "width: #{p[:bar]}", :class => p[:class]}
       %span{ :class=> 'property-status property-status-inspection', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"There are a number of reasons that the Code Enforcement Department might decide to inspect a property. A resident or the City Council might have made a complaint about it, it may be a danger to the community or it might be part of a code enforcement sweep area",  'data-original-title'=>"Inpection"}
         %a Inspection
       %span{ :class=> 'property-status property-status-notification', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"When an inspector inspects a property, if they determine that it violates any of the City’s housing standards, the owner receives a Notice of Violation. The notice is posted on the property and is mailed to the owner as part of a Notice of Violation packet. ",  'data-original-title'=>"Notification"}
@@ -11,4 +14,4 @@
         %a Judgement
       %span{ :class=> 'property-status property-status-resolution', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"If a property is declared “blight,” the property can be seized under the City’s eminent domain authority. ",  'data-original-title'=>"Resolution"} 
         %a Resolution
-    .progress-bar-icon{:style => "left: #{@progressarrow}"}
+    .progress-bar-icon{:style => "left: #{p[:arrow]}"}
