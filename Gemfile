@@ -24,9 +24,7 @@ gem 'rgeo-shapefile'
 gem 'haml'
 gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
-gem 'nifty-generators'
 gem 'will_paginate', '~> 3.0'
-gem 'bootstrap-will_paginate'
 
 gem 'thin'
 
@@ -55,6 +53,8 @@ group :test, :development do
 	
 	gem "factory_girl_rails"
   gem "faker"
+
+  gem "simplecov"
 end
 
 group :test do

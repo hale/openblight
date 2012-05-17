@@ -15,27 +15,27 @@ module AddressHelpers
   # WE SHOULD COMPRESS THESE FUNCTIONS
 
   def abbreviate_street_types(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_types.each do |(label, value)|
       if streetname.match(/#{value}$/)
         return streetname.sub(/#{value}$/, label)
       end
     end
-    return streetname.single_space
+    return streetname
   end
 
   def unabbreviate_street_types(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_types.each do |(label, value)|
       if streetname.match(/\s#{label}$/)
         return streetname.sub(/\s#{label}$/, " #{value}")
       end
     end
-    return streetname.single_space
+    return streetname
   end
 
   def abbreviate_street_direction(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_direction.each do |(label, value)|
       if streetname.match(/\s#{value}\s/)
         return streetname.sub(/\s#{value}\s/, " #{label} ")
@@ -43,27 +43,27 @@ module AddressHelpers
         return streetname.sub(/#{value}\s/, "#{label} ")
       end
     end
-    return streetname.single_space
+    return streetname
   end
 
   def unabbreviate_street_direction(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_direction.each do |(label, value)|
       if streetname.match(/\s#{label}\s/)
         return streetname.sub(/\s#{label}\s/, " #{value} ")
       end
     end
-    return streetname.single_space
+    return streetname
   end
 
   def get_street_type(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_types.each do |(label, value)|
       if !streetname.match(/#{label}$/).nil? || !streetname.match(/#{value}$/).nil?
         return label
       end
     end
-    return streetname.single_space
+    return streetname
   end
 
 
@@ -73,11 +73,9 @@ module AddressHelpers
     streetname = strip_address_unit(streetname)
     unless streetname.nil?
       @street_types.each do |(label, value)|
-        unless streetname.match(/\s#{label}$/).nil?
+        if streetname.match(/\s#{label}$/)
           return streetname.sub(/\s#{label}$/, '').single_space
-        end
-
-        unless streetname.match(/\s#{value}$/).nil?
+        elsif streetname.match(/\s#{value}$/)
           return streetname.sub(/\s#{value}$/, '').single_space
         end
       end
@@ -85,118 +83,87 @@ module AddressHelpers
     return streetname
   end
 
-  # even needed? should just be model call
-  def find_street(name)
-    return Street.where("name LIKE ?", "%#{name}%")
-  end
-
   def strip_address_number(streetname)
-    streetname = streetname.upcase
-    unless streetname.match(/^\d+\s/).nil?
+    if streetname.match(/^\d+\s/)
       return streetname.sub(/^\d+\s/, '')
     end
-    return streetname.single_space
+    return streetname
   end
 
   def strip_address_unit(streetname)
     streetname = streetname.upcase.sub(/\,.+/, '')
-    unless streetname.match(/^\d+\-\d+\s/).nil?
+    if streetname.match(/^\d+\-\d+\s/)
       # pair programming at it's best!
       # this is a weird mix of splits and regxp.
       return streetname.sub("-" + streetname.split(',')[0].split(' ')[0].split('-')[1], "")
     end 
-    return streetname.single_space
+    return streetname
   end
 
   def strip_direction(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @street_direction.each do |(label, value)|
-      unless streetname.match(/^\d+\s#{label}\s/).nil?
-        return streetname.sub(/\s#{label}\s/, ' ') 
+      if streetname.match(/^\d+\s#{label}\s/)
+        return streetname.sub(/\s#{label}\s/, ' ')
       end 
     end
-    return streetname.single_space
+    return streetname
   end
 
   def strip_suffix(streetname)
-    streetname = streetname.upcase
+    streetname.upcase!
     @address_suffix.each do |value|
-      unless streetname.match(/\s#{value}$/).nil?
+      if streetname.match(/\s#{value}$/)
         return streetname.sub(/\s#{value}$/, '') 
-      end 
+      end
     end
-    return streetname.single_space
+    return streetname
   end
 
-  def find_address(address_string)
-    orig_address   = address_string
-    unless address_string
-      return []
-    end
-    address_string = address_string.upcase.single_space
-    address_string = address_string.delete('.')
+  def find_address(orig_address)
+    address_string = orig_address.upcase.single_space.delete('.')
 
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     # if there is no direct hit, then we look for units in the address
     # and strip the unit number
     address_string = strip_address_unit(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     # first we match just by abbriviating street suffixes
     # if we match we return
     address_string = unabbreviate_street_types(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
+
     # first we match just by abbriviating street suffixes
     # if we match we return
     address_string = abbreviate_street_types(address_string)
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     address_string = abbreviate_street_direction(address_string)
-    p address_string
     address = Address.where("address_long = ?", "#{address_string}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     address_string = strip_direction(address_string)
     address_street = get_street_name(address_string)
     address = Address.where("house_num = ? and street_name = ?", "#{address_string.split(' ')[0]}", "#{address_street}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     address_string = strip_suffix(address_string)
     address_street = get_street_name(address_string)
     address = Address.where("house_num = ? and street_name = ?", "#{address_string.split(' ')[0]}", "#{address_street}")
-    unless address.empty?
-      return address
-    end
+    return address if !address.empty?
 
     puts "Not matched by address: #{orig_address}"
     []
   end
 
   def find_address_by_geopin(geopin)
-    unless geopin
-      return []
-    end
     address = Address.where("geopin = ?", geopin)
-    unless address.empty?
-      return address
-    end
-    []
+    !address.empty? ? address : []
   end
 end

@@ -20,7 +20,6 @@ namespace :hearings do
         s3obj = AWS::S3::S3Object.find args.file_name, args.bucket_name
         downloaded_file_path = ImportHelpers.download_from_aws(s3obj)
 
-
         oo = Excel.new(downloaded_file_path)
         oo.default_sheet = oo.sheets.first
         21.upto(oo.last_row) do |row|
@@ -32,13 +31,12 @@ namespace :hearings do
             address = AddressHelpers.find_address(oo.row(row)[0])
             if address.empty?
               address = AddressHelpers.find_address_by_geopin(oo.row(row)[35])
-            end
-            unless address.empty?
+              c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35])
+            else
               add_id = address.first.id
               c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35], :address_id => add_id)
-            else
-              c = Case.find_or_create_by_case_number(:case_number => oo.row(row)[10], :geopin => oo.row(row)[35])
             end
+
             m = CaseManager.find_or_create_by_name(:name => oo.row(row)[11],:case_number => oo.row(row)[10])
             status = oo.row(row)[21]
             unless status.nil?
@@ -58,14 +56,14 @@ namespace :hearings do
                 hearing_datetime = DateTime.new(date[0].to_i,date[1].to_i,date[2].to_i,time[0].to_i,time[1].to_i,time[2].to_i)
             end
 
-            unless status == "reset" || status.nil?
+            if status && status != "reset"
                 Judgement.find_or_create_by_case_number_and_status(:case_number => oo.row(row)[10], :status => status, :notes => oo.row(row)[21], :judgement_date => hearing_datetime)
             end
 
             unless oo.row(row)[22].nil?
                 date = oo.row(row)[22].to_s.split("/")
                 time = 0
-                unless oo.row(row)[23].nil? 
+                unless oo.row(row)[23].nil?
                     time = oo.row(row)[23]
                 end
                 time = Time.at(time).gmtime.strftime('%R:%S')

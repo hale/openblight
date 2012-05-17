@@ -1,7 +1,6 @@
 require "#{Rails.root}/lib/address_helpers.rb"
 include AddressHelpers
 
-
 class AddressesController < ApplicationController
   respond_to :html, :xml, :json
 
