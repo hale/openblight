@@ -1,17 +1,17 @@
 .progress-bar-wrapper
-  -unless @case.nil?
-    .progress-bar
-      .progress-bar-overlay{:style => "width: #{@progressbar}"}
-        %span{ :class=> 'property-status property-status-inspection', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"There are a number of reasons that the Code Enforcement Department might decide to inspect a property. A resident or the City Council might have made a complaint about it, it may be a danger to the community or it might be part of a code enforcement sweep area",  'data-original-title'=>"Inpection"}
-          %a Inspection
-        %span{ :class=> 'property-status property-status-notification', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"When an inspector inspects a property, if they determine that it violates any of the City’s housing standards, the owner receives a Notice of Violation. The notice is posted on the property and is mailed to the owner as part of a Notice of Violation packet. ",  'data-original-title'=>"Notification"}
-          %a Notification
-        %span{ :class=> 'property-status property-status-hearing', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"If a property owner does not correct the violations observed by city inspectors, an administrative hearing is conducted by an impartial judge. The judge determines whether the property is a public nuisance or blight. ",  'data-original-title'=>"Hearing"}
-          %a Hearing
-        %span{ :class=> 'property-status property-status-judgement', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"Within seven days of the hearing, the Judge will decide whether the owner is innocent or guilty. If guilty, the owner’s property is declared a “public nuisance,” “blight,” or both. The judgment can include a fine of $100 to $500 per day until the violations are corrected.",  'data-original-title'=>"Judgement"} 
-          %a Judgement
-        %span{ :class=> 'property-status property-status-resolution', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"If a property is declared “blight,” the property can be seized under the City’s eminent domain authority. ",  'data-original-title'=>"Resolution"} 
-          %a Resolution
-      .progress-bar-icon{:style => "left: #{@progressarrow}"}
-		  
-        
+  -p = progressbar(@address)
+  .progress-bar
+    -## TODO: better solution to this; once we break down the regions into subregions this should be 
+    -## developed or use bootstrap
+    .progress-bar-overlay{:style => "width: #{p[:bar]}", :class => p[:class]}
+      %span{ :class=> 'property-status property-status-inspection', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"There are a number of reasons that the Code Enforcement Department might decide to inspect a property. A resident or the City Council might have made a complaint about it, it may be a danger to the community or it might be part of a code enforcement sweep area",  'data-original-title'=>"Inpection"}
+        %a Inspection
+      %span{ :class=> 'property-status property-status-notification', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"When an inspector inspects a property, if they determine that it violates any of the City’s housing standards, the owner receives a Notice of Violation. The notice is posted on the property and is mailed to the owner as part of a Notice of Violation packet. ",  'data-original-title'=>"Notification"}
+        %a Notification
+      %span{ :class=> 'property-status property-status-hearing', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"If a property owner does not correct the violations observed by city inspectors, an administrative hearing is conducted by an impartial judge. The judge determines whether the property is a public nuisance or blight. ",  'data-original-title'=>"Hearing"}
+        %a Hearing
+      %span{ :class=> 'property-status property-status-judgement', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"Within seven days of the hearing, the Judge will decide whether the owner is innocent or guilty. If guilty, the owner’s property is declared a “public nuisance,” “blight,” or both. The judgment can include a fine of $100 to $500 per day until the violations are corrected.",  'data-original-title'=>"Judgement"} 
+        %a Judgement
+      %span{ :class=> 'property-status property-status-resolution', 'href'=> "#" , 'rel'=>"popover", 'data-content'=>"If a property is declared “blight,” the property can be seized under the City’s eminent domain authority. ",  'data-original-title'=>"Resolution"} 
+        %a Resolution
+    .progress-bar-icon{:style => "left: #{p[:arrow]}"}

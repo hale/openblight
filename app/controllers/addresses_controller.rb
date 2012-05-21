@@ -1,7 +1,6 @@
 require "#{Rails.root}/lib/address_helpers.rb"
 include AddressHelpers
 
-
 class AddressesController < ApplicationController
   respond_to :html, :xml, :json
 
@@ -15,53 +14,13 @@ class AddressesController < ApplicationController
 
   def show
     @address = Address.find(params[:id])
-    @c = Case.where("address_id = ?", @address.id)
-    @case = nil
-    unless @c.first.nil?
-      @case = Case.find(@c.first.id)
-    end
 
-    # TODO: better solution to this; once we break down the regions into subregions this should be 
-    # developed or use bootstrap
-    @progressbar = '0%'
-    unless @case.nil?
-      unless @case.inspections.empty?
-        @progressbar = '20%'
-        @progressarrow = '18%'
-      end
-      unless @case.notifications.empty?
-        @progressbar = '40%'
-        @progressarrow = '38%'
-      end
-      unless @case.hearings.empty?
-        @progressbar = '60%'
-        @progressarrow = '58%'
-      end
-      unless @case.judgement.nil?
-        @progressbar = '80%'
-        @progressarrow = '78%'
-      end
-      unless @address.maintenances.empty?
-        @progressbar = '100%'
-        @progressarrow = '98%'
-      end      
-      unless @address.demolitions.empty?
-        @progressbar = '100%'
-        @progressarrow = '98%'
-      end      
-      unless @address.foreclosures.empty?
-        @progressbar = '100%'
-        @progressarrow = '98%'
-      end      
-      
-    end
-  
-    puts @address.inspect
-    respond_with(@address, @case, @progressbar)
+    respond_with(@address)
   end
-  
+
   def search
     search_term = params[:address]
+    Search.create(:term => search_term, :ip => request.remote_ip)
     address_result = AddressHelpers.find_address(params[:address])
 
     # When user searches they get a direct hit!

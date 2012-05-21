@@ -37,8 +37,6 @@ GEM
       builder
       mime-types
       xml-simple
-    bootstrap-will_paginate (0.0.7)
-      will_paginate
     builder (3.0.0)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -99,7 +97,7 @@ GEM
     mime-types (1.18)
     multi_json (1.1.0)
     multipart-post (1.1.5)
-    nifty-generators (0.4.6)
+    newrelic_rpm (3.3.4.1)
     nokogiri (1.5.2)
     oauth (0.4.5)
     oauth2 (0.5.2)
@@ -165,7 +163,7 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.9.0)
     ruby-ole (1.2.11.3)
-    rubyXL (1.2.5)
+    rubyXL (1.2.7)
     rubyzip (0.9.6.1)
     sass (3.1.15)
     sass-rails (3.2.5)
@@ -182,6 +180,10 @@ GEM
       shoulda-matchers (~> 1.0.0)
     shoulda-context (1.0.0)
     shoulda-matchers (1.0.0)
+    simplecov (0.6.4)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     spreadsheet (0.6.8)
       ruby-ole (>= 1.0)
     sprockets (2.1.2)
@@ -215,7 +217,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord-postgis-adapter
   aws-s3
-  bootstrap-will_paginate
   capybara
   coffee-rails (~> 3.2.1)
   docsplit
@@ -224,7 +225,7 @@ DEPENDENCIES
   foreigner
   haml
   jquery-rails
-  nifty-generators
+  newrelic_rpm
   pg
   rails (= 3.2.2)
   rails3-jquery-autocomplete
@@ -237,6 +238,7 @@ DEPENDENCIES
   rubyXL
   sass-rails (~> 3.2.3)
   shoulda
+  simplecov
   test-unit
   thin
   uglifier (>= 1.0.3)

@@ -26,7 +26,8 @@ namespace :inspections do
           if oo.row(row)[0] == label then
             inspector = Inspector.find_or_create_by_name(oo.row(row)[3])
           end
-          if (oo.row(row)[0].to_s.start_with?("HCEB") || oo.row(row)[0].to_s.start_with?("CEHB"))
+          case_prefix = oo.row(row)[0].to_s
+          if case_prefix.match(/\A(HCEB|CEHB|HCEC|HCES|HCEVU)/i)
             c = Case.find_or_initialize_by_case_number(:case_number => oo.row(row)[0], :geopin => oo.row(row)[23])
             address = AddressHelpers.find_address(oo.row(row)[5])
             unless address.empty?
@@ -37,9 +38,9 @@ namespace :inspections do
                 c.address = address.first
               end
             end
-
             c.save
-            i = Inspection.find_or_create_by_case_number_and_inspection_date(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
+
+            i = Inspection.create(:case_number => c.case_number, :result => oo.row(row)[11],:scheduled_date => oo.row(row)[16], :inspection_date => oo.row(row)[19], :inspection_type => oo.row(row)[21], :inspector_id => inspector.id) 
           end
         end
       rescue Exception=>e

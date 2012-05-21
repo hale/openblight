@@ -1,5 +1,5 @@
 .status-update
-  -if @case.nil?
+  -if address.workflow_steps.empty?
     .no-status
       .no-record-notice No violations have been reported for this property.
       .recommended-next-action 
@@ -10,8 +10,8 @@
   -else
     .recent
       .recent-update-notice most recent update: 
-      .recent-update  #{@case.most_recent_status.class} on #{@case.most_recent_status.date.strftime('%B %e, %Y')}.
-      -case @case.most_recent_status.class
+      .recent-update  #{address.most_recent_status.class} on #{address.most_recent_status.date.strftime('%B %e, %Y')}.
+      -case address.most_recent_status.class
         - when 'Inspection'
           .recommended-next-action This could mean that it has not been reported to the city. If you would like to make a report, you can do so by calling 311.
         - when 'Hearing'
@@ -22,3 +22,4 @@
           .recommended-next-action This could mean that it has not been reported to the city. If you would like to make a report, you can do so by calling 311.
         - when 'Resolution'
           .recommended-next-action This could mean that it has not been reported to the city. If you would like to make a report, you can do so by calling 311.
+

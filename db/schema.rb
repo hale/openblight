@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120504031005) do
+ActiveRecord::Schema.define(:version => 20120514204730) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "geopin"
@@ -33,6 +33,9 @@ ActiveRecord::Schema.define(:version => 20120504031005) do
     t.string   "street_full_name"
   end
 
+  add_index "addresses", ["address_long"], :name => "index_addresses_on_address_long"
+  add_index "addresses", ["house_num", "street_name"], :name => "index_addresses_on_house_num_and_street_name"
+
   create_table "case_managers", :force => true do |t|
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -47,6 +50,9 @@ ActiveRecord::Schema.define(:version => 20120504031005) do
     t.datetime "updated_at",  :null => false
     t.integer  "address_id"
   end
+
+  add_index "cases", ["address_id"], :name => "index_cases_on_address_id"
+  add_index "cases", ["case_number"], :name => "index_cases_on_case_number"
 
   create_table "demolitions", :force => true do |t|
     t.string   "case_number"
@@ -64,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20120504031005) do
     t.integer  "address_match_confidence"
   end
 
+  add_index "demolitions", ["address_id"], :name => "index_demolitions_on_address_id"
+
   create_table "foreclosures", :force => true do |t|
     t.string   "case_number"
     t.datetime "created_at",               :null => false
@@ -78,6 +86,8 @@ ActiveRecord::Schema.define(:version => 20120504031005) do
     t.integer  "address_id"
     t.datetime "sale_date"
   end
+
+  add_index "foreclosures", ["address_id"], :name => "index_foreclosures_on_address_id"
 
   create_table "hearings", :force => true do |t|
     t.datetime "hearing_date"
@@ -103,8 +113,8 @@ ActiveRecord::Schema.define(:version => 20120504031005) do
   create_table "inspections", :force => true do |t|
     t.string   "case_number"
     t.string   "result"
-    t.date     "scheduled_date"
-    t.date     "inspection_date"
+    t.datetime "scheduled_date"
+    t.datetime "inspection_date"
     t.string   "inspection_type"
     t.integer  "inspector_id"
     t.datetime "created_at",      :null => false
@@ -141,6 +151,8 @@ ActiveRecord::Schema.define(:version => 20120504031005) do
     t.integer  "address_match_confidence"
   end
 
+  add_index "maintenances", ["address_id"], :name => "index_maintenances_on_address_id"
+
   create_table "notifications", :force => true do |t|
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -168,6 +180,13 @@ ActiveRecord::Schema.define(:version => 20120504031005) do
     t.datetime "updated_at",  :null => false
     t.datetime "reset_date"
     t.string   "notes"
+  end
+
+  create_table "searches", :force => true do |t|
+    t.text     "term"
+    t.string   "ip"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "streets", :force => true do |t|
