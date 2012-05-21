@@ -120,6 +120,13 @@ module AddressHelpers
     return streetname
   end
 
+  def get_neighborhood(lat,long)
+    uri = URI.parse("http://maps.googleapis.com/maps/api/geocode/json?latlng=#{lat},#{long}&sensor=true")
+    response = Net::HTTP.get(uri)
+    result = JSON.parse(response)
+    puts result['results'][0]['address_components'][2]['long_name']
+  end
+
   def find_address(orig_address)
     address_string = orig_address.upcase.single_space.delete('.')
 
