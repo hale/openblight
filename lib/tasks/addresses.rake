@@ -1,4 +1,5 @@
 require 'rgeo/shapefile'
+require "#{Rails.root}/lib/address_helpers.rb"
 
 namespace :addresses do
   desc "Load data.nola.gov addresses into database"
@@ -33,5 +34,17 @@ namespace :addresses do
   desc "Empty address table"  
   task :drop => :environment  do |t, args|
     Address.destroy_all
+  end
+
+  desc "call get neighborhood"
+  task :get_neighborhood => :environment do
+    #addresses = Address.all
+    a = Address.find(1)#addresses.each do |a|
+      #example: http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true
+      #http://maps.googleapis.com/maps/api/geocode/xml?address=298+Fairmount+Ave,+Oakland,+CA&sensor=true
+      puts "lat: #{a.y} and long: #{a.x}"
+      AddressHelpers.get_neighborhood(a.y,a.x)
+
+    #end
   end
 end
