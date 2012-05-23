@@ -13,82 +13,64 @@
         %tr
           %tr
             %th Addresses
-            %td= Address.count
+            %td= @stat.Addresses[:total]
             %td/
             %td/
             %td/
           %tr
             %th Cases
-            %td= Case.count
-            %td= Case.count(:conditions => "address_id is not null")
-            %td= Case.count(:conditions => "address_id is null")
-            %td
-              = Case.count(:conditions => "address_id is not null").to_f / Case.count.to_f * 100
-              \%
+            %td= @stat.Cases[:total]
+            %td= @stat.Cases[:matched]
+            %td= @stat.Cases[:unmatched]
+            %td= @stat.Cases[:percentageMatched]
           %tr
             %th Inspections
-            %td= Inspection.count
-            %td= Inspection.count(:conditions => "case_number is not null")
-            %td= Inspection.count(:conditions => "case_number is null")
-            %td
-              = Inspection.count(:conditions => "case_number is not null").to_f / Inspection.count.to_f * 100
-              \%
+            %td= @stat.Inspections[:total]
+            %td= @stat.Inspections[:matched]
+            %td= @stat.Inspections[:unmatched]
+            %td= @stat.Inspections[:percentageMatched]
           %tr
             %th Notifications
-            %td= Notification.count
-            %td= Notification.count(:conditions => "case_number is not null")
-            %td= Notification.count(:conditions => "case_number is null")
-            %td
-              = Notification.count(:conditions => "case_number is not null").to_f / Notification.count.to_f * 100
-              \%
+            %td= @stat.Notifications[:total]
+            %td= @stat.Notifications[:matched]
+            %td= @stat.Notifications[:unmatched]
+            %td= @stat.Notifications[:percentageMatched]
           %tr
             %th Hearings
-            %td= Hearing.count
-            %td= Hearing.count(:conditions => "case_number is not null")
-            %td= Hearing.count(:conditions => "case_number is null")
-            %td
-              = Hearing.count(:conditions => "case_number is not null").to_f / Hearing.count.to_f * 100
-              \%
+            %td= @stat.Hearings[:total]
+            %td= @stat.Hearings[:matched]
+            %td= @stat.Hearings[:unmatched]
+            %td= @stat.Hearings[:percentageMatched]
           %tr
             %th Resets
-            %td= Reset.count
-            %td= Reset.count(:conditions => "case_number is not null")
-            %td= Reset.count(:conditions => "case_number is null")
-            %td
-              = Reset.count(:conditions => "case_number is not null").to_f / Reset.count.to_f * 100
-              \%
+            %td= @stat.Resets[:total]
+            %td= @stat.Resets[:matched]
+            %td= @stat.Resets[:unmatched]
+            %td= @stat.Resets[:percentageMatched]
           %tr
             %th Judgements
-            %td= Judgement.count
-            %td= Judgement.count(:conditions => "case_number is not null")
-            %td= Judgement.count(:conditions => "case_number is null")
-            %td
-              = Judgement.count(:conditions => "case_number is not null").to_f / Judgement.count.to_f * 100
-              \%
+            %td= @stat.Judgements[:total]
+            %td= @stat.Judgements[:matched]
+            %td= @stat.Judgements[:unmatched]
+            %td= @stat.Judgements[:percentageMatched]
           %tr
             %th Maintenances
-            %td= Maintenance.count
-            %td= Maintenance.count(:conditions => "address_id is not null")
-            %td= Maintenance.count(:conditions => "address_id is null")
-            %td
-              = Maintenance.count(:conditions => "address_id is not null").to_f / Maintenance.count.to_f * 100
-              \%
+            %td= @stat.Maintenances[:total]
+            %td= @stat.Maintenances[:matched]
+            %td= @stat.Maintenances[:unmatched]
+            %td= @stat.Maintenances[:percentageMatched]
           %tr
             %th Foreclosures
-            %td= Foreclosure.count
-            %td= Foreclosure.count(:conditions => "address_id is not null")
-            %td= Foreclosure.count(:conditions => "address_id is null")
-            %td
-              = Foreclosure.count(:conditions => "address_id is not null").to_f / Foreclosure.count.to_f * 100
-              \%
+            %td= @stat.Foreclosures[:total]
+            %td= @stat.Foreclosures[:matched]
+            %td= @stat.Foreclosures[:unmatched]
+            %td= @stat.Foreclosures[:percentageMatched]
           %tr
             %th Demolitions
-            %td= Demolition.count
-            %td= Demolition.count(:conditions => "address_id is not null")
-            %td= Demolition.count(:conditions => "address_id is null")
-            %td
-              = Demolition.count(:conditions => "address_id is not null").to_f / Demolition.count.to_f * 100
-              \%
+            %td= @stat.Demolitions[:total]
+            %td= @stat.Demolitions[:matched]
+            %td= @stat.Demolitions[:unmatched]
+            %td= @stat.Demolitions[:percentageMatched]
 			  
     %h2 City Stats
     %table{:border => "0"}
