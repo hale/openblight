@@ -17,7 +17,7 @@ class Statistic < ActiveRecord::Base
 	end
 
 	def Hearings
-		{:total => Hearing.count, :matched => Hearing.count(:conditions =>'case_number is not null'), :unmatched => Hearing.count(:conditions => 'case_number is null'), :percentageMatched => Hearing.count(:conditions => "case_number is not null").to_f / Hearing.count.to_f * 100}#, :status => Hearing.count(group: :hearing_status)}
+		{:total => Hearing.count, :matched => Hearing.count(:conditions =>'case_number is not null'), :unmatched => Hearing.count(:conditions => 'case_number is null'), :percentageMatched => Hearing.count(:conditions => "case_number is not null").to_f / Hearing.count.to_f * 100, :status => Hearing.count(group: :hearing_status)}
 	end
 
 	def Resets
@@ -33,7 +33,7 @@ class Statistic < ActiveRecord::Base
 	end
 
 	def Foreclosures
-		{:total => Foreclosure.count, :matched => Foreclosure.count(:conditions =>'address_id is not null'), :unmatched => Foreclosure.count(:conditions => 'address_id is null'), :percentageMatched => Foreclosure.count(:conditions => "address_id is not null").to_f / Foreclosure.count.to_f * 100}#, :status => Foreclosure.count(group: :status)}
+		{:total => Foreclosure.count, :matched => Foreclosure.count(:conditions =>'address_id is not null'), :unmatched => Foreclosure.count(:conditions => 'address_id is null'), :percentageMatched => Foreclosure.count(:conditions => "address_id is not null").to_f / Foreclosure.count.to_f * 100, :status => Foreclosure.count(group: :status)}
 	end
 
 	def Demolitions
