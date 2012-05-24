@@ -167,4 +167,17 @@
           - @maintStats[:program_names].each do |l,v|
             %td= v.to_s
         %tr
+      %tr
         %tr
+          %th Foreclosures
+        %tr
+          %td Status
+          - @foreclStats[:status].each do |l,v|
+            %td= l.class == String ? l.capitalize : "Undeclared"
+        %tr
+        %tr
+          %th 
+          - @foreclStats[:status].each do |l,v|
+            %td= v.to_s
+        %tr
+      %tr
