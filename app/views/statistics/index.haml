@@ -13,79 +13,81 @@
         %tr
           %tr
             %th Addresses
-            %td= @stat.Addresses[:total]
+            %td= @addrStats[ :total]
             %td/
             %td/
             %td/
           %tr
             %th Cases
-            %td= @stat.Cases[:total]
-            %td= @stat.Cases[:matched]
-            %td= @stat.Cases[:unmatched]
-            %td= @stat.Cases[:percentageMatched]
+            %td= @caseStats[:total]
+            %td= @caseStats[:matched]
+            %td= @caseStats[:unmatched]
+            %td= @caseStats[:percentageMatched]
           %tr
             %th Inspections
-            %td= @stat.Inspections[:total]
-            %td= @stat.Inspections[:matched]
-            %td= @stat.Inspections[:unmatched]
-            %td= @stat.Inspections[:percentageMatched]
+            %td= @inspStats[:total]
+            %td= @inspStats[:matched]
+            %td= @inspStats[:unmatched]
+            %td= @inspStats[:percentageMatched]
           %tr
             %th Notifications
-            %td= @stat.Notifications[:total]
-            %td= @stat.Notifications[:matched]
-            %td= @stat.Notifications[:unmatched]
-            %td= @stat.Notifications[:percentageMatched]
+            %td= @notiStats[:total]
+            %td= @notiStats[:matched]
+            %td= @notiStats[:unmatched]
+            %td= @notiStats[:percentageMatched]
           %tr
             %th Hearings
-            %td= @stat.Hearings[:total]
-            %td= @stat.Hearings[:matched]
-            %td= @stat.Hearings[:unmatched]
-            %td= @stat.Hearings[:percentageMatched]
+            %td= @hearStats[:total]
+            %td= @hearStats[:matched]
+            %td= @hearStats[:unmatched]
+            %td= @hearStats[:percentageMatched]
           %tr
             %th Resets
-            %td= @stat.Resets[:total]
-            %td= @stat.Resets[:matched]
-            %td= @stat.Resets[:unmatched]
-            %td= @stat.Resets[:percentageMatched]
+            %td= @resetStats[:total]
+            %td= @resetStats[:matched]
+            %td= @resetStats[:unmatched]
+            %td= @resetStats[:percentageMatched]
           %tr
             %th Judgements
-            %td= @stat.Judgements[:total]
-            %td= @stat.Judgements[:matched]
-            %td= @stat.Judgements[:unmatched]
-            %td= @stat.Judgements[:percentageMatched]
+            %td= @judgeStats[:total]
+            %td= @judgeStats[:matched]
+            %td= @judgeStats[:unmatched]
+            %td= @judgeStats[:percentageMatched]
           %tr
             %th Maintenances
-            %td= @stat.Maintenances[:total]
-            %td= @stat.Maintenances[:matched]
-            %td= @stat.Maintenances[:unmatched]
-            %td= @stat.Maintenances[:percentageMatched]
+            %td= @maintStats[:total]
+            %td= @maintStats[:matched]
+            %td= @maintStats[:unmatched]
+            %td= @maintStats[:percentageMatched]
           %tr
             %th Foreclosures
-            %td= @stat.Foreclosures[:total]
-            %td= @stat.Foreclosures[:matched]
-            %td= @stat.Foreclosures[:unmatched]
-            %td= @stat.Foreclosures[:percentageMatched]
+            %td= @foreclStats[:total]
+            %td= @foreclStats[:matched]
+            %td= @foreclStats[:unmatched]
+            %td= @foreclStats[:percentageMatched]
           %tr
             %th Demolitions
-            %td= @stat.Demolitions[:total]
-            %td= @stat.Demolitions[:matched]
-            %td= @stat.Demolitions[:unmatched]
-            %td= @stat.Demolitions[:percentageMatched]
+            %td= @demoStats[:total]
+            %td= @demoStats[:matched]
+            %td= @demoStats[:unmatched]
+            %td= @demoStats[:percentageMatched]
 			  
+    %br
+    %br
     %h2 City Stats
     %table{:border => "0"}
       %tr
         %tr
-          %th Hearings
-          %td Guilty
-          %td Reset
-          %td Closed
+          %th Inspections
+        %tr
+          %td Results
+          - @inspStats[:results].each do |l,v|
+            %td= l.class == String ? l.capitalize : "Undeclared"
         %tr
         %tr
           %th 
-          %td=Hearing.count(:conditions => "hearing_status = 'guilty'")
-          %td=Hearing.count(:conditions => "hearing_status = 'reset'")
-          %td=Hearing.count(:conditions => "hearing_status = 'closed'")
+          - @inspStats[:results].each do |l,v|
+            %td= v.to_s
         %tr
       %tr
         %tr
@@ -97,10 +99,85 @@
           %td Demolished
         %tr
         %tr
-          %th 
+          %td Results
           %td=Inspection.count(:conditions => "result = 'Abated'")
           %td=Inspection.count(:conditions => "result = 'Violation WIP'")
           %td=Inspection.count(:conditions => "result = 'Violation Posted No WIP'")
           %td=Inspection.count(:conditions => "result = 'Violation Unoccupied'")
           %td=Inspection.count(:conditions => "result = 'Demolished'")
         %tr
+      %tr
+        %tr
+          %th Notifications
+        %tr
+          %td Types
+          - @notiStats[:types].each do |l,v|
+            %td= l.class == String ? l.capitalize : "Undeclared"
+        %tr
+        %tr
+          %th 
+          - @notiStats[:types].each do |l,v|
+            %td= v.to_s
+        %tr
+      %tr
+        %tr
+          %th Hearings
+        %tr
+          %td Status
+          - @hearStats[:status].each do |l,v|
+            %td= l.class == String ? l.capitalize : "Undeclared"
+        %tr
+        %tr
+          %th 
+          - @hearStats[:status].each do |l,v|
+            %td= v.to_s
+        %tr
+      %tr
+        %tr
+          %th Judgements
+        %tr
+          %td Status
+          - @judgeStats[:status].each do |l,v|
+            %td= l.class == String ? l.capitalize : "Undeclared"
+        %tr
+        %tr
+          %th 
+          - @judgeStats[:status].each do |l,v|
+            %td= v.to_s
+        %tr
+      %tr
+        %tr
+          %th Maintenances
+        %tr
+          %td Status
+          - @maintStats[:status].each do |l,v|
+            %td= l.class == String ? l.capitalize : "Undeclared"
+        %tr
+        %tr
+          %th 
+          - @maintStats[:status].each do |l,v|
+            %td= v.to_s
+        %tr
+          %td Program Name
+          - @maintStats[:program_names].each do |l,v|
+            %td= l.class == String ? l.capitalize : "Undeclared"
+        %tr
+        %tr
+          %th 
+          - @maintStats[:program_names].each do |l,v|
+            %td= v.to_s
+        %tr
+      %tr
+        %tr
+          %th Foreclosures
+        %tr
+          %td Status
+          - @foreclStats[:status].each do |l,v|
+            %td= l.class == String ? l.capitalize : "Undeclared"
+        %tr
+        %tr
+          %th 
+          - @foreclStats[:status].each do |l,v|
+            %td= v.to_s
+        %tr
+      %tr
