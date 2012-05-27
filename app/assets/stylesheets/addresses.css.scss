@@ -20,8 +20,6 @@
 		}
     
 		.top-search-bar{
-      float: left;
-      margin: -18px -5px;
       padding: 0;
 
 	    .search-field{
@@ -58,6 +56,11 @@
     }
   }
 	
+  
+  .no-search-results{
+    position: relative;
+  }
+  
 	.search-results{
 		
     width: 100% !important;
@@ -85,12 +88,25 @@
 
     	#map{
         border: 1px solid black;
-        height: 600px !important;
+        height: 400px !important;
+        width: 600px !important;
         position: relative;  
       }
       
 		}
 	}
+  
+  footer{
+  	bottom: 0;
+  	padding-bottom: 15px;
+  	clear: both;
+		position: relative;
+  	.footer{
+  		position: relative;
+  		bottom: 0;
+  	}
+  }
+  
 	
 	.single{
 		margin: 0 auto;

@@ -12,7 +12,11 @@
  *= require_tree .
 */
 
-
+#wrapper{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
 @font-face {
     font-family: 'AsapRegular';
     src: url('/fonts/Asap/Asap-Regular-webfont.eot');
@@ -66,7 +70,6 @@ header {
 	h1{
 		font-family: 'AsapBold', Arial, sans-serif;
 		color: #CBDCA3;
-    	margin: 35px 20px;
 		 a{
       color: #333333;
       font-size: 200%;
@@ -79,8 +82,8 @@ header {
 	}
 }
 
-.container{
-  width: 100% !important;
+.clear{
+	clear: both;
 }
 
 #topbar { 
@@ -207,6 +210,15 @@ footer{
   position: relative;
   width: 100%;
   text-align: center;
+
+  .demo{
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    bottom: 100px;
+		display: none;
+  }
+
 }
 
 .form-search label{
