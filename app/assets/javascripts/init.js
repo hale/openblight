@@ -2,11 +2,43 @@ OpenBlight = {
   common: {
     init: function() {
       // application-wide code
-      $("#main-search-field").autocomplete({
-        source: "/addresses/autocomplete_address_address_long"
-      });
-    }
+	  $('#main-search-field').keyup(function(key){
+
+		  var first_char = $(this).val().substr(0, 1);
+		  
+		  if(isNaN(first_char)){
+		      $("#main-search-field").autocomplete({
+		        source: "/streets/autocomplete_street_full_name"
+		      });
+		  }
+		  else{		  	
+		      $("#main-search-field").autocomplete({
+		        source: "/addresses/autocomplete_address_address_long"
+		      });			
+		  }		
+	  });	  
+    }      
   },
+  
+  home: {
+    init: function() {
+		console.log('home');
+		
+		if($.cookie('read_disclaimer') ){
+      $('#legal-agreement').modal({
+      keyboard: true
+      });
+      $('#legal-disclaimer').modal('hide');
+		}
+		
+    $.cookie('the_cookie', '');			
+    
+		
+    }    
+    
+    
+  },
+    
   
   
   addresses: {
@@ -75,6 +107,7 @@ UTIL = {
 
     if ( controller !== "" && ns[controller] && typeof ns[controller][action] == "function" ) {ns[controller][action]();}
   },
+
 
   init: function() {
     var body = document.body,

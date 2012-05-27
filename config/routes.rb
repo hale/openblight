@@ -22,6 +22,13 @@ Openblight::Application.routes.draw do
       get :autocomplete_address_address_long
     end
   end
+
+  resources :streets, :except => [:destroy, :create, :edit] do
+    collection do
+      get :autocomplete_street_full_name
+    end
+  end
+  
   resources :cases, :except => [:destroy, :create, :edit]
   
   # Sample resource route with options:
