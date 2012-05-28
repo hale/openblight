@@ -1,4 +1,5 @@
-%div{:class => 'content frontpage' }
-  =render "addresses/search"
-  
-%div{:style => "width: 100px; text-align: center; margin:0 auto"}
+.content.frontpage
+  .homesearch
+    =render "home/overview"	
+    =render "addresses/search"
+  .clear
