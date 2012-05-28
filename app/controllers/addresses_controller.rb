@@ -1,3 +1,4 @@
+require 'rgeo/cartesian/bounding_box'
 require "#{Rails.root}/lib/address_helpers.rb"
 include AddressHelpers
 
@@ -33,6 +34,16 @@ class AddressesController < ApplicationController
       street_name = AddressHelpers.get_street_name(search_term)
       @addresses = Address.find_addresses_with_cases_by_street(street_name).page(params[:page]).order(:house_num)
 
+#      factory = RGeo::Geographic::simple_mercator_factory
+#      bbox = RGeo::Cartesian::BoundingBox.new(factory)
+        
+      @addresses.each {|addr| 
+        addr.address_long = AddressHelpers.unabbreviate_street_types(addr.address_long) 
+#        bbox.add(addr.point)
+      } 
+      
+      
+      
       respond_to do |format|
         format.html # show.html.erb
         format.xml  { render :xml => @addresses }
