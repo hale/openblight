@@ -11,10 +11,15 @@
 	}	
   
   .page-header{
-    border: none;
-    top: 100px;
-  }
+   border: 0px; 
 
+   h1 {
+       line-height: 1;
+       padding: 100px 0 50px;
+   }
+
+  }
+  
 	.content{
 
 		margin: 0 auto;
