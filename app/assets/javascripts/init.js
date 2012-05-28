@@ -2,39 +2,52 @@ OpenBlight = {
   common: {
     init: function() {
       // application-wide code
-	  $('#main-search-field').keyup(function(key){
-
-		  var first_char = $(this).val().substr(0, 1);
+		  OpenBlight.common.show_disclaimer();
+		  OpenBlight.common.handle_auto_complete_address();
+      
+    },
+    
+    handle_auto_complete_address: function(){      
+  	  $('#main-search-field').keyup(function(key){
+    		  var first_char = $(this).val().substr(0, 1);
 		  
-		  if(isNaN(first_char)){
-		      $("#main-search-field").autocomplete({
-		        source: "/streets/autocomplete_street_full_name"
-		      });
-		  }
-		  else{		  	
-		      $("#main-search-field").autocomplete({
-		        source: "/addresses/autocomplete_address_address_long"
-		      });			
-		  }		
-	  });	  
-    }      
+    		  if(isNaN(first_char)){
+    		      $("#main-search-field").autocomplete({
+    		        source: "/streets/autocomplete_street_full_name"
+    		      });
+    		  }
+    		  else{		  	
+    		      $("#main-search-field").autocomplete({
+    		        source: "/addresses/autocomplete_address_address_long"
+    		      });			
+    		  }		
+  	    });	  
+    },
+    
+    show_disclaimer: function(){
+  		console.log('disclaimer');
+      console.log($.cookie('agree_to_legal_disclaimer'));
+
+
+      $('#legal-disclaimer').modal('show');
+
+      $('#legal-disclaimer .btn-primary').click(function(){
+        console.log('agree');
+        $.cookie('agree_to_legal_disclaimer', true);			
+      })
+
+      
+    }    
+    
+          
   },
   
   home: {
-    init: function() {
-		console.log('home');
-		
-		if($.cookie('read_disclaimer') ){
-      $('#legal-agreement').modal({
-      keyboard: true
-      });
-      $('#legal-disclaimer').modal('hide');
-		}
-		
-    $.cookie('the_cookie', '');			
+    init: function() {    
+  		console.log('home');
+    }
     
-		
-    }    
+
     
     
   },

@@ -15,32 +15,40 @@
         / Mobile viewport optimized: h5bp.com/viewport
         %meta{:content => "width=device-width", :name => "viewport"}
   %body{"data-action" => action_name, "data-controller" => controller_name}
-    #tag
-      %a{:href => "http://www.codeforamerica.org"}
-        %img{:border => "0", :src => "http://jlord.us/tag_cfa.png", :width => "100px"}/
-    #topbar
-      %p
-        %img{:height => "20px", :src => "http://jlord.us/code_flag.png"}>/
-        Created by Code for America in partnership with the City of New Orleans.
-        = succeed "." do
-          %a{:href => "http://www.codeforamerica.org", :target => "_blank"} Learn more
-    %div{:class => "container container-#{controller_name} container-#{controller_name}-#{action_name}"}
-      .navbar.navbar-fixed-top
+    %div{:id => "wrapper", :class => "container-#{controller_name} container-#{controller_name}-#{action_name}"}
+      #tag
+        %a{:href => "http://www.codeforamerica.org"}
+          %img{:border => "0", :src => "http://jlord.us/tag_cfa.png", :width => "100px"}/
+
+      .navbar
+        .navbar-inner
+          .container
+            %p
+              %img{:height => "20px", :src => "http://jlord.us/code_flag.png"}>/
+              Created by Code for America in partnership with the City of New Orleans.
+              = succeed "." do
+                %a{:href => "http://www.codeforamerica.org", :target => "_blank"} Learn more
       %header.page-header
         %h1#logo= link_to("blightSTATUS", root_path)
         %div{ :class => "top-search-bar"}
           - if(controller_name == 'addresses')
             =render "addresses/search"
+          -unless @agree_to_legal_disclaimer
+            =render "home/legal-disclaimer"	
 
       = yield
+	  
+	  
       %footer
-        %a{:href => ""} About
-        \-
-        %a{:href => ""} Terms of Service
-        \-
-        %a{:href => "/stats"} Statistics
-        \-
-        %a{:href => ""} Send feedback
+        .footer
+          %p        
+            %a{:href => "/about"} About
+            \-
+            %a{:href => "/terms-of-service"} Terms of Service
+            \-
+            %a{:href => "/stats"} Statistics
+            \-
+            %a{:href => "/feedback"} Send feedback
         
 
         .demo
