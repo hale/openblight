@@ -4,7 +4,6 @@ OpenBlight = {
       // application-wide code
 		  OpenBlight.common.show_disclaimer();
 		  OpenBlight.common.handle_auto_complete_address();
-      
     },
     
     handle_auto_complete_address: function(){      
@@ -25,47 +24,28 @@ OpenBlight = {
     },
     
     show_disclaimer: function(){
-  		console.log('disclaimer');
-      console.log($.cookie('agree_to_legal_disclaimer'));
-
-
       $('#legal-disclaimer').modal('show');
 
       $('#legal-disclaimer .btn-primary').click(function(){
-        console.log('agree');
         $.cookie('agree_to_legal_disclaimer', true);			
       })
-
-      
     }    
-    
-          
   },
   
   home: {
     init: function() {    
-  		console.log('home');
     }
-    
-
-    
-    
   },
-    
-  
   
   addresses: {
     init: function(){
     },
     search: function(){
-      console.log("using addresses:search");
 
       wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
         function(tilejson) {
           // this shoud be moved into a function
           var json_path = window.location.toString().replace(/search\?/i, 'search.json\?');
-          
-          
 
           jQuery.getJSON( json_path, function(data) {
             
@@ -73,7 +53,6 @@ OpenBlight = {
             
               var map = new L.Map('map').addLayer(new wax.leaf.connector(tilejson));
               var popup = new L.Popup();
-              console.log(data);
 
               var y = 29.95;
               var x = -90.05;
@@ -96,7 +75,6 @@ OpenBlight = {
     show: function(){
       $(".property-status").popover({placement: 'bottom'});
 		
-      console.log("using addresses:show");
       wax.tilejson('http://a.tiles.mapbox.com/v3/cfaneworleans.NewOrleansPostGIS.jsonp',
         function(tilejson) {
 
@@ -133,4 +111,4 @@ UTIL = {
   }
 };
  
-$( document ).ready( UTIL.init );
+$(document).ready( UTIL.init );
