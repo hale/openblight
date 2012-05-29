@@ -20,8 +20,8 @@ class AddressesController < ApplicationController
   end
 
   def search
-    search_term = params[:address]
-    Search.create(:term => search_term, :ip => request.remote_ip)
+    @search_term = params[:address]
+    Search.create(:term => @search_term, :ip => request.remote_ip)
     address_result = AddressHelpers.find_address(params[:address])
 
     # When user searches they get a direct hit!
@@ -31,7 +31,7 @@ class AddressesController < ApplicationController
     else
       # if it's not a direct hit, then we look at the street name and just present a list of properties
       # with that street name that have a case. No point in printing out a bunch of houses without cases
-      street_name = AddressHelpers.get_street_name(search_term)
+      street_name = AddressHelpers.get_street_name(@search_term)
       @addresses = Address.find_addresses_with_cases_by_street(street_name).page(params[:page]).order(:house_num)
 
 #      factory = RGeo::Geographic::simple_mercator_factory
