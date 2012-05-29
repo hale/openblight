@@ -30,6 +30,9 @@
                 %a{:href => "http://www.codeforamerica.org", :target => "_blank"} Learn more
       %header.page-header
         %h1#logo= link_to("blightSTATUS", root_path)
+        -if(controller_name == 'home')
+          =render "home/tag-line"
+
         %div{ :class => "top-search-bar"}
           - if(controller_name == 'addresses')
             =render "addresses/search"
