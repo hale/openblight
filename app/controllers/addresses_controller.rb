@@ -5,7 +5,8 @@ include AddressHelpers
 class AddressesController < ApplicationController
   respond_to :html, :xml, :json
 
-  autocomplete :address, :address_long
+  # we are not using  :full => true  because we want to show only street names or addresses. not mix 'em
+  autocomplete :address, :address_long 
 
   def index
     @addresses = Address.page(params[:page]).order(:address_long)
